@@ -15,7 +15,7 @@
       
     </div>
     <!-- Default to the left -->
-    <p>Copyright &copy; <?php echo date('Y') ?>. Todos los derechos reservados | miacambaro.mx</p>
+    <p>Copyright &copy; <?php echo date('Y') ?>. Todos los derechos reservados | Holiday Travel</p>
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -33,6 +33,9 @@
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script src="../../assets/js/additional-methods.js"></script>
+<script src="../../assets/js/user_validate.js"></script> 
+<script src="../../assets/js/slider_validate.js"></script> 
 <script src="../../assets/js/data.js"></script>
 </body>
 </html>

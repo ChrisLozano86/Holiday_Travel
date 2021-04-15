@@ -49,7 +49,7 @@ include_once '../../assets/template/header.php';
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-          <a href="index.php" class="btn btn-info">Regresar</a><br>
+          <a href="index.php" class="btn btn-warning">Regresar</a><br>
 
           <?php 
           if (isset($_REQUEST['idUsuario'])){
@@ -62,7 +62,7 @@ include_once '../../assets/template/header.php';
 
           <div  style="width:80%; margin-left:10%; background-color: white; padding:20px; border-radius:10px;">
             <h4 class="text-center"><?php echo $title ?> usuario</h4> <br>
-            <form action="save.php" method="post">
+            <form action="save.php" method="post" id="form">
 
             <div class="form-group">
             <input class="form-control" type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $usuario->getIdUsuario(); ?>">
@@ -86,13 +86,13 @@ include_once '../../assets/template/header.php';
             <div class="form-group">
             <label for="password">Contraseña</label>
             <?php if (!$usuario->getPassword()){ ?>
-            <input class="form-control" type="password" name="new_password" id="password" value="" required>
+            <input class="form-control" type="password" name="new_password" id="new_password" value="" required>
             <?php }else{ ?>
-              <input class="form-control" type="hidden" name="old_password"  value="<?php echo $usuario->getPassword()?>">
+              <input class="form-control" type="hidden" name="old_password" id="old_password" value="<?php echo $usuario->getPassword()?>">
               <div><a  class="btn btn-danger" data-toggle="collapse" href="#collapsePasswordReset" role="button" aria-expanded="false" aria-controls="collapsePasswordReset">Reestablecer</a></div>
               <div class="collapse" id="collapsePasswordReset">
                 <div class="card card-body">
-                <input class="form-control" type="password" name="new_password" id="password" placeholder="Ingrese la nueva contraseña" value="">
+                <input class="form-control" type="password" name="new_password" id="new_password" placeholder="Ingrese la nueva contraseña" value="">
              </div>
             <?php
             }
@@ -109,7 +109,7 @@ include_once '../../assets/template/header.php';
 
             <div class="form-group">
             <label for="idRol">Rol</label>
-            <select class="form-control" name="idRol" id="idRol" required>
+            <select class="form-control" name="idRol" id="rol" required>
             <option value="">Selecciona una opción</option>
             <?php foreach ($rol as $item): ?>
                 <option value="<?php echo $item[0]; ?>"  <?php if($usuario->getIdRol()==$item[0]){ echo 'Selected';}?>> <?php echo $item[1];?></option>
@@ -120,12 +120,13 @@ include_once '../../assets/template/header.php';
             </div>
 
             <div class="form-group">
-            <input type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Guardar">
+            <input type="submit" class="btn btn-primary btn-custom" data-toggle="modal" data-target="#myModal" value="Guardar información">
             </div>  
            
             </form>
             
-
+            </div>
+            
 
             </div>
 

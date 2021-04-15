@@ -3,11 +3,13 @@
      require_once '../../class/Slider.php';
   
     
-    $idArticulo = (isset($_REQUEST['idArticulo'])) ? $_REQUEST['idArticulo'] : null;
-    if($idArticulo){
-        $articulo = Slider::buscarPorId($idArticulo);        
-        $articulo->eliminar();
-        unlink($articulo->getUrlImagen1()); 
+    $idSlider = (isset($_REQUEST['idSlider'])) ? $_REQUEST['idSlider'] : null;
+    if($idSlider){
+        $slider = Slider::buscarPorId($idSlider);        
+        $slider->eliminar();
+        unlink($slider->getUrlImagen1()); 
+        header('Location: index.php');
+    }else{
         header('Location: index.php');
     }
     

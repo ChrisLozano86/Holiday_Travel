@@ -8,7 +8,8 @@ $usuario = Usuario::recuperarTodos();
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h3>Usuarios Registrados</h3>
+            <h3 class="text-center">Administrar acceso a usuarios</h3>
+            
             <a href="save.php" class="btn btn-primary btn-custom" >+ Nuevo Usuario</a><br><br>
           <?php  if (count($usuario) > 0): ?>
             <table class="table table-bordered"  id="table-data">

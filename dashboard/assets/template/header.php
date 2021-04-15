@@ -103,7 +103,7 @@ session_start();
             <li class="nav-item">
                 <a href="../users/index.php" class="nav-link">
                 <i class="fas fa-users"></i>
-                  <p>Usuarios registrados</p>
+                  <p>Administrar usuarios</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -115,7 +115,7 @@ session_start();
               <li class="nav-item">
                 <a href="../slider/index.php" class="nav-link">
                   <i class="far fa-image"></i>
-                  <p>Slider</p>
+                  <p>Slider Principal</p>
                 </a>
               </li>
             </ul>

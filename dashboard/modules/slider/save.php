@@ -30,14 +30,14 @@ $idSlider = (isset($_REQUEST['idSlider'])) ? $_REQUEST['idSlider'] : null;
              $rutaServidorFiles = 'uploads/files';
             
              
-            if ($_FILES['url-img1']['name']!=null) {
+            if ($_FILES['url_img1']['name']!=null) {
     
                     if (!is_dir('uploads/images')) {
                       mkdir('uploads/images', 0777, true); 
                     }
                    
-                    $rutaTemporal1 = $_FILES['url-img1']['tmp_name'];
-                    $extension = pathinfo($_FILES['url-img1']['name'], PATHINFO_EXTENSION);
+                    $rutaTemporal1 = $_FILES['url_img1']['tmp_name'];
+                    $extension = pathinfo($_FILES['url_img1']['name'], PATHINFO_EXTENSION);
                     $nombreImagen1 = date('YmdHis').'_slider.'.$extension;
                     $rutaDestino1 = $rutaServidor.'/'.$nombreImagen1;
                     unlink($url_imagen1);
@@ -81,7 +81,7 @@ $idSlider = (isset($_REQUEST['idSlider'])) ? $_REQUEST['idSlider'] : null;
           <h4 class="text-center"><?php echo $title ?></h4> <br>
       
 
-            <form action="save.php" method="post" id="saveForm" enctype="multipart/form-data">
+            <form action="save.php" method="post" id="slider_form" enctype="multipart/form-data">
 
             <div class="form-group">
             <input class="form-control" type="hidden" name="idSlider" id="idSlider" value="<?php echo $slider->getIdSlider(); ?>">
@@ -98,13 +98,13 @@ $idSlider = (isset($_REQUEST['idSlider'])) ? $_REQUEST['idSlider'] : null;
             </div>
 
             <div class="form-group">
-            <label for="url-img1">Imagen </label>
+            <label for="url_img1">Imagen </label>
             <?php    if(isset($_REQUEST['idSlider'])): ?>
               </br>
             <img src="<?= $slider->getUrlImagen1(); ?>" style="width:100px" />
             </br></br>
             <?php endif; ?>
-            <input type="file" class="form-control-file" name="url-img1" id="url-img1">
+            <input type="file" class="form-control-file" name="url_img1" id="url_img1">
             </div>
 
             <div class="form-group">
@@ -122,7 +122,7 @@ $idSlider = (isset($_REQUEST['idSlider'])) ? $_REQUEST['idSlider'] : null;
 
 
             <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Guardar">
+            <input type="submit" class="btn btn-primary btn-custom" value="Guardar">
             </div>  
            
             </form>
