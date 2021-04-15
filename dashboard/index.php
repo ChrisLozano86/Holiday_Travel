@@ -111,13 +111,13 @@ session_start();
                 </a>
               </li>
               <li class="nav-item">
-                <a href="modules/posts_categories/index.php" class="nav-link">
+                <a href="modules/travel_agencies/index.php" class="nav-link">
                   <i class="fa fa-hotel"></i>
                   <p>Solicitudes de Agencias</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="modules/posts/index.php" class="nav-link">
+                <a href="modules/slider/index.php" class="nav-link">
                   <i class="far fa-image"></i>
                   <p>Slider</p>
                 </a>

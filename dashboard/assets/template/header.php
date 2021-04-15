@@ -101,19 +101,19 @@ session_start();
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="../modules/users/index.php" class="nav-link">
+                <a href="../users/index.php" class="nav-link">
                 <i class="fas fa-users"></i>
                   <p>Usuarios registrados</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../modules/travel_agencies/index.php" class="nav-link">
+                <a href="../travel_agencies/index.php" class="nav-link">
                   <i class="fa fa-hotel"></i>
                   <p>Solicitudes de Agencias</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../modules/slider/index.php" class="nav-link">
+                <a href="../slider/index.php" class="nav-link">
                   <i class="far fa-image"></i>
                   <p>Slider</p>
                 </a>
