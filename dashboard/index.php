@@ -122,6 +122,12 @@ session_start();
                   <p>Slider Principal</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="modules/promos/index.php" class="nav-link">
+                  <i class="fas fa-tags"></i>
+                  <p>Promociones</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>

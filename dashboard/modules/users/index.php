@@ -10,7 +10,7 @@ $usuario = Usuario::recuperarTodos();
           <div class="col">
             <h3 class="text-center">Administrar acceso a usuarios</h3>
             
-            <a href="save.php" class="btn btn-primary btn-custom" >+ Nuevo Usuario</a><br><br>
+            <a href="save.php" class="btn btn-primary btn-custom" ><i class="fas fa-plus"></i> Nuevo Usuario</a><br><br>
           <?php  if (count($usuario) > 0): ?>
             <table class="table table-bordered"  id="table-data">
   <thead class="thead-dark">

@@ -1,7 +1,7 @@
 <?php
-require_once '../../class/Slider.php';
+require_once '../../class/Promocion.php';
 include_once '../../assets/template/header.php';
-$slider = Slider::recuperarTodos();
+$promociones = Promocion::recuperarTodos();
 ?>
 
 <!-- Main content -->
@@ -9,13 +9,13 @@ $slider = Slider::recuperarTodos();
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h3 class="text-center"> Administrar Slider </h3>
+            <h3 class="text-center"> Administrar Promociones </h3>
             
-              <a href="save.php" class="btn btn-primary btn-custom" > <i class="fas fa-plus"></i> Agregar nueva imagen al slider </a><br><br>
+              <a href="save.php" class="btn btn-primary btn-custom" > <i class="fas fa-plus"></i> Agregar nueva promoción</a><br><br>
 
               <br>
 
-              <?php  if (count($slider) > 0): ?>
+              <?php  if (count($promociones) > 0): ?>
 
               <hr>
 
@@ -23,8 +23,8 @@ $slider = Slider::recuperarTodos();
   <thead class="thead-dark">
     <tr class="text-center">
     
-    <th scope="col">Imagen del slide</th>
-      <th scope="col">Título</th>
+    <th scope="col">Imagen de la promoción</th>
+      <th scope="col">Título de la promoción</th>
       <th scope="col">Fecha de Publicación</th>
       <th scope="col">Visible</th>
       <th scope="col">Editar</th>
@@ -33,7 +33,7 @@ $slider = Slider::recuperarTodos();
     </tr>
   </thead>
   <tbody>
-  <?php foreach ($slider as $item): ?>
+  <?php foreach ($promociones as $item): ?>
 
     <!-- Modal -->
 <div class="modal fade" id="showDetailSlider<?php echo $item[0] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -50,13 +50,18 @@ $slider = Slider::recuperarTodos();
       <br>
       <p class="ml-4">Publicado el: <?php $date= date_create($item['fecha_publicacion']); echo date_format($date,"d-m-Y"); ?></p>
       <br>
+      <p class="ml-4"><?php echo $item['servicio'] ?></p>
+      <br>
       <p class="ml-4"><?php echo $item['descripcion'] ?></p>
       <br>
-      <?php if($item['visible']==0){ echo '<p class="alert alert-warning" ">Actualmente este elemento no es visible en el Slider principal</p>'; }else{ echo '<p class="alert alert-success" ">Visible en el Slider Principal</p'; } ?> </p>
+      <p class="ml-4"><?php echo $item['hotel'] ?></p>
+      <br>
+      <p class="ml-4"><?php echo $item['precio'] ?></p>
+      <?php if($item['visible']==0){ echo '<p class="alert alert-warning" ">Actualmente esta promoción no esta visible</p>'; }else{ echo '<p class="alert alert-success">Promoción visible en el sitio web</p'; } ?> </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <a href="save.php?idSlider=<?php echo $item[0];?>" class="btn btn-warning far fa-edit">Editar información</a>
+        <a href="save.php?idPromocion=<?php echo $item[0];?>" class="btn btn-warning far fa-edit">Editar información</a>
       </div>
     </div>
   </div>
@@ -67,8 +72,8 @@ $slider = Slider::recuperarTodos();
       <td><?php echo $item['titulo']; ?></td>
       <td><?php $date= date_create($item['fecha_publicacion']); echo date_format($date,"d-m-Y"); ?></td>
       <td class="text-center"><?php if($item['visible']==1){ echo '<a href="#" class="btn btn-success fas fa-check-circle lock" alt="Visible"></a>'; }else{ echo '<a href="#" class="btn btn-warning fas fa-pause-circle lock" alt="No Visible"></a>'; } ?></td>
-      <td class="text-center"><a href="save.php?idSlider=<?php echo $item[0];?>" class="btn btn-warning far fa-edit"></a></td>
-      <td class="text-center"><a href="delete.php?idSlider=<?php echo $item[0];?>" onclick="return confirm('¿Está seguro que desea eliminar este registro?')" class="btn btn-danger far fa-trash-alt"></a></td> 
+      <td class="text-center"><a href="save.php?idPromocion=<?php echo $item[0];?>" class="btn btn-warning far fa-edit"></a></td>
+      <td class="text-center"><a href="delete.php?idPromocion=<?php echo $item[0];?>" onclick="return confirm('¿Está seguro que desea eliminar esta promoción?')" class="btn btn-danger far fa-trash-alt"></a></td> 
     </tr>
     <?php endforeach; ?>
   </tbody>
@@ -76,7 +81,7 @@ $slider = Slider::recuperarTodos();
 
 
 <?php else: ?>
-            <p class="alert alert-info"> No se encontraron elementos para slider </p>
+            <p class="alert alert-info"> No se encontraron promociones </p>
         <?php endif; ?>
           
             

@@ -114,8 +114,14 @@ session_start();
               </li>
               <li class="nav-item">
                 <a href="../slider/index.php" class="nav-link">
-                  <i class="far fa-image"></i>
+                  <i class="fas fa-image"></i>
                   <p>Slider Principal</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../promos/index.php" class="nav-link">
+                  <i class="fas fa-tags"></i>
+                  <p>Promociones</p>
                 </a>
               </li>
             </ul>
