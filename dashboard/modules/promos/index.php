@@ -11,7 +11,7 @@ $promociones = Promocion::recuperarTodos();
           <div class="col">
             <h3 class="text-center"> Administrar Promociones </h3>
             
-              <a href="save.php" class="btn btn-primary btn-custom" > <i class="fas fa-plus"></i> Agregar nueva promoción</a><br><br>
+              <a href="save.php" class="btn btn-default btn-custom" > <i class="fas fa-plus"></i> Agregar nueva promoción</a><br><br>
 
               <br>
 

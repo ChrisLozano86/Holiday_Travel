@@ -370,7 +370,7 @@ include_once '../../assets/template/header.php';
 
 
             <div class="form-group">
-            <input type="submit" class="btn btn-primary btn-custom" value="Guardar información">
+            <input type="submit" class="btn btn-default btn-custom" value="Guardar información">
             </div>  
            
             </form>

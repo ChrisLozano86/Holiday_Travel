@@ -144,7 +144,7 @@ $idPromocion = (isset($_REQUEST['idPromocion'])) ? $_REQUEST['idPromocion'] : nu
 
 
             <div class="form-group">
-            <input type="submit" class="btn btn-primary btn-custom" value="Guardar Promoción">
+            <input type="submit" class="btn btn-default btn-custom" value="Guardar Promoción">
             </div>  
            
             </form>

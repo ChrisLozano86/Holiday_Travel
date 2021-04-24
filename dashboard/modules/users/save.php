@@ -120,7 +120,7 @@ include_once '../../assets/template/header.php';
             </div>
 
             <div class="form-group">
-            <input type="submit" class="btn btn-primary btn-custom" data-toggle="modal" data-target="#myModal" value="Guardar información">
+            <input type="submit" class="btn btn-default btn-custom" data-toggle="modal" data-target="#myModal" value="Guardar información">
             </div>  
            
             </form>

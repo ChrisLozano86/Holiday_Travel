@@ -122,7 +122,7 @@ $idSlider = (isset($_REQUEST['idSlider'])) ? $_REQUEST['idSlider'] : null;
 
 
             <div class="form-group">
-            <input type="submit" class="btn btn-primary btn-custom" value="Guardar">
+            <input type="submit" class="btn btn-default btn-custom" value="Guardar">
             </div>  
            
             </form>

@@ -44,6 +44,13 @@ box-shadow: 3px 3px 11px 0px rgba(0,0,0,0.75);
       color: white;
   }
 
+  .btn-custom:active{
+    /* background-color: #db9600; */
+    background-color: #2f7468;
+    border:#2f7468;
+    color: white;
+}
+
   img.article-image-thumbnail{
     width:180px;
     height:auto;

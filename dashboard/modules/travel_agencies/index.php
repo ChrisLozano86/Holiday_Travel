@@ -53,11 +53,11 @@ $agencia = Agencia::recuperarTodos();
             </div>
             <br>
             
-            <a href="save.php" class="btn btn-primary btn-custom" > <i class="fas fa-plus"></i> Nueva Agencia</a><br><br>
+            <a href="save.php" class="btn btn-default btn-custom" > <i class="fas fa-plus"></i> Nueva Agencia</a><br><br>
  
           <?php  if (count($agencia) > 0): ?>
 
-            <a href="export_report.php" class="btn btn-primary" > <i class="fas fa-file-excel"></i> Exportar a Excel</a><br><br>
+            <a href="export_report.php" class="btn btn-default btn-custom" > <i class="fas fa-file-excel"></i> Exportar a Excel</a><br><br>
 
 
             <table class="table table-bordered"  id="table-data">
