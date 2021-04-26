@@ -98,13 +98,13 @@ $idSlider = (isset($_REQUEST['idSlider'])) ? $_REQUEST['idSlider'] : null;
             </div>
 
             <div class="form-group">
-            <label for="url_img1">Imagen </label>
+            <label for="url_img1">Imagen del slider </label>
             <?php    if(isset($_REQUEST['idSlider'])): ?>
               </br>
             <img src="<?= $slider->getUrlImagen1(); ?>" style="width:100px" />
             </br></br>
             <?php endif; ?>
-            <input type="file" class="form-control-file" name="url_img1" id="url_img1">
+            <input type="file" class="form-control-file" name="url_img1" id="url_img1" <?php if($slider->getIdSlider()==""){ echo 'required'; }?> >
             </div>
 
             <div class="form-group">

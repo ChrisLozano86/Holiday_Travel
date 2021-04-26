@@ -49,14 +49,8 @@ $promociones = Promocion::recuperarTodos();
       <img src="<?php echo $item['url_imagen1']; ?>" class="article-image-thumbnail2">
       <br>
       <p class="ml-4">Publicado el: <?php $date= date_create($item['fecha_publicacion']); echo date_format($date,"d-m-Y"); ?></p>
-      <br>
-      <p class="ml-4"><?php echo $item['servicio'] ?></p>
-      <br>
-      <p class="ml-4"><?php echo $item['descripcion'] ?></p>
-      <br>
-      <p class="ml-4"><?php echo $item['hotel'] ?></p>
-      <br>
-      <p class="ml-4"><?php echo $item['precio'] ?></p>
+      <a href="<?= $item['descripcion'] ?>" target="_blank" > <img src="../../assets/img/icon-pdf.png" style="width:100px; height:auto;"> <br><small class="ml-4">Descargar</small> </a>
+      <br><br>
       <?php if($item['visible']==0){ echo '<p class="alert alert-warning" ">Actualmente esta promoción no esta visible</p>'; }else{ echo '<p class="alert alert-success">Promoción visible en el sitio web</p'; } ?> </p>
       </div>
       <div class="modal-footer">

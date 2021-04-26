@@ -10,7 +10,7 @@ $(document).ready(function() {
     }, "El campo debe tener un valor alfanumérico");
 
 
-    $("#slider_form").validate({
+    $("#promo_form").validate({
        
         wrapper: 'span',
         errorPlacement: function(error, element) {
@@ -38,10 +38,8 @@ $(document).ready(function() {
                 extension: "png|jpeg|jpg"
             },
 
-            descripcion: {
-                required: true,
-                maxlength: 500,
-                
+            file1: {
+                extension: "pdf"
                 
             },
             
@@ -63,13 +61,12 @@ $(document).ready(function() {
 
             url_img1:{
                 required: "La imagen del slide es requerido",
-                extension: "Solo se aceptan imágenes con extesión png|jpeg|jpg"
+                extension: "Solo se aceptan imágenes en formato png|jpeg|jpg"
                    
             },
 
-            descripcion: {
-                required: 'La descripcion es requerida',
-                maxlength: 'El nombre no debe exceder de 500 caracteres'     
+            file1: {
+                extension: "Solo se aceptan archivos en formato pdf"     
             },
 
             visible: {

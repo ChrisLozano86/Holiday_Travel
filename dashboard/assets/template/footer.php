@@ -36,6 +36,7 @@
 <script src="../../assets/js/additional-methods.js"></script>
 <script src="../../assets/js/user_validate.js"></script> 
 <script src="../../assets/js/slider_validate.js"></script> 
+<script src="../../assets/js/promo_validate.js"></script> 
 <script src="../../assets/js/data.js"></script>
 </body>
 </html>

@@ -63,6 +63,7 @@ $agencia = Agencia::recuperarTodos();
             <table class="table table-bordered"  id="table-data">
   <thead class="thead-dark">
     <tr>
+      <th scope="col">Logo</th>
       <th scope="col">Nombre Comercial</th>
       <th scope="col">Fecha de registro</th>
       <th scope="col">Editar</th>
@@ -75,7 +76,7 @@ $agencia = Agencia::recuperarTodos();
     ?>
 
     <tr>
-     
+      <td><img src="<?php echo $item['logo']; ?>" class="article-image-thumbnail3"> </td>
       <td><?php echo $item['nombre_comercial'] ?></td>
       <td><?php $date= date_create($item['fecha_creacion']); echo date_format($date,"d-m-Y"); ?></td>
       <td class="text-center"><a href="save.php?idAgencia=<?php echo $item[0];?>" class="btn btn-warning far fa-edit"></a></td>

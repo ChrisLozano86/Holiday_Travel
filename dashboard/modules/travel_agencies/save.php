@@ -29,11 +29,10 @@ require_once '../../class/Agencia.php';
         $agencia->setTel2($_POST['tel2']);
         $agencia->setTel3($_POST['tel3']);
         $agencia->setPaginaWeb($_POST['pagina_web']);
-        $agencia->setActivo('checked');
+        $agencia->setActivo('Si');
         $agencia->setClaveBackOffice($_POST['clave_back_office']);
         $agencia->setHeaderFooter($_POST['header_footer']);
         $agencia->setMenu($_POST['menu']);
-        $agencia->setLogo($_POST['logo']);
         $agencia->setObservaciones($_POST['observaciones']);
         $agencia->setNombreContacto($_POST['nombre_contacto']);
         $agencia->setApellidoPaterno($_POST['apellido_paterno']);
@@ -48,6 +47,30 @@ require_once '../../class/Agencia.php';
         $agencia->setServidorSMTP($_POST['servidor_smtp']);
         $agencia->setPortSMTP($_POST['port_smtp']);
         $agencia->setFechaCreacion(date('Y-m-d'));
+
+
+        $rutaServidor = 'uploads/images';
+        $rutaServidorFiles = 'uploads/files';
+
+        if ($_FILES['url_img1']['name']!=null) {
+    
+          if (!is_dir('uploads/images')) {
+            mkdir('uploads/images', 0777, true); 
+          }
+         
+          $rutaTemporal1 = $_FILES['url_img1']['tmp_name'];
+          $extension = pathinfo($_FILES['url_img1']['name'], PATHINFO_EXTENSION);
+          $nombreImagen1 = date('YmdHis').'_slider.'.$extension;
+          $rutaDestino1 = $rutaServidor.'/'.$nombreImagen1;
+          unlink($_POST['logo']);
+          move_uploaded_file($rutaTemporal1, $rutaDestino1); 
+          $agencia->setLogo($rutaDestino1); 
+        
+    } else{
+          $agencia->setLogo($_POST['logo']);    
+  } 
+
+
         $agencia->guardar();
        
         if($idAgencia != ""){
@@ -78,13 +101,17 @@ include_once '../../assets/template/header.php';
 
           <div  style="width:80%; margin-left:10%; background-color: white; padding:20px; border-radius:10px;">
             <h4 class="text-center"><?php echo $title ?> agencia</h4> <br>
-            <form action="save.php" method="post" id="form">
+            <form action="save.php" method="post" id="slider_form" enctype="multipart/form-data">
 
 
             <h4 class="section-form">Información</h4>
 
             <div class="form-group">
             <input class="form-control" type="hidden" name="idAgencia" id="idAgencia" value="<?php echo $agencia->getIdAgencia(); ?>">
+            </div>
+
+            <div class="form-group">
+            <input class="form-control" type="hidden" name="logo" id="logo" value="<?php echo $agencia->getLogo(); ?>">
             </div>
 
             <div class="form-group">
@@ -240,7 +267,7 @@ include_once '../../assets/template/header.php';
             </div>
             <hr>
             <div class="form-group">
-            <input type="checkbox" id="activo" name="activo" value="checked" checked> <label for="activo">Activo <span style="margin-left:50px">Fecha de registro</span> </label>
+            <input type="hidden" id="activo" name="activo" value="Sí">
             </div>
 
             <div class="form-group">
@@ -248,7 +275,7 @@ include_once '../../assets/template/header.php';
             <input class="form-control" type="text" name="clave_back_office" id="clave_back_office" value="<?php echo $agencia->getClaveBackOffice(); ?>" >
             </div>
 
-            <h4 class="section-form">Configuraciones del front end</h4> 
+            <h4 class="section-form">Configuraciones del sitio web</h4> 
 
             <div class="form-group">
             <label for="header_footer">Header y Footer</label>
@@ -277,15 +304,14 @@ include_once '../../assets/template/header.php';
 
 
             <div class="form-group">
-            <label for="logo">Logo</label>
-            <div class="form-check">
-              <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="logo" value="Activo" checked>Activo
-              </label>
-              <label class="form-check-label" style="margin-left: 50px;">
-              <input type="radio" class="form-check-input" name="logo" value="Inactivo">Inactivo
-              </label>
-            </div>
+            <label for="url_img1">Logo </label>
+            <br><small class="text text-danger"> Si cuenta con el logo de la empresa, puede subir la imagen con dimensiones de 180 x 180 píxeles en formato JPG o PNG</small>
+            <?php    if(isset($_REQUEST['idAgencia'])): ?>
+              </br>
+            <img src="<?= $agencia->getLogo(); ?>" style="width:180px; height:180px;" />
+            </br></br>
+            <?php endif; ?>
+            <input type="file" class="form-control-file" name="url_img1" id="url_img1" ?> 
             </div>
 
 
@@ -344,27 +370,27 @@ include_once '../../assets/template/header.php';
             <input class="form-control" type="email" name="email_contacto" id="email_contacto" value="<?php echo $agencia->getEmailContacto(); ?>" required>
             </div>
 
-            <h4 class="section-form">Dirección para el envío de correos electrónicos</h4> 
+            <!-- <h4 class="section-form">Dirección para el envío de correos electrónicos</h4>  -->
 
 
             <div class="form-group">
-            <label for="email_servidor">Correo Electrónico</label>
-            <input class="form-control" type="email" name="email_servidor" id="email_servidor" value="<?php echo $agencia->getEmailServidor(); ?>">
+            <!-- <label for="email_servidor">Correo Electrónico</label> -->
+            <input class="form-control" type="hidden" name="email_servidor" id="email_servidor" value="<?php echo $agencia->getEmailServidor(); ?>">
             </div>
 
             <div class="form-group">
-            <label for="clave">Clave</label>
-            <input class="form-control" type="text" name="clave" id="clave" value="<?php echo $agencia->getClave(); ?>">
+            <!-- <label for="clave">Clave</label> -->
+            <input class="form-control" type="hidden" name="clave" id="clave" value="<?php echo $agencia->getClave(); ?>">
             </div>
 
             <div class="form-group">
-            <label for="servidor_smtp">Servidor SMTP</label>
-            <input class="form-control" type="text" name="servidor_smtp" id="servidor_smtp" value="<?php echo $agencia->getServidorSMTP(); ?>">
+            <!-- <label for="servidor_smtp">Servidor SMTP</label> -->
+            <input class="form-control" type="hidden" name="servidor_smtp" id="servidor_smtp" value="<?php echo $agencia->getServidorSMTP(); ?>">
             </div>
 
             <div class="form-group">
-            <label for="smtp">Port SMTP</label>
-            <input class="form-control" type="text" name="port_smtp" id="port_smtp" value="<?php echo $agencia->getPortSMTP(); ?>">
+            <!-- <label for="smtp">Port SMTP</label> -->
+            <input class="form-control" type="hidden" name="port_smtp" id="port_smtp" value="<?php echo $agencia->getPortSMTP(); ?>">
             </div>
 
 
