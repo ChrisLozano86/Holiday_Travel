@@ -47,7 +47,7 @@ $idPromocion = (isset($_REQUEST['idPromocion'])) ? $_REQUEST['idPromocion'] : nu
                     $extensionImg = pathinfo($_FILES['url_img1']['name'], PATHINFO_EXTENSION);
                     $nombreImagen1 = date('YmdHis').'_promocion.'.$extensionImg;
                     $rutaDestinoImg = $rutaServidorImages.'/'.$nombreImagen1;
-                    unlink($descripcion);
+                    unlink($url_imagen1);
                     move_uploaded_file($rutaTemporalImg, $rutaDestinoImg); 
                     $promocion->setUrlImagen1($rutaDestinoImg); 
                   

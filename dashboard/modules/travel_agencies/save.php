@@ -60,7 +60,7 @@ require_once '../../class/Agencia.php';
          
           $rutaTemporal1 = $_FILES['url_img1']['tmp_name'];
           $extension = pathinfo($_FILES['url_img1']['name'], PATHINFO_EXTENSION);
-          $nombreImagen1 = date('YmdHis').'_slider.'.$extension;
+          $nombreImagen1 = date('YmdHis').'_logo.'.$extension;
           $rutaDestino1 = $rutaServidor.'/'.$nombreImagen1;
           unlink($_POST['logo']);
           move_uploaded_file($rutaTemporal1, $rutaDestino1); 
