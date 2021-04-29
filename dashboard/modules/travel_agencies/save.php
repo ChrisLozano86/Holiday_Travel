@@ -31,8 +31,8 @@ require_once '../../class/Agencia.php';
         $agencia->setPaginaWeb($_POST['pagina_web']);
         $agencia->setActivo('Si');
         $agencia->setClaveBackOffice($_POST['clave_back_office']);
-        $agencia->setHeaderFooter($_POST['header_footer']);
-        $agencia->setMenu($_POST['menu']);
+        $agencia->setHeaderFooter('Activo');
+        $agencia->setMenu('Activo');
         $agencia->setObservaciones($_POST['observaciones']);
         $agencia->setNombreContacto($_POST['nombre_contacto']);
         $agencia->setApellidoPaterno($_POST['apellido_paterno']);
@@ -260,7 +260,8 @@ include_once '../../assets/template/header.php';
             <input class="form-control w-50" type="text" name="tel3" id="tel3" value="<?php echo $agencia->getTel3(); ?>" placeholder="Número Telefónico 3">
             </div>
 
-            <h4 class="section-form">A esta página se redirecciona al cerrar sesión</h4> 
+            <h4 class="section-form">Configuraciones del sitio web</h4>
+
             <div class="form-group">
             <label for="pagina_web">Página web</label>
             <input class="form-control" type="text" name="pagina_web" id="pagina_web" value="<?php echo $agencia->getPaginaWeb(); ?>">
@@ -271,46 +272,26 @@ include_once '../../assets/template/header.php';
             </div>
 
             <div class="form-group">
-            <label for="clave_back_office">Clave Back Office</label>
-            <input class="form-control" type="text" name="clave_back_office" id="clave_back_office" value="<?php echo $agencia->getClaveBackOffice(); ?>" >
+            
+            <input class="form-control" type="hidden" name="clave_back_office" id="clave_back_office" value="<?php echo $agencia->getClaveBackOffice(); ?>" >
             </div>
 
-            <h4 class="section-form">Configuraciones del sitio web</h4> 
-
-            <div class="form-group">
-            <label for="header_footer">Header y Footer</label>
-            <div class="form-check">
-              <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="header_footer" value="Activo" checked>Activo
-              </label>
-              <label class="form-check-label" style="margin-left: 50px;">
-              <input type="radio" class="form-check-input" name="header_footer" value="Inactivo">Inactivo
-              </label>
-            </div>
-            </div>
-
-
-            <div class="form-group">
-            <label for="menu">Menú</label>
-            <div class="form-check">
-              <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="menu" value="Activo" checked>Activo
-              </label>
-              <label class="form-check-label" style="margin-left: 50px;">
-              <input type="radio" class="form-check-input" name="menu" value="Inactivo">Inactivo
-              </label>
-            </div>
-            </div>
-
+            <!-- <h4 class="section-form">Configuraciones del sitio web</h4>  -->
 
             <div class="form-group">
             <label for="url_img1">Logo </label>
             <br><small class="text text-danger"> Si cuenta con el logo de la empresa, puede subir la imagen con dimensiones de 180 x 180 píxeles en formato JPG o PNG</small>
-            <?php    if(isset($_REQUEST['idAgencia'])): ?>
+            <?php    
+            if(isset($_REQUEST['idAgencia'])){
+              if($agencia->getLogo()!=""){
+              ?>
               </br>
             <img src="<?= $agencia->getLogo(); ?>" style="width:180px; height:180px;" />
             </br></br>
-            <?php endif; ?>
+            <?php
+            } 
+          } 
+            ?>
             <input type="file" class="form-control-file" name="url_img1" id="url_img1" ?> 
             </div>
 

@@ -75,8 +75,44 @@ $agencia = Agencia::recuperarTodos();
   <?php foreach ($agencia as $item): 
     ?>
 
+    <!-- Modal -->
+<div class="modal fade" id="showLogo<?php echo $item[0] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><?php echo $item['nombre_comercial'] ?></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <img src="<?php echo $item['logo']; ?>" class="article-image-thumbnail2">
+      <br>
+      <div class="text-center">
+      <a href="<?php echo $item['logo']; ?>" download="<?php echo $item['nombre_comercial'].'_logo'?>" target="_blank">Descargar Logo</a>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <a href="save.php?idAgencia=<?php echo $item[0];?>" class="btn btn-warning far fa-edit">Editar información</a>
+      </div>
+    </div>
+  </div>
+</div>
+
     <tr>
-      <td><img src="<?php echo $item['logo']; ?>" class="article-image-thumbnail3"> </td>
+    <?php
+      if($item['logo']!=""){
+    ?>
+      <td class="text-center"><a href="#" data-toggle="modal" data-target="#showLogo<?php echo $item[0] ?>"> <img src="<?php echo $item['logo']; ?>" width="50"
+      height="50"></a> </td>
+    <?php
+    }else{
+      ?>
+        <td></td>
+      <?php
+    }
+    ?>
       <td><?php echo $item['nombre_comercial'] ?></td>
       <td><?php $date= date_create($item['fecha_creacion']); echo date_format($date,"d-m-Y"); ?></td>
       <td class="text-center"><a href="save.php?idAgencia=<?php echo $item[0];?>" class="btn btn-warning far fa-edit"></a></td>
