@@ -227,7 +227,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="hero-text">
+                            <div class="hero-text ocultar-text">
                                 <h1>Riviera Maya, Tulum.</h1>
                                 <p>Increibles lugares en Cancún, México.</p>
                                 <!-- <a href="#" class="primary-btn">Más Información</a>  -->
@@ -241,7 +241,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="hero-text">
+                            <div class="hero-text ocultar-text">
                                 <h1>La Marina de Vallarta.</h1>
                                 <p>Increibles experiencias en Jalisco.</p>
                                 <!-- <a href="#" class="primary-btn">Más Información</a> -->
@@ -254,7 +254,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="hero-text">
+                            <div class="hero-text ocultar-text">
                                 <h1>Playa Quieta Ixtapa.</h1>
                                 <p>Nuevos Lugares, Guerrero.</p>
                                 <!-- <a href="#" class="primary-btn">Más Información</a> -->
@@ -360,149 +360,6 @@
         <hr>
     </section>
 
-    <!-- Services Section End -->
-
-    <!-- Promociones -->
-    <!-- <section class="services-section spad" id="promociones">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>PROMOCIONES</span>
-                        <h2>Descubre Nuestras Promociones</h2>
-                    </div>
-                </div>
-
-            </div>
-    </section> -->
-    <!-- Promociones End -->
-
-    <!-- Home Room Section Begin -->
-    <!-- <section class="hp-room-section">
-        <div class="container-fluid">
-            <div class="hp-room-items">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="img/room/room-b1.jpg">
-                            <div class="hr-text">
-                                <h3>Double Room</h3>
-                                <h2>199$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="img/room/room-b2.jpg">
-                            <div class="hr-text">
-                                <h3>Premium King Room</h3>
-                                <h2>159$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="img/room/room-b3.jpg">
-                            <div class="hr-text">
-                                <h3>Deluxe Room</h3>
-                                <h2>198$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="img/room/room-b4.jpg">
-                            <div class="hr-text">
-                                <h3>Family Room</h3>
-                                <h2>299$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- Home Room Section End -->
 
     <!-- Testimonial Section Begin -->
     <section class="testimonial-section spad" id="promociones">
@@ -516,94 +373,325 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 offset-lg-12">
-                    <!-- <div class="testimonial-slider owl-carousel">
-                        <div class="ts-item">
-                            <p>After a construction project took longer than expected, my husband, my daughter and I needed a place to stay for a few nights. As a Chicago resident, we know a lot about our city, neighborhood and the types of housing options
-                                available and absolutely love our vacation at Sona Hotel.</p>
-                            <div class="ti-author">
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5> - Alexander Vasquez</h5>
-                            </div>
-                            <img src="img/testimonial-logo.png" alt="">
-                        </div>
-                        <div class="ts-item">
-                            <p>After a construction project took longer than expected, my husband, my daughter and I needed a place to stay for a few nights. As a Chicago resident, we know a lot about our city, neighborhood and the types of housing options
-                                available and absolutely love our vacation at Sona Hotel.</p>
-                            <div class="ti-author">
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5> - Alexander Vasquez</h5>
-                            </div>
-                            <img src="img/testimonial-logo.png" alt="">
-                        </div>
-                    </div> -->
 
-                    <div class="card-deck">
-                        <div class="card">
-                            <a href="#s"><img class="card-img-top" src="img/promo/one.jpg" alt="Card image cap"></a>
-                            <div class="card-body text-center">
-                                <!-- <a href="#" class="btn btn-success">Ver más</a> -->
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="img/promo/two.jpg" alt="Card image cap">
-                            <div class="card-body text-center">
-                                <!-- <a href="#" class="btn btn-success">Ver más</a> -->
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="img/promo/tree.jpg" alt="Card image cap">
-                            <div class="card-body text-center">
-                                <!-- <a href="#" class="btn btn-success">Ver más</a> -->
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="img/promo/four.jpg" alt="Card image cap">
-                            <div class="card-body text-center">
-                                <!-- <a href="#" class="btn btn-success">Ver más</a> -->
-                            </div>
+
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hovereffects">
+                        <img src="img/promo/one.jpg" class="img-fluid" height="300px" width="100%" alt="images">
+                        <div class="overlay">
+                            <!-- <h2>Awesome Temples</h2> -->
+                            <a class="info" href="#" data-toggle="modal" data-target="#myModal1">Más Información...</a>
                         </div>
                     </div>
 
-                    <div class="card-deck mt-5">
-                        <div class="card">
-                            <img class="card-img-top" src="img/promo/five.jpg" alt="Card image cap">
-                            <div class="card-body text-center">
-                                <!-- <a href="#" class="btn btn-success">Ver más</a> -->
+                    <div class="modal fade" id="myModal1" role="dialog">
+                        <div class="modal-dialog ">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="">
+                                        <img src="img/logo.png" alt="" height="34px">
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="img/promo/one.jpg" class="img-fluid" width="100%" height="100%">
+                                    <hr>
+                                    <button type="button" class="btn btn-warning boto btn-lg btn-block mt-2">Descargar Itinerario</button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="img/promo/six.jpg" alt="Card image cap">
-                            <div class="card-body text-center">
-                                <!-- <a href="#" class="btn btn-success">Ver más</a> -->
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="img/promo/seven.jpg" alt="Card image cap">
-                            <div class="card-body text-center">
-                                <!-- <a href="#" class="btn btn-success">Ver más</a> -->
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="img/promo/eigth.jpg" alt="Card image cap">
-                            <div class="card-body text-center">
-                                <!-- <a href="#" class="btn btn-success">Ver más</a> -->
-                            </div>
+
                         </div>
                     </div>
+
                 </div>
+
+
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hovereffects">
+                        <img src="img/promo/two.jpg" class="img-fluid" height="300px" width="100%" alt="images">
+                        <div class="overlay">
+                            <!-- <h2>Awesome Building</h2> -->
+                            <a class="info" href="#" data-toggle="modal" data-target="#myModal2">Más Información...</a>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal2" role="dialog">
+                        <div class="modal-dialog ">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="">
+                                        <img src="img/logo.png" alt="" height="34px">
+                                    </div>
+                                    <!-- <h4 class="modal-title " id="exampleModalLabel">Nombre Promoción</h4> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="img/promo/two.jpg" class="img-fluid" width="100%" height="100%">
+                                    <hr>
+                                    <button type="button" class="btn btn-warning boto btn-lg btn-block mt-2">Descargar Itinerario</button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hovereffects">
+                        <img src="img/promo/tree.jpg" class="img-fluid" height="300px" width="100%" alt="images">
+                        <div class="overlay">
+                            <!-- <h2>Awesome Building</h2> -->
+                            <a class="info" href="#" data-toggle="modal" data-target="#myModal3">Más Información...</a>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal3" role="dialog">
+                        <div class="modal-dialog ">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="">
+                                        <img src="img/logo.png" alt="" height="34px">
+                                    </div>
+                                    <!-- <h4 class="modal-title " id="exampleModalLabel">Nombre Promoción</h4> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="img/promo/tree.jpg" class="img-fluid" width="100%" height="100%">
+                                    <hr>
+                                    <button type="button" class="btn btn-warning boto btn-lg btn-block mt-2">Descargar Itinerario</button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hovereffects">
+                        <img src="img/promo/four.jpg" class="img-fluid" height="300px" width="100%" alt="images">
+                        <div class="overlay">
+                            <!-- <h2>Awesome Building</h2> -->
+                            <a class="info" href="#" data-toggle="modal" data-target="#myModal4">Más Información...</a>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal4" role="dialog">
+                        <div class="modal-dialog ">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="">
+                                        <img src="img/logo.png" alt="" height="34px">
+                                    </div>
+                                    <!-- <h4 class="modal-title " id="exampleModalLabel">Nombre Promoción</h4> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="img/promo/four.jpg" class="img-fluid" width="100%" height="100%">
+                                    <hr>
+                                    <button type="button" class="btn btn-warning boto btn-lg btn-block mt-2">Descargar Itinerario</button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hovereffects">
+                        <img src="img/promo/five.jpg" class="img-fluid" height="300px" width="100%" alt="images">
+                        <div class="overlay">
+                            <!-- <h2>Nature</h2> -->
+                            <a class="info" href="#" data-toggle="modal" data-target="#myModal5">Más Información...</a>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal5" role="dialog">
+                        <div class="modal-dialog ">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="">
+                                        <img src="img/logo.png" alt="" height="34px">
+                                    </div>
+                                    <!-- <h4 class="modal-title " id="exampleModalLabel">Nombre Promoción</h4> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="img/promo/five.jpg" class="img-fluid" width="100%" height="100%">
+                                    <hr>
+                                    <button type="button" class="btn btn-warning boto btn-lg btn-block mt-2">Descargar Itinerario</button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hovereffects">
+                        <img src="img/promo/six.jpg" class="img-fluid" height="230px" width="100%" alt="images">
+                        <div class="overlay">
+                            <!-- <h2>Bowl</h2> -->
+                            <a class="info" href="#" data-toggle="modal" data-target="#myModal6">Más Información...</a>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal6" role="dialog">
+                        <div class="modal-dialog ">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="">
+                                        <img src="img/logo.png" alt="" height="34px">
+                                    </div>
+                                    <!-- <h4 class="modal-title " id="exampleModalLabel">Nombre Promoción</h4> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="img/promo/six.jpg" class="img-fluid" width="100%" height="100%">
+                                    <hr>
+                                    <button type="button" class="btn btn-warning boto btn-lg btn-block mt-2">Descargar Itinerario</button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hovereffects">
+                        <img src="img/promo/seven.jpg" class="img-fluid" height="230px" width="100%" alt="images">
+                        <div class="overlay">
+                            <!-- <h2>Bowl</h2> -->
+                            <a class="info" href="#" data-toggle="modal" data-target="#myModal7">Más Información...</a>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal7" role="dialog">
+                        <div class="modal-dialog ">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="">
+                                        <img src="img/logo.png" alt="" height="34px">
+                                    </div>
+                                    <!-- <h4 class="modal-title " id="exampleModalLabel">Nombre Promoción</h4> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="img/promo/seven.jpg" class="img-fluid" width="100%" height="100%">
+                                    <hr>
+                                    <button type="button" class="btn btn-warning boto btn-lg btn-block mt-2">Descargar Itinerario</button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="hovereffects">
+                        <img src="img/promo/eigth.jpg" class="img-fluid" height="230px" width="100%" alt="images">
+                        <div class="overlay">
+                            <!-- <h2>Bowl</h2> -->
+                            <a class="info" href="#" data-toggle="modal" data-target="#myModal8">Más Información...</a>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal8" role="dialog">
+                        <div class="modal-dialog ">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="">
+                                        <img src="img/logo.png" alt="" height="34px">
+                                    </div>
+                                    <!-- <h4 class="modal-title " id="exampleModalLabel">Nombre Promoción</h4> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="img/promo/eigth.jpg" class="img-fluid" width="100%" height="100%">
+                                    <hr>
+                                    <button type="button" class="btn btn-warning boto btn-lg btn-block mt-2">Descargar Itinerario</button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </section>
@@ -618,7 +706,7 @@
 
                     <div class="modal-body">
                         <div style="width:80%; margin-left:10%; background-color: white; padding:20px; border-radius:10px;">
-                            <h4 class="text-center">Registrar agencia</h4> <br>
+                            <h4 class="text-center">Registrar Agencia</h4> <br>
 
                             <form action="./dashboard/modules/travel_agencies/save.php" method="post" id="slider_form" enctype="multipart/form-data">
 
@@ -633,7 +721,7 @@
                                 <input class="form-control" type="hidden" name="logo" id="logo" value="">
                             </div> -->
 
-                                <div class="form-group">
+                                <div class="form-group mt-2">
                                     <label for="razon_social">Razón Social <span class="text text-danger">*</span></label>
                                     <input class="form-control" type="text" name="razon_social" id="razon_social" value="" required>
                                 </div>
@@ -689,8 +777,8 @@
                                     <input class="form-control" style="width: 20%;" type="text" name="cp" id="cp" value="" required>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="pais">País <span class="text text-danger">*</span></label>
+                                <!-- <div class="form-group">
+                                    <label for="pais">País <span class="text text-danger">*</span></label><br>
                                     <select id="pais" name="pais" class="form-control w-50" required>
                                         <option value=''>Selecciona un país</option>
                                         <option value='Antigua y Barbuda'>Antigua y Barbuda</option>
@@ -739,8 +827,9 @@
                                     </select>
                                 </div>
 
+                            
                                 <div class="form-group">
-                                    <label for="moneda">Moneda <span class="text text-danger">*</span></label>
+                                    <label for="moneda">Moneda <span class="text text-danger">*</span></label><br>
                                     <select name="moneda" id="moneda" class="form-control w-50" required>
                                         <option value=''>Selecciona una moneda</option>
                                         <option value='Peso Mexicano' selected>Peso mexicano</option>
@@ -770,16 +859,17 @@
                                         <option value='Peso Uruguayo'> Peso uruguayo</option>
                                         <option value='Bolívar'> Bolívar</option>
                                     </select>
-                                </div>
-
+                                </div> -->
+                            
                                 <div class="form-group">
-                                    <label for="telefonos">Teléfonos <span class="text text-danger">*</span></label>
-                                    <input class="form-control w-50" type="text" name="tel1" id="tel1" value="" placeholder="Número Telefónico 1" required>
-                                    <input class="form-control w-50" type="text" name="tel2" id="tel2" value="" placeholder="Número Telefónico 2">
-                                    <input class="form-control w-50" type="text" name="tel3" id="tel3" value="" placeholder="Número Telefónico 3">
+                                     <label for="telefonos">Teléfonos <span class="text text-danger">*</span></label>
+                                 
+                                    <input class="form-control w-50 mt-2" type="text" name="tel1" id="tel1" value="" placeholder="Número Telefónico 1" required>
+                                    <input class="form-control w-50 mt-3" type="text" name="tel2" id="tel2" value="" placeholder="Número Telefónico 2">
+                                    <input class="form-control w-50 mt-3 mb-2" type="text" name="tel3" id="tel3" value="" placeholder="Número Telefónico 3">
                                 </div>
 
-                                <h4 class="section-form">A esta página se redirecciona al cerrar sesión</h4>
+                                <h4 class="section-form mb-3">A esta página se redirecciona al cerrar sesión</h4>
                                 <div class="form-group">
                                     <label for="pagina_web">Página web</label>
                                     <input class="form-control" type="text" name="pagina_web" id="pagina_web" value="">
@@ -794,7 +884,7 @@
                                     <input class="form-control" type="text" name="clave_back_office" id="clave_back_office" value="">
                                 </div>
 
-                                <h4 class="section-form">Configuraciones del sitio web</h4>
+                                <h4 class="section-form mb-3">Configuraciones del sitio web</h4>
 
                                 <div class="form-group">
                                     <label for="header_footer">Header y Footer</label>
@@ -836,7 +926,7 @@
                                     <textarea name="observaciones" id="observaciones" class="form-control" rows="3"></textarea>
                                 </div>
 
-                                <h4 class="section-form">Datos del contacto</h4>
+                                <h4 class="section-form mb-3">Datos del contacto</h4>
 
                                 <div class="form-group">
                                     <label for="nombre_contacto">Nombre <span class="text text-danger">*</span></label>
