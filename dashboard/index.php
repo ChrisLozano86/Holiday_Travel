@@ -1,8 +1,8 @@
 <?php
 session_start(); 
-/* if($_SESSION['idRol']== null || $_SESSION['idRol']!=1){
-  header('Location: ../login.php');
-} */
+if($_SESSION['idRol']== null){
+  header('Location: login.php');
+} 
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -56,10 +56,10 @@ session_start();
     <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Sinuhe Chacón 
+      <?php echo $_SESSION['nombre']; ?>
      </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      <a class="dropdown-item" href="../logout.php">Cerrar Sesión</a>
+      <a class="dropdown-item" href="logout.php">Cerrar Sesión</a>
         </div>
       </li>
     </ul>
@@ -85,7 +85,15 @@ session_start();
         </div>
         <div class="info">
           <a href="#" class="d-block">
-            Administrador
+          <?php
+         if($_SESSION['idRol']==1){
+            echo 'Super Administrador';
+         }elseif($_SESSION['idRol']==2){
+          echo 'Administrador';
+         }else{
+          echo 'Colaborador';
+         }
+         ?>
           </a>
         </div>
       </div>
@@ -104,12 +112,14 @@ session_start();
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <?php if ($_SESSION['idRol']!=3){ ?>
               <li class="nav-item">
                 <a href="modules/users/index.php" class="nav-link">
                 <i class="fas fa-users"></i>
                   <p>Administrar usuarios</p>
                 </a>
               </li>
+              <?php } ?>
               <li class="nav-item">
                 <a href="modules/travel_agencies/index.php" class="nav-link">
                   <i class="fa fa-hotel"></i>
