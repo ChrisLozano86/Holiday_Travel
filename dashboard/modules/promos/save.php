@@ -56,7 +56,7 @@ $idPromocion = (isset($_REQUEST['idPromocion'])) ? $_REQUEST['idPromocion'] : nu
             } 
 
 
-           /*  if ($_FILES['file1']['name']!="") {
+            if ($_FILES['file1']['name']!="") {
     
               if (!is_dir('uploads/files')) {
                 mkdir('uploads/files', 0777, true); 
@@ -73,7 +73,7 @@ $idPromocion = (isset($_REQUEST['idPromocion'])) ? $_REQUEST['idPromocion'] : nu
         } else{
         $promocion->setDescripcion($descripcion);    
       } 
- */
+
             
               $promocion->guardar();
               header('Location: index.php');
