@@ -55,7 +55,7 @@ if($_SESSION['idRol']== null){
       <?php echo $_SESSION['nombre']; ?>
      </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      <a class="dropdown-item" href="../logout.php">Cerrar Sesión</a>
+      <a class="dropdown-item" href="../../logout.php">Cerrar Sesión</a>
         </div>
       </li>
     </ul>
