@@ -1,6 +1,5 @@
 <?php
 require_once '../../class/Slider.php';
-$sliders = Slider::recuperarTodos();
 $idSlider = (isset($_REQUEST['idSlider'])) ? $_REQUEST['idSlider'] : null;
 
     if($idSlider){        
