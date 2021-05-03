@@ -135,8 +135,11 @@ $idPromocion = (isset($_REQUEST['idPromocion'])) ? $_REQUEST['idPromocion'] : nu
             </br></br>
             <?php endif; ?>
             <input type="file" class="form-control-file" name="url_img1" id="url_img1">
-            <br>
-            <small> Selecciona una imagen con dimensiones de 800 x 600 en formato JPG o PNG</small>
+            <small> Selecciona una imagen con las siguientes caracteristicas:</small>
+            <ul>
+              <li><small>Dimensiones de 800 x 600 pixeles en formato JPG o PNG</small></li>
+              <li><small>Tamaño menor a 200kb</small></li>
+            </ul>  
             </div>
 
             <div class="form-group">

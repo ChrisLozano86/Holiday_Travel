@@ -104,6 +104,12 @@ $idSlider = (isset($_REQUEST['idSlider'])) ? $_REQUEST['idSlider'] : null;
             </br></br>
             <?php endif; ?>
             <input type="file" class="form-control-file" name="url_img1" id="url_img1" <?php if($slider->getIdSlider()==""){ echo 'required'; }?> >
+            <small> Selecciona una imagen con las siguientes caracteristicas:</small>
+            <ul>
+              <li><small>Dimensiones de 1920 x 770 pixeles en formato JPG o PNG</small></li>
+              <li><small>Tamaño menor a 400kb</small></li>
+            </ul>  
+             
             </div>
 
             <div class="form-group">
