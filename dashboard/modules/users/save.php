@@ -111,9 +111,11 @@ include_once '../../assets/template/header.php';
             <label for="idRol">Rol</label>
             <select class="form-control" name="idRol" id="rol" required>
             <option value="">Selecciona una opción</option>
-            <?php foreach ($rol as $item): ?>
+            <?php foreach ($rol as $item): 
+                      if($item[0]!=1): ?>
                 <option value="<?php echo $item[0]; ?>"  <?php if($usuario->getIdRol()==$item[0]){ echo 'Selected';}?>> <?php echo $item[1];?></option>
             <?php
+                endif;
               endforeach;
             ?>
             </select>
