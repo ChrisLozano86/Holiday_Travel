@@ -144,11 +144,18 @@ $idPromocion = (isset($_REQUEST['idPromocion'])) ? $_REQUEST['idPromocion'] : nu
             <label for="descripcion">Descripción</label>
             
 
-            <?php    if(isset($_REQUEST['idPromocion'])): ?>
+            <?php  
+              if(isset($_REQUEST['idPromocion'])){
+                if($promocion->getDescripcion()!=""){
+              ?>
               </br>
             <a href="<?= $promocion->getDescripcion(); ?>" target="_blank" > <img src="../../assets/img/icon-pdf.png" style="width:100px; height:auto;"> <br><small class="ml-4">Descargar</small> </a>
             </br></br>
-            <?php endif; ?>
+            <?php
+                }
+           } 
+           
+           ?>
             <input type="file" class="form-control-file" name="file1" id="file1">
             <br>
             <small> Selecciona un archivo PDF que contenga toda la información de la promoción</small>

@@ -49,7 +49,15 @@ $promociones = Promocion::recuperarTodos();
       <img src="<?php echo $item['url_imagen1']; ?>" class="article-image-thumbnail2">
       <br>
       <p class="ml-4">Publicado el: <?php $date= date_create($item['fecha_publicacion']); echo date_format($date,"d-m-Y"); ?></p>
+      <?php
+        if($item['descripcion']!= ""){
+      ?>
       <a href="<?= $item['descripcion'] ?>" target="_blank" > <img src="../../assets/img/icon-pdf.png" style="width:100px; height:auto;"> <br><small class="ml-4">Descargar</small> </a>
+      <?php
+        }else{
+          echo '<small>No se ha cargado un PDF con la descripción de esta promoción</small>';
+        }
+      ?>
       <br><br>
       <?php if($item['visible']==0){ echo '<p class="alert alert-warning" ">Actualmente esta promoción no esta visible</p>'; }else{ echo '<p class="alert alert-success">Promoción visible en el sitio web</p'; } ?> </p>
       </div>

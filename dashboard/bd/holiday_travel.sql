@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2021 a las 21:48:53
+-- Tiempo de generación: 02-05-2021 a las 14:54:51
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -46,11 +46,11 @@ CREATE TABLE `agencias` (
   `tel2` varchar(20) DEFAULT NULL,
   `tel3` varchar(20) DEFAULT NULL,
   `pagina_web` varchar(200) DEFAULT NULL,
-  `activo` enum('checked','unchecked') DEFAULT 'checked',
+  `activo` enum('Si','No') DEFAULT 'Si',
   `clave_back_office` varchar(100) NOT NULL,
   `header_footer` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo',
   `menu` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo',
-  `logo` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo',
+  `logo` varchar(200) DEFAULT NULL,
   `observaciones` text DEFAULT NULL,
   `nombre_contacto` varchar(100) DEFAULT NULL,
   `apellido_paterno` varchar(100) DEFAULT NULL,
@@ -77,10 +77,10 @@ CREATE TABLE `promociones` (
   `idPromocion` int(11) NOT NULL,
   `titulo` varchar(100) NOT NULL,
   `url_imagen1` varchar(200) NOT NULL,
-  `descripcion` text NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL,
   `fecha_publicacion` date NOT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT 1,
-  `servicio` text NOT NULL,
+  `servicio` text DEFAULT NULL,
   `hotel` varchar(50) DEFAULT NULL,
   `precio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -121,15 +121,6 @@ CREATE TABLE `slider` (
   `visible` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `slider`
---
-
-INSERT INTO `slider` (`idSlider`, `titulo`, `url_imagen1`, `descripcion`, `fecha_publicacion`, `visible`) VALUES
-(3, 'Playa Quieta, Ixtapa', 'uploads/images/20210421190110_slider.jpg', 'Test Description', '2021-04-21', 1),
-(6, 'La Marina de Vallarta', 'uploads/images/20210421190030_slider.jpg', 'Test ', '2021-04-21', 1),
-(7, 'Riviera Maya, Tulum', 'uploads/images/20210421190100_slider.jpg', 'Esta es la descripcion', '2021-04-21', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -152,9 +143,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `email`, `password`, `estatus`, `token`, `idRol`) VALUES
-(1, 'Administrador', 'Holiday Travel', 'admin@admin.com', 'bddcb6194766569e55b134d2f527d377', 'Activo', 'bddcb6194766569e55b134d2f527d377', 1),
-(2, 'Sinuhe', 'Chacón', 'admin1@admin.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Activo', '5b024ff815b98e44e1bf7de43d93ef0c', 2),
-(4, 'Edmundo', 'Sanchez', 'sigaesanchez@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Activo', 'c021f14cc4368405fbe45d7dd39f5e49', 2);
+(1, 'Soporte', 'Holiday Travel', 'soporte@htop.com.mx', '9b412514e83ca55cabf81b68fd0b2a83', 'Activo', '9b412514e83ca55cabf81b68fd0b2a83', 1),
+(2, 'Sinuhe', 'Chacón', 'sinuhe.chacon@htop.com.mx', '824ff5c24e2077f10b1f95893a576150', 'Activo', '824ff5c24e2077f10b1f95893a576150', 2),
+(4, 'Edmundo', 'Sanchez', 'edmundo.sanchez@htop.com.mx', 'fda1d9125ffc6512c974638cf9a5bc6b', 'Activo', 'fda1d9125ffc6512c974638cf9a5bc6b', 2),
+(5, 'Luis Fernando', 'Hernández', 'luis.hernandez@htop.com.mx', '16adcd1b84c8cff504a243ffa6c94282', 'Activo', '16adcd1b84c8cff504a243ffa6c94282', 3);
 
 --
 -- Disparadores `usuarios`
@@ -210,13 +202,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `agencias`
 --
 ALTER TABLE `agencias`
-  MODIFY `idAgencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idAgencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `promociones`
 --
 ALTER TABLE `promociones`
-  MODIFY `idPromocion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPromocion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -228,13 +220,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
