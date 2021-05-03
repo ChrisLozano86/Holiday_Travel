@@ -296,10 +296,10 @@ include_once '../../assets/template/header.php';
             </div>
 
 
-            <h4 class="section-form">Observaciones y políticas para las reservaciones de hoteles</h4> 
+            <!-- <h4 class="section-form">Observaciones y políticas para las reservaciones de hoteles</h4>  -->
 
             <div class="form-group">
-            <textarea name="observaciones" id="observaciones" class="form-control" rows="3"><?php echo $agencia->getObservaciones(); ?></textarea>
+            <input class="form-control" type="hidden" name="observaciones" id="observaciones" value="<?php echo $agencia->getObservaciones(); ?>">
             </div>
 
             <h4 class="section-form">Datos del contacto</h4> 
