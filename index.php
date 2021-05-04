@@ -34,7 +34,7 @@ require_once './dashboard/class/Agencia.php';
         $agencia->setClaveBackOffice($_POST['clave_back_office']);
         $agencia->setHeaderFooter('Activo');
         $agencia->setMenu('Activo');
-        $agencia->setObservaciones($_POST['observaciones']);
+        //$agencia->setObservaciones($_POST['observaciones']);
         $agencia->setNombreContacto($_POST['nombre_contacto']);
         $agencia->setApellidoPaterno($_POST['apellido_paterno']);
         $agencia->setApellidoMaterno($_POST['apellido_materno']);
@@ -459,7 +459,6 @@ require_once './dashboard/class/Agencia.php';
             <?php
             include_once './dashboard/class/Promocion.php';
             $promo = Promocion::recuperarTodos();
-            echo count($promo);
 
             if (count($promo) > 0) :
             ?>
@@ -486,9 +485,9 @@ require_once './dashboard/class/Agencia.php';
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <img src="./dashboard/modules/slider/<?php echo $item['url_imagen1']; ?>" class="img-fluid" width="100%" height="100%">
+                                    <img src="./dashboard/modules/promos/<?php echo $item['url_imagen1']; ?>" class="img-fluid" width="100%" height="100%">
                                     <hr>
-                                    <a class="btn btn-warning boto btn-lg btn-block mt-2" href="<?php echo $item['descripcion']; ?>" download="Itinerario" role="button">Descargar Itinerario</a>
+                                    <a class="btn btn-warning boto btn-lg btn-block mt-2" href="./dashboard/modules/promos/<?php echo $item['descripcion']; ?>" download="Itinerario.pdf" role="button">Descargar Itinerario</a>
                           
                                 </div>
 
@@ -720,12 +719,6 @@ require_once './dashboard/class/Agencia.php';
                                             <input type="file" class="form-control-file" name="url_img1" id="url_img1" ?>
                                         </div>
 
-
-                                        <h4 class="section-form">Observaciones y políticas para las reservaciones de hoteles</h4>
-
-                                        <div class="form-group">
-                                            <textarea name="observaciones" id="observaciones" class="form-control" rows="3"></textarea>
-                                        </div>
 
                                         <h4 class="section-form">Datos del contacto</h4>
 
