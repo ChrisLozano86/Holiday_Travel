@@ -85,8 +85,6 @@ require_once './dashboard/class/Agencia.php';
             window.location.href="index.php";
             </script>';
 
-   
-
         }
         
     }
@@ -181,8 +179,8 @@ require_once './dashboard/class/Agencia.php';
             <a href="#"><i class="fa fa-instagram"></i></a>
         </div>
         <ul class="top-widget">
-            <li><i class="fa fa-phone"></i> (52) 417-172-4441</li>
-            <li><i class="fa fa-envelope"></i> contacto@holidaytravel.com</li>
+            <li><i class="fa fa-phone"></i> (52) 443-688-9901</li>
+            <li><i class="fa fa-envelope"></i> agencias@holidaytravel.com.mx</li>
         </ul>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -194,8 +192,8 @@ require_once './dashboard/class/Agencia.php';
                 <div class="row">
                     <div class="col-lg-6">
                         <ul class="tn-left">
-                            <li><i class="fa fa-phone"></i> (52) 417-172-4441</li>
-                            <li><i class="fa fa-envelope"></i> contacto@holidaytravel.com</li>
+                            <li><i class="fa fa-phone"></i> (52) 443-688-9901 </li>
+                            <li><i class="fa fa-envelope"></i>  agencias@holidaytravel.com.mx</li>
                         </ul>
                     </div>
                     <div class="col-lg-6">
@@ -228,7 +226,7 @@ require_once './dashboard/class/Agencia.php';
                     <div class="col-lg-2">
                         <div class="logo">
                             <a href="./index.php">
-                                <img src="img/logo.png" alt="" height="61px">
+                                <img src="img/logo.png" class="img-fluid" alt="" >
                             </a>
                         </div>
                     </div>
@@ -844,9 +842,13 @@ require_once './dashboard/class/Agencia.php';
                         <div class="ft-contact">
                             <h6>Contáctanos</h6>
                             <ul>
-                                <li>(52) 417-172-4441</li>
-                                <li> contacto@holidaytravel.com</li>
-                                <li>Calle Sinaloa No.16, San Isidro, 38670 Acámbaro, Gto.</li>
+                            <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 443-688-9901 </li>
+                            <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-2572 </li>
+                            <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-3468 </li>
+                            <li><i class="fa fa-envelope icolor"></i>&nbsp; agencias@holidaytravel.com.mx</li>
+                            <li><i class="fa fa-address-book-o icolor"></i>&nbsp; Calle Basilia # 135, Col. Lomas de las Américas. <br> C.P. 58254. Morelia, Mich.</li>
+                        
+                     
                             </ul>
                         </div>
                     </div>

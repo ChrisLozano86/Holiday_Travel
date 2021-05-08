@@ -33,6 +33,10 @@
     margin: 0 auto;
 }
 
+.icolor {
+    color: #dc9700 !important;
+}
+
 .boto {
     background-color: #dc9700 !important;
     color: #fff !important;
@@ -566,7 +570,7 @@ ol {
 }
 
 .menu-item .logo {
-    padding: 25px 0;
+    padding: 21px 0;
 }
 
 .menu-item .logo a {
