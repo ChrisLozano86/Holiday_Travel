@@ -90,7 +90,7 @@ require_once './dashboard/class/Agencia.php';
     }
 
 ?><!DOCTYPE html>
-<html lang="zxx">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -846,7 +846,7 @@ require_once './dashboard/class/Agencia.php';
                             <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-2572 </li>
                             <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-3468 </li>
                             <li><i class="fa fa-envelope icolor"></i>&nbsp; agencias@holidaytravel.com.mx</li>
-                            <li><i class="fa fa-address-book-o icolor"></i>&nbsp; Calle Basilia # 135, Col. Lomas de las Américas. <br> C.P. 58254. Morelia, Mich.</li>
+                            <li><i class="fa fa-address-book-o icolor"></i>&nbsp; Calle Brasilia # 135, Col. Lomas de las Américas. <br> C.P. 58254. Morelia, Mich.</li>
                         
                      
                             </ul>
