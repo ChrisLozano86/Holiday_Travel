@@ -77,7 +77,7 @@ require_once '../dashboard/class/Agencia.php';
             define("DEMO", false); 
         
         
-            $template_file = "../template/email_templates/template_solicitud.php";
+            $template_file = "../template/email_template/template_solicitud.php";
         
             $email= 'soporte@htop.com.mx';
 
