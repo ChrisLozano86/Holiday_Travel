@@ -50,7 +50,6 @@ require_once '../dashboard/class/Agencia.php';
 
 
         $rutaServidor = 'uploads/images';
-        $rutaServidorFiles = 'uploads/files';
 
         if ($_FILES['url_img1']['name']!=null) {
     
@@ -63,7 +62,7 @@ require_once '../dashboard/class/Agencia.php';
           $nombreImagen1 = date('YmdHis').'_logo.'.$extension;
           $rutaDestino1 = $rutaServidor.'/'.$nombreImagen1;
           unlink($_POST['logo']);
-          move_uploaded_file($rutaTemporal1, $rutaDestino1); 
+          move_uploaded_file($rutaTemporal1, 'dashboard/modules/travel_agencies/'.$rutaDestino1); 
           $agencia->setLogo($rutaDestino1); 
         
          } else{
@@ -77,9 +76,9 @@ require_once '../dashboard/class/Agencia.php';
             define("DEMO", false); 
         
         
-            $template_file = "../template/email_template/template_solicitud.php";
+            $template_file = "template/email_template/template_solicitud.php";
         
-            $email= 'agencias@holidaytravel.com.mx, direcciongeneral@htop.com.mx, '.$_POST['email_contacto'];
+            $email= 'agencias@holidaytravel.com.mx, direcciongeneral@holidaytravel.com.mx, '.$_POST['email_contacto'];
 
             $email_from = "Solicitud de registro <soporte@htop.com.mx>";
         
@@ -116,17 +115,20 @@ require_once '../dashboard/class/Agencia.php';
         
             }
             if (mail($email_to, $email_subject, $email_message, $email_headers) ){ 
-              
-            
-           
+              ?>
 
-            echo '<script>
-            alert("Se Guardó Correctamente");
-            
-            window.location.href="../index.php";
-            </script>';
+            <script>
+
+     $(document).ready(function()
+      {
+        $('#successModal').modal({backdrop: 'static', keyboard: false}); 
+         $("#successModal").modal("show");
         
+      }); 
+
+</script>
         
+        <?php
           
           }else{
           

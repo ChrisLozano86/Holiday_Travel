@@ -7,7 +7,7 @@
 
 		<div id="logo">
 			<center>
-				<h1 style="margin: 0px;"><a href="{SITE_ADDR}" target="_blank"><img style="width:500px; height:auto;" src="https://htop.com.mx/img/logo.png"></a></h1>
+				<h1 style="margin: 0px;"><a href="{SITE_ADDR}" target="_blank"><img style="width:500px; height:auto;" src="https://htop.com.mx/img/logo1.png"></a></h1>
 			</center>
 		</div>
 
@@ -22,6 +22,7 @@
 			
 
 			<p>Usted ha recibido una solicitud de registro de <strong>{NOMBRE_COMERCIAL}</strong></p>
+
 
 			
 

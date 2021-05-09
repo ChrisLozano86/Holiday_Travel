@@ -1,3 +1,6 @@
+<?php
+include_once('lib/registrar_agencia.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -441,7 +444,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="lib/registrar_agencia.php" method="post" id="slider_form" enctype="multipart/form-data">
+                                    <form action="index.php" method="post" id="slider_form" enctype="multipart/form-data">
 
 
                                         <h4 class="section-form">Información</h4>
@@ -721,7 +724,29 @@
         </div>
     </div>
 
-
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Información enviada correctamente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="img/success.gif" class="d-block mx-auto img-fluid" style="width: 80%; height:auto;">
+        <p>Gracias por registrarte.</p>
+        <p>Un ejecutivo se pondrá en contacto contigo lo más pronto posible.</p>
+        <img src="img/logo.png" class="d-block mx-auto img-fluid">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
