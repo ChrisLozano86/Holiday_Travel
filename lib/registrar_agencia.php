@@ -117,12 +117,12 @@ require_once 'dashboard/class/Agencia.php';
             }
             if (mail($email_to, $email_subject, $email_message, $email_headers) ){ 
              
-            header('Location: template/email_template/confirmation.php?status_code=1');
+            header('Location: lib/notificar_usuario.php?email='.$_POST['email_contacto']);
 
           }else{
           
 
-            //Mensaje si ocurrio un error al enviar mensaje
+            header('Location: index.php');
           }
           
         }
