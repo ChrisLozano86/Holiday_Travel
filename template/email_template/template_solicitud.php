@@ -21,7 +21,7 @@
 
 			
 
-			<p>Usted ha recibido una solicitud de registro de <strong>{NOMBRE_COMERCIAL}</strong></p>
+			<p>Usted ha recibido una solicitud de registro de <strong>{NOMBRE_COMERCIAL}</strong>, para ver los detalles de esta solicitud por favor ingrese al <a href="https://htop.com.mx/cpanel">CPANEL</a></p>
 
 
 			

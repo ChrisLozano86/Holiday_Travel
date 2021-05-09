@@ -34,10 +34,36 @@ include_once('lib/registrar_agencia.php');
     <!-- <link rel="stylesheet" href="./dashboard/assets/css/adminlte.css" type="text/css"> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
     
 </head>
 
 <body>
+
+<?php
+              if(isset($_GET['status_code'])){
+                if($_GET['status_code']==1){
+                  ?>
+                  <script>
+                  $(document).ready(function()
+                  {
+                    $('#successModal').modal({backdrop: 'static', keyboard: false}); 
+                     $("#successModal").modal("show");
+                    
+                  }); 
+                  </script>
+                  <?php
+              }
+            }
+            ?>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -724,22 +750,7 @@ include_once('lib/registrar_agencia.php');
         </div>
     </div>
 
-    <?php
-              if(isset($_GET['status_code'])){
-                if($_GET['status_code']==1){
-                  ?>
-                  <script>
-                  $(document).ready(function()
-                  {
-                    $('#successModal').modal({backdrop: 'static', keyboard: false}); 
-                     $("#successModal").modal("show");
-                    
-                  }); 
-                  </script>
-                  <?php
-              }
-            }
-            ?>
+ 
 
 <!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -855,15 +866,7 @@ include_once('lib/registrar_agencia.php');
     </div>
     <!-- Search model end -->
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    
   
 </body>
 
