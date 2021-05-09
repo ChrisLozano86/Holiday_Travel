@@ -603,6 +603,25 @@ include_once('lib/registrar_agencia.php');
                                             <input class="form-control w-50 mt-3" type="text" name="tel3" id="tel3" value="" placeholder="Número Telefónico 3">
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="rnt">¿Cuenta con RNT? <span class="text text-danger">*</span></label>
+                                            <select id="rnt" name="rnt" class="form-control w-100 mb-3" onchange="showInp()" required>
+                                                <option value=''>Selecciona una opción</option>
+                                                <option value='Si'>Si</option>
+                                                <option value='No'>No</option>
+                                                <option value='En trámite'>En trámite</option>
+                                                
+ 
+                                            </select>
+
+                                        </div>
+                                        <br>
+
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="registro_rnt" id="registro_rnt"  style="display: none" placeholder="Introduzca su número de registro" value="" required>
+                                        </div>
+                                        <br>
+                                       
                                         <h4 class="section-form">Configuraciones del sitio web</h4>
 
                                         <div class="form-group">
@@ -710,6 +729,25 @@ include_once('lib/registrar_agencia.php');
                                         
 
                                     </form>
+
+                                    <script>
+                                        function showInp(){
+                                        getSelectValue = document.getElementById("rnt").value;
+                                        if(getSelectValue=="Si"){
+                                            document.getElementById("registro_rnt").style.display = "inline-block";
+                                        }
+
+                                        if(getSelectValue=="No"){
+                                            document.getElementById("registro_rnt").style.display = "none";
+                                        }
+
+                                        if(getSelectValue=="En trámite"){
+                                            document.getElementById("registro_rnt").style.display = "none";
+                                        }
+
+                                    }
+                                    
+                                    </script>
                                 </div>
 
                                 <div class="modal-footer">

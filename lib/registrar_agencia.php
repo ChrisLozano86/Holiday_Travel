@@ -47,6 +47,7 @@ require_once 'dashboard/class/Agencia.php';
         $agencia->setServidorSMTP($_POST['servidor_smtp']);
         $agencia->setPortSMTP($_POST['port_smtp']);
         $agencia->setFechaCreacion(date('Y-m-d'));
+        $agencia->setRNT($_POST['registro_rnt']);
 
 
         $rutaServidor = 'uploads/images';

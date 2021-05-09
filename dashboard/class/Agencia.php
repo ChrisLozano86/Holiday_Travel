@@ -40,6 +40,7 @@ class Agencia {
     private $servidor_smtp;
     private $port_smtp;
     private $fecha_creacion;
+    private $rnt;
     
     
 
@@ -52,7 +53,7 @@ class Agencia {
      $moneda=null, $tel1=null, $tel2=null, $tel3=null, $pagina_web=null, $activo=null, $clave_back_office=null,
      $header_footer=null, $menu=null, $logo=null, $observaciones=null, $nombre_contacto=null, $apelldido_paterno=null, 
      $apelldido_materno=null, $cargo=null, $sexo=null, $tel_directo=null, $tel_movil=null, $email_contacto=null, $email_servidor=null,
-     $clave=null, $servidor_smtp=null, $port_smtp=null, $fecha_creacion=null, $idAgencia=null) {
+     $clave=null, $servidor_smtp=null, $port_smtp=null, $fecha_creacion=null, $rnt=null, $idAgencia=null) {
        
         
         $this->razon_social = $razon_social;
@@ -91,6 +92,7 @@ class Agencia {
         $this->servidor_smtp = $servidor_smtp;
         $this->port_smtp = $port_smtp;
         $this->fecha_creacion = $fecha_creacion;
+        $this->rnt=$rnt;
         $this->idAgencia = $idAgencia;
        
         
@@ -243,6 +245,10 @@ class Agencia {
     public function getFechaCreacion() {
         return $this->fecha_creacion;
     }
+
+    public function getRNT() {
+        return $this->rnt;
+    }
     
     //Setters
     public function setRazonSocial($razon_social) {
@@ -386,6 +392,9 @@ class Agencia {
         $this->fecha_creacion = $fecha_creacion;
     }
 
+    public function setRNT($rnt) {
+        $this->rnt = $rnt;
+    }
 
 
     public function guardar() {
@@ -403,7 +412,7 @@ class Agencia {
                   nombre_contacto = :nombre_contacto, apellido_paterno = :apellido_paterno, apellido_materno = :apellido_materno,
                   cargo = :cargo, sexo = :sexo, tel_directo = :tel_directo, tel_movil = :tel_movil,
                   email_contacto = :email_contacto, email_servidor = :email_servidor, clave = :clave,
-                  servidor_smtp = :servidor_smtp, port_smtp = :port_smtp,  fecha_creacion = :fecha_creacion WHERE idAgencia = :idAgencia');
+                  servidor_smtp = :servidor_smtp, port_smtp = :port_smtp,  fecha_creacion = :fecha_creacion, rnt=:rnt WHERE idAgencia = :idAgencia');
 
             $consulta->bindParam(':idAgencia', $this->idAgencia);         
             $consulta->bindParam(':razon_social', $this->razon_social);
@@ -441,7 +450,8 @@ class Agencia {
             $consulta->bindParam(':clave', $this->clave); 
             $consulta->bindParam(':servidor_smtp', $this->servidor_smtp); 
             $consulta->bindParam(':port_smtp', $this->port_smtp); 
-            $consulta->bindParam(':fecha_creacion', $this->fecha_creacion);   
+            $consulta->bindParam(':fecha_creacion', $this->fecha_creacion);
+            $consulta->bindParam(':rnt', $this->rnt);     
             $consulta->execute();
 
         }else{
@@ -449,9 +459,9 @@ class Agencia {
             
             $consulta = $conexion->prepare(
                 'INSERT INTO ' . self::TABLA . ' (razon_social, nombre_comercial, rfc, calle, num_exterior, num_interior,
-                 colonia, municipio, ciudad, estado, cp, pais, moneda, tel1, tel2, tel3, pagina_web, activo, clave_back_office, header_footer, menu, logo, observaciones, nombre_contacto, apellido_paterno, apellido_materno, cargo, sexo, tel_directo, tel_movil, email_contacto, email_servidor, clave, servidor_smtp, port_smtp, fecha_creacion) 
+                 colonia, municipio, ciudad, estado, cp, pais, moneda, tel1, tel2, tel3, pagina_web, activo, clave_back_office, header_footer, menu, logo, observaciones, nombre_contacto, apellido_paterno, apellido_materno, cargo, sexo, tel_directo, tel_movil, email_contacto, email_servidor, clave, servidor_smtp, port_smtp, fecha_creacion, rnt) 
                  VALUES (:razon_social, :nombre_comercial, :rfc, :calle, :num_exterior, :num_interior,
-                 :colonia, :municipio, :ciudad, :estado, :cp, :pais, :moneda, :tel1, :tel2, :tel3, :pagina_web, :activo, :clave_back_office, :header_footer, :menu, :logo, :observaciones, :nombre_contacto, :apellido_paterno, :apellido_materno, :cargo, :sexo, :tel_directo, :tel_movil, :email_contacto, :email_servidor, :clave, :servidor_smtp, :port_smtp, :fecha_creacion)');      
+                 :colonia, :municipio, :ciudad, :estado, :cp, :pais, :moneda, :tel1, :tel2, :tel3, :pagina_web, :activo, :clave_back_office, :header_footer, :menu, :logo, :observaciones, :nombre_contacto, :apellido_paterno, :apellido_materno, :cargo, :sexo, :tel_directo, :tel_movil, :email_contacto, :email_servidor, :clave, :servidor_smtp, :port_smtp, :fecha_creacion, :rnt)');      
             
             $consulta->bindParam(':razon_social', $this->razon_social);
             $consulta->bindParam(':nombre_comercial', $this->nombre_comercial);
@@ -489,6 +499,7 @@ class Agencia {
             $consulta->bindParam(':servidor_smtp', $this->servidor_smtp); 
             $consulta->bindParam(':port_smtp', $this->port_smtp); 
             $consulta->bindParam(':fecha_creacion', $this->fecha_creacion); 
+            $consulta->bindParam(':rnt', $this->rnt);   
             //var_dump($consulta);
             if($consulta->execute()){
                 $this->id = $conexion->lastInsertId();
@@ -531,7 +542,7 @@ class Agencia {
              $registro['activo'],  $registro['clave_back_office'], $registro['header_footer'], $registro['menu'], $registro['logo'],
              $registro['observaciones'], $registro['nombre_contacto'], $registro['apellido_paterno'], $registro['apellido_materno'],
              $registro['cargo'], $registro['sexo'], $registro['tel_directo'], $registro['tel_movil'], $registro['email_contacto'], $registro['email_servidor'],
-             $registro['clave'], $registro['servidor_smtp'],  $registro['port_smtp'], $registro['fecha_creacion'], $idAgencia);
+             $registro['clave'], $registro['servidor_smtp'],  $registro['port_smtp'], $registro['fecha_creacion'], $registro['rnt'], $idAgencia);
         } else {
 
             return false;

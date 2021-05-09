@@ -47,6 +47,7 @@ require_once '../../class/Agencia.php';
         $agencia->setServidorSMTP($_POST['servidor_smtp']);
         $agencia->setPortSMTP($_POST['port_smtp']);
         $agencia->setFechaCreacion(date('Y-m-d'));
+        $agencia->setRNT($_POST['registro_rnt']);
 
 
         $rutaServidor = 'uploads/images';
@@ -259,6 +260,11 @@ include_once '../../assets/template/header.php';
             <input class="form-control w-50" type="text" name="tel2" id="tel2" value="<?php echo $agencia->getTel2(); ?>" placeholder="Número Telefónico 2">
             <input class="form-control w-50" type="text" name="tel3" id="tel3" value="<?php echo $agencia->getTel3(); ?>" placeholder="Número Telefónico 3">
             </div>
+
+            <div class="form-group">
+              <label for="registro_rnt">RNT</label>
+                <input class="form-control" type="text" name="registro_rnt" id="registro_rnt"   placeholder="Introduzca su número de registro" value="<?php echo $agencia->getRNT(); ?>">
+              </div>
 
             <h4 class="section-form">Configuraciones del sitio web</h4>
 
