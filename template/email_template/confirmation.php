@@ -56,13 +56,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <img src="img/success.gif" class="d-block mx-auto img-fluid" style="width: 80%; height:auto;">
+        <img src="../../img/success.gif" class="d-block mx-auto img-fluid" style="width: 60%; height:auto;">
         <p>Gracias por registrarte.</p>
-        <p>Un ejecutivo se pondrá en contacto contigo lo más pronto posible.</p>
-        <img src="img/logo.png" class="d-block mx-auto img-fluid">
+        <p>Un ejecutivo de Holiday Travel se pondrá en contacto contigo lo más pronto posible.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar</button>
         
       </div>
     </div>
