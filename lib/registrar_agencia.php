@@ -119,7 +119,7 @@ require_once 'dashboard/class/Agencia.php';
 
             <script>
 
-            header('Location: ../index.php?status_code=1');
+            header('Location: index.php?status_code=1');
 
             </script>
         
