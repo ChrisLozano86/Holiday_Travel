@@ -7,7 +7,7 @@
 
 		<div id="logo">
 			<center>
-				<h1 style="margin: 0px;"><a href="{SITE_ADDR}" target="_blank"><img style="width:500px; height:auto;" src="https://htop.com.mx/img/logo1.png"></a></h1>
+				<h1 style="margin: 0px;"><a href="{SITE_ADDR}" target="_blank"><img style="width:500px; height:auto;" src="https://htop.com.mx/img/logo2.png"></a></h1>
 			</center>
 		</div>
 

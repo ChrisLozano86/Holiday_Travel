@@ -724,6 +724,23 @@ include_once('lib/registrar_agencia.php');
         </div>
     </div>
 
+    <?php
+              if(isset($_GET['status_code'])){
+                if($_GET['status_code']==1){
+                  ?>
+                  <script>
+                  $(document).ready(function()
+                  {
+                    $('#successModal').modal({backdrop: 'static', keyboard: false}); 
+                     $("#successModal").modal("show");
+                    
+                  }); 
+                  </script>
+                  <?php
+              }
+            }
+            ?>
+
 <!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

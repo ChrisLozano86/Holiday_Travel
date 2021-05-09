@@ -119,14 +119,9 @@ require_once 'dashboard/class/Agencia.php';
 
             <script>
 
-     $(document).ready(function()
-      {
-        $('#successModal').modal({backdrop: 'static', keyboard: false}); 
-         $("#successModal").modal("show");
-        
-      }); 
+            header('Location: ../index.php?status_code=1');
 
-</script>
+            </script>
         
         <?php
           
