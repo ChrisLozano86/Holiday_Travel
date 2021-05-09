@@ -79,7 +79,7 @@ require_once 'dashboard/class/Agencia.php';
         
             $template_file = "template/email_template/template_solicitud.php";
         
-            $email= 'agencias@holidaytravel.com.mx, direcciongeneral@holidaytravel.com.mx, '.$_POST['email_contacto'];
+            $email= 'agencias@holidaytravel.com.mx, direcciongeneral@holidaytravel.com.mx';
 
             $email_from = "Solicitud de registro <soporte@htop.com.mx>";
         
