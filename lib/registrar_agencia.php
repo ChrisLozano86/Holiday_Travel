@@ -115,16 +115,9 @@ require_once 'dashboard/class/Agencia.php';
         
             }
             if (mail($email_to, $email_subject, $email_message, $email_headers) ){ 
-              ?>
-
-            <script>
-
+             
             header('Location: template/email_template/confirmation.php?status_code=1');
 
-            </script>
-        
-        <?php
-          
           }else{
           
 
