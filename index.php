@@ -34,16 +34,6 @@ include_once('lib/registrar_agencia.php');
     <!-- <link rel="stylesheet" href="./dashboard/assets/css/adminlte.css" type="text/css"> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
-
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
     
 </head>
 
@@ -734,49 +724,6 @@ include_once('lib/registrar_agencia.php');
         </div>
     </div>
 
-    <?php
-              if(isset($_GET['status_code'])){
-                if($_GET['status_code']==1){
-                  ?>
-                  <script>
-                  $(window).load(function()
-                  {
-                    $('#successModal').modal({backdrop: 'static', keyboard: false}); 
-                     $("#successModal").modal("show");
-                    
-                  }); 
-                  </script>
-                  <?php
-              }
-            }
-            ?>
-
-<!-- Success Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Información enviada correctamente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="img/success.gif" class="d-block mx-auto img-fluid" style="width: 80%; height:auto;">
-        <p>Gracias por registrarte.</p>
-        <p>Un ejecutivo se pondrá en contacto contigo lo más pronto posible.</p>
-        <img src="img/logo.png" class="d-block mx-auto img-fluid">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
     <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
@@ -865,7 +812,15 @@ include_once('lib/registrar_agencia.php');
     </div>
     <!-- Search model end -->
 
-    
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
   
 </body>
 
