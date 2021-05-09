@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>::Holiday Travel::</title>
     <!--Icon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="../../img/favicon.png">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
@@ -51,26 +51,28 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Información enviada correctamente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+          <!-- span aria-hidden="true">&times;</span> -->
         </button>
       </div>
       <div class="modal-body">
         <img src="../../img/success.gif" class="d-block mx-auto img-fluid" style="width: 60%; height:auto;">
-        <p>Gracias por registrarte.</p>
-        <p>Un ejecutivo de Holiday Travel se pondrá en contacto contigo lo más pronto posible.</p>
+        <p class="text-center font-weight-bold" style="font-size: 18px;">¡Gracias por registrarte!</p>
+        <p style="font-size: 18px;">Un ejecutivo de Holiday Travel se pondrá en contacto contigo lo más pronto posible.</p>
+
       </div>
-      <div class="modal-footer">
+      <!-- div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar</button>
-        
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script>
+
+     setTimeout("location.href='../../index.php'", 5000);
+    
+    </script>
   
 </body>
 

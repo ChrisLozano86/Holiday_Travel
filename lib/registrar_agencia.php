@@ -119,7 +119,7 @@ require_once 'dashboard/class/Agencia.php';
 
             <script>
 
-            header('Location: template/confirmation.php?status_code=1');
+            header('Location: template/email_template/confirmation.php?status_code=1');
 
             </script>
         
