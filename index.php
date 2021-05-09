@@ -729,7 +729,7 @@ include_once('lib/registrar_agencia.php');
                 if($_GET['status_code']==1){
                   ?>
                   <script>
-                  $(document).ready(function()
+                  $(window).load(function()
                   {
                     $('#successModal').modal({backdrop: 'static', keyboard: false}); 
                      $("#successModal").modal("show");
