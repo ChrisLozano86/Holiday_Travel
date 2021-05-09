@@ -618,7 +618,7 @@ include_once('lib/registrar_agencia.php');
                                         <br>
 
                                         <div class="form-group">
-                                            <input class="form-control" type="text" name="registro_rnt" id="registro_rnt"  style="display: none" placeholder="Introduzca su número de registro" value="" required>
+                                            <input class="form-control" type="text" name="registro_rnt" id="registro_rnt"  style="display: none" placeholder="Introduzca su número de registro" value="">
                                         </div>
                                         <br>
                                        
