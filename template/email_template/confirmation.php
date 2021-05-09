@@ -59,7 +59,10 @@
         <p class="text-center font-weight-bold" style="font-size: 18px;">¡Gracias por registrarte!</p>
         <p style="font-size: 18px;">Un ejecutivo de Holiday Travel se pondrá en contacto contigo lo más pronto posible.</p>
 
+
+        <small>Rediriendo a la página de inicio... <span id="countdown"></span> </small>
       </div>
+      
       <!-- div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar</button>
       </div> -->
@@ -69,7 +72,19 @@
 
     <script>
 
-     setTimeout("location.href='../../index.php'", 5000);
+      window.onload = updateClock;
+      var totalTime = 8;
+      function updateClock() {
+      document.getElementById('countdown').innerHTML = totalTime;
+      if(totalTime==0){
+        windows.location.replace('index.php');
+      }else{
+      totalTime-=1;
+      setTimeout("updateClock()",1000);
+      }
+      }
+     setTimeout("location.href='../../index.php'", 8000);
+
     
     </script>
   
