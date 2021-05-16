@@ -186,7 +186,30 @@ if($_SESSION['idRol']== null){
     </div>
     <!-- /.content -->
   </div>
+
+  <script
+  src="/sdk.min.js"
+  onload="indigitall.init({
+    appKey: '708a03e9-a616-4de1-a4f2-c353b456ee92',
+    workerPath: '/worker.min.js',
+    requestLocation: true
+  })"
+  async>
+</script>
   <!-- /.content-wrapper -->
-  <?php
-include_once '../../assets/template/footer.php';
-?>
+ <!-- Bootstrap 4 -->
+<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../assets/js/adminlte.min.js"></script>
+<script src="../../assets/plugins/sweetAlert2/sweetalert2.all.min.js"></script>
+<script src="../../assets/js/sweet.js"></script> 
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script src="../../assets/js/additional-methods.js"></script>
+<script src="../../assets/js/user_validate.js"></script> 
+<script src="../../assets/js/slider_validate.js"></script> 
+<script src="../../assets/js/promo_validate.js"></script> 
+<script src="../../assets/js/data.js"></script>
+</body>
+</html>
