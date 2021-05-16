@@ -202,7 +202,7 @@ include_once('lib/registrar_agencia.php');
 
                         <h3 class="text-center">Login</h3>
 
-                        <div class='onesignal-customlink-container'></div>
+                       
                         <form method="post" action="https://online.holidaytravel.com.mx/auth/login">
                             <div class="check-date">
                                 <label for="usuario">Usuario:</label>
