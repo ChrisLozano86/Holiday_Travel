@@ -24,6 +24,16 @@ if($_SESSION['idRol']== null){
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!--Icon-->
     <link rel="shortcut icon" href="../../assets/img/favicon.png">
+
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "cd0e7000-a56d-41e6-b645-22b04733e6aa",
+    });
+  });
+</script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
