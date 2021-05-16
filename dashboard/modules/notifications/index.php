@@ -186,6 +186,29 @@ if($_SESSION['idRol']== null){
     </div>
     <!-- /.content -->
   </div>
+  <!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer text-center">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      
+    </div>
+    <!-- Default to the left -->
+    <p>Copyright &copy; <?php echo date('Y') ?>. Todos los derechos reservados | Holiday Travel</p>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
 
   <script
   src="sdk.min.js"
