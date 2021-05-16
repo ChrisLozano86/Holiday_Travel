@@ -188,10 +188,10 @@ if($_SESSION['idRol']== null){
   </div>
 
   <script
-  src="/sdk.min.js"
+  src="sdk.min.js"
   onload="indigitall.init({
     appKey: '708a03e9-a616-4de1-a4f2-c353b456ee92',
-    workerPath: '/worker.min.js',
+    workerPath: 'worker.min.js',
     requestLocation: true
   })"
   async>
