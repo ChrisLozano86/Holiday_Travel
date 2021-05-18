@@ -135,6 +135,8 @@ include_once('lib/registrar_agencia.php');
                 <div class="col-lg-12">
                 <div style="width: 80%; margin-left:10%;">
                         <h3 class="text-center mb-4 mt-4">Registro</h3>
+
+                        <p>Los campos con <span class="text text-danger">*</span> son obligatorios.</p>
                         <form action="registro.php" method="post" id="slider_form" enctype="multipart/form-data">
 
 
