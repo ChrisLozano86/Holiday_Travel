@@ -3,6 +3,8 @@ session_start();
 if($_SESSION['idRol']== null){
   header('Location: login.php');
 } 
+require_once '../../class/Reserva.php';
+$reservaciones = Reserva::recuperarTodos();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -134,6 +136,12 @@ if($_SESSION['idRol']== null){
                   <p>Promociones</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="../reservations/index.php" class="nav-link">
+                 <i class="fas fa-clipboard-check"></i>
+                  <p>Reservaciones</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -168,13 +176,102 @@ if($_SESSION['idRol']== null){
       <div class="container-fluid">
         <div class="row">
           <div class="col">
-            <h3 class="text-center"> Administrar Promociones </h3>
+            <h3 class="text-center"> Administrar reservaciones </h3>
 
             
             
-              <a href="save.php" class="btn btn-default btn-custom" > <i class="fas fa-plus"></i> Agregar nueva promoción</a><br><br>
+              <a href="save.php" class="btn btn-default btn-custom" > <i class="fas fa-plus"></i> Agregar nueva reservación</a><br><br>
 
-             
+              <br>
+
+<?php  if (count($reservaciones) > 0): ?>
+
+<hr>
+
+<table class="table table-bordered table-responsive" id="table-data" style="font-size: 14px;" >
+<thead class="thead-dark">
+<tr class="text-center">
+<th scope="col">Clave Interna</th>
+<th scope="col">Agencia</th>
+<th scope="col">Titular</th>
+<th scope="col">Fecha Reservación</th>
+<th scope="col">Broker</th>
+<th scope="col">Clave</th>
+<th scope="col">Descripción</th>
+<th scope="col"> <span style="color:#292b2c;" class="d-block">Reservación</span>Fecha Inicio</th>
+<th scope="col">Precio</th>
+<th scope="col">Estatus servicio</th>
+<th scope="col">Pago operadora</th>
+<th scope="col"> <span style="color:#292b2c;" class="d-block">Reservación</span>Pago agencia</th>
+<th scope="col"> <span style="color:#292b2c;" class="d-block">Reservación</span>Fecha limite</th>
+<th scope="col">Editar</th>
+<th scope="col">Eliminar</th>
+
+</tr>
+</thead>
+<tbody>
+<?php foreach ($reservaciones as $item): ?>
+  <?php
+ $fecha_notificacion= date_create($item['fecha_notificacion']);
+ $fecha_actual=date_create(date('d-m-Y'));  
+/*  $interval = date_diff($fecha_notificacion, $fecha_actual);
+ echo $interval->d; */
+
+
+ if($fecha_actual>$fecha_notificacion){
+
+    if($item['pago_operadora']== 'No Pagado' OR $item['pago_agencia']== 'No Pagado' ){
+        $notificacion_class = 'class="table-warning"'; 
+        
+    }else{
+      $notificacion_class = '';
+     
+      
+    }
+ }else{
+  $notificacion_class = '';
+  
+ }
+ ?>
+<tr <?php echo $notificacion_class; ?>>
+<td class="text-center"><?php echo $item['idReserva']; ?></td>
+<td><?php echo $item['agencia']; ?></td>
+<td><?php echo $item['titular']; ?></td>
+<td><?php $date= date_create($item['fecha_reservacion']); echo date_format($date,"d-m-Y"); ?></td>
+<td><?php echo $item['broker']?></td>
+<td><?php echo $item['clave']; ?></td>
+<td><?php echo $item['descripcion']; ?></td>
+<td><?php $date= date_create($item['fecha_inicio']); echo date_format($date,"d-m-Y"); ?></td>
+<td>$<?php echo $item['precio']; ?></td>
+<td class="text-center"><?php echo $item['estatus_servicio']; ?></td>
+<td class="text-center">
+<?php if ($item['pago_operadora'] =='No Pagado'){
+ echo '<span class="badge badge-danger">'.$item['pago_operadora'].'</span>&nbsp;<a href="index.php" class="fas fa-sync"></a>';
+}else{
+  echo '<span class="badge badge-success">'.$item['pago_operadora'].'</span>&nbsp;<a href="index.php" class="fas fa-sync">';
+} 
+?>
+</td>
+<td class="text-center">
+<?php if ($item['pago_agencia'] =='No Pagado'){
+ echo '<span class="badge badge-danger">'.$item['pago_agencia'].'</span>&nbsp;<a href="index.php" class="fas fa-sync">';
+}else{
+  echo '<span class="badge badge-success">'.$item['pago_agencia'].'</span>&nbsp;<a href="index.php" class="fas fa-sync">';
+} 
+?>
+</td>
+<td><?php $date= date_create($item['fecha_limite']); echo date_format($date,"d-m-Y"); ?></td>
+<td class="text-center"><a href="save.php?idReserva=<?php echo $item[0];?>" class="btn btn-warning far fa-edit"></a></td>
+<td class="text-center"><a href="delete.php?idReserva=<?php echo $item[0];?>" onclick="return confirm('¿Está seguro que desea eliminar esta reservación?')" class="btn btn-danger far fa-trash-alt"></a></td> 
+</tr>
+<?php endforeach; ?>
+</tbody>
+</table>
+
+
+<?php else: ?>
+<p class="alert alert-info"> No se encontraron reservaciones registradas </p>
+<?php endif; ?>
 
     
             
@@ -220,12 +317,12 @@ if($_SESSION['idRol']== null){
   async>
 </script>
   <!-- /.content-wrapper -->
+  <!-- jQuery -->
+<script src="../../assets/plugins/jquery/jquery.min.js"></script>
  <!-- Bootstrap 4 -->
 <script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../assets/js/adminlte.min.js"></script>
-<script src="../../assets/plugins/sweetAlert2/sweetalert2.all.min.js"></script>
-<script src="../../assets/js/sweet.js"></script> 
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>

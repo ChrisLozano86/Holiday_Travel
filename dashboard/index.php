@@ -138,6 +138,12 @@ if($_SESSION['idRol']== null){
                   <p>Promociones</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="fas fa-clipboard-check"></i>
+                  <p>Reservaciones</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
