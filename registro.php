@@ -94,17 +94,6 @@ include_once('lib/registrar_agencia.php');
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <!-- <a href="#" class="bk-btn">Booking Now</a>
-                            <div class="language-option">
-                                <img src="img/flag.jpg" alt="">
-                                <span>EN <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
-                                    </ul>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -146,7 +135,7 @@ include_once('lib/registrar_agencia.php');
                 <div class="col-lg-12">
                 <div style="width: 80%; margin-left:10%;">
                         <h3 class="text-center mb-4 mt-4">Registro</h3>
-                        <form action="index.php" method="post" id="slider_form" enctype="multipart/form-data">
+                        <form action="registro.php" method="post" id="slider_form" enctype="multipart/form-data">
 
 
                     <h4 class="section-form">Información</h4>
