@@ -83,7 +83,7 @@ $num_notifications = count($notifications);
           <div class="dropdown-divider"></div>
           <?php }else{ ?>
          
-            <small class="badge-primary" style="margin-left:50px;">No hay notificaciones pendientes</small>
+            <small style="margin-left:50px;">No hay notificaciones pendientes</small>
           <?php } ?>
           <!-- <a href="../ad_request/index.php" class="dropdown-item dropdown-footer">Ver todas las reservaciones</a> -->
         </div>
