@@ -28,7 +28,7 @@ $(document).ready(function() {
 
         rules: {
             titulo: {
-                required: true,
+                
                 maxlength: 100,
                 
                 
@@ -39,8 +39,8 @@ $(document).ready(function() {
             },
 
             descripcion: {
-                required: true,
-                maxlength: 500,
+                
+                maxlength: 200,
                 
                 
             },
@@ -56,7 +56,7 @@ $(document).ready(function() {
         messages: {
 
             titulo: {
-                required: 'El título es requerido',
+                
                 formAlphanumeric: 'El nombre solo puede contener letras',
                 maxlength: 'El nombre debe tener menos de 100 caracteres'     
             },
@@ -68,8 +68,8 @@ $(document).ready(function() {
             },
 
             descripcion: {
-                required: 'La descripcion es requerida',
-                maxlength: 'El nombre no debe exceder de 500 caracteres'     
+                
+                maxlength: 'El nombre no debe exceder de 200 caracteres'     
             },
 
             visible: {

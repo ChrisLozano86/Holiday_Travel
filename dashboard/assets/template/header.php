@@ -3,6 +3,9 @@ session_start();
 if($_SESSION['idRol']== null){
   header('Location: login.php');
 } 
+require_once '../../class/Reserva.php';
+$notifications = Reserva::recuperarPendientesPago();
+$num_notifications = count($notifications);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,12 +55,42 @@ if($_SESSION['idRol']== null){
     <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <?php echo $_SESSION['nombre']; ?>
+      <?php echo $_SESSION['nombre']; ?>&nbsp;<i class="fas fa-chevron-down"></i>
      </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
       <a class="dropdown-item" href="../../logout.php">Cerrar Sesión</a>
         </div>
       </li>
+
+     <!-- Notifications Dropdown Menu -->
+     <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <?php /* if($total>0){ */?>
+          <span class="badge badge-danger navbar-badge"><?php if($num_notifications>0){ echo $num_notifications; }?></span>
+          <?php //} ?>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+       <?php if($num_notifications>0){ ?>
+          <span class="dropdown-header"><?php echo $num_notifications.' reservaciones requieren su atención';?></span>
+          <?php /* foreach($solicitudes_recientes as $item ): */?>
+          <div class="dropdown-divider"></div>
+          <a href="../reservations/save.php?idSReserva=1" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> <?php echo 'Agencia' ?>
+            <span class="float-right text-muted text-sm"><?php 'Otro dato' ?></span>
+          </a>
+          <?php //endforeach;?>
+          <div class="dropdown-divider"></div>
+          <?php }else{ ?>
+         
+            <small class="badge-primary" style="margin-left:50px;">No hay notificaciones pendientes</small>
+          <?php } ?>
+          <a href="../ad_request/index.php" class="dropdown-item dropdown-footer">Ver todas las reservaciones</a>
+        </div>
+      </li>  
+     
+
+
     </ul>
   </nav>
   <!-- /.navbar -->

@@ -56,7 +56,7 @@ if($_SESSION['idRol']== null){
     <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown">
       <a class="nav-link" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <?php echo $_SESSION['nombre']; ?>
+      <?php echo $_SESSION['nombre']; ?>&nbsp;<i class="fas fa-chevron-down"></i>
      </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
       <a class="dropdown-item" href="logout.php">Cerrar Sesión</a>
