@@ -85,7 +85,7 @@ $num_notifications = count($notifications);
          
             <small class="badge-primary" style="margin-left:50px;">No hay notificaciones pendientes</small>
           <?php } ?>
-          <a href="../ad_request/index.php" class="dropdown-item dropdown-footer">Ver todas las reservaciones</a>
+          <!-- <a href="../ad_request/index.php" class="dropdown-item dropdown-footer">Ver todas las reservaciones</a> -->
         </div>
       </li>  
      
