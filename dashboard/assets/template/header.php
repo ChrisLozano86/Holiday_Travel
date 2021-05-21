@@ -66,26 +66,28 @@ $num_notifications = count($notifications);
      <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <?php /* if($total>0){ */?>
-          <span class="badge badge-danger navbar-badge"><?php if($num_notifications>0){ echo $num_notifications; }?></span>
-          <?php //} ?>
+          <?php if($num_notifications>0){?>
+          <span class="badge badge-danger navbar-badge"><?php echo $num_notifications; ?></span>
+          <?php } ?>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
        <?php if($num_notifications>0){ ?>
           <span class="dropdown-header"><?php echo $num_notifications.' reservaciones requieren su atención';?></span>
-          <?php /* foreach($solicitudes_recientes as $item ): */?>
+          <?php  foreach($notifications as $item ): ?>
           <div class="dropdown-divider"></div>
-          <a href="../reservations/save.php?idSReserva=1" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> <?php echo 'Agencia' ?>
-            <span class="float-right text-muted text-sm"><?php 'Otro dato' ?></span>
+          <a href="../reservations/save.php?idReserva=<?php echo $item[0] ?>" class="dropdown-item">
+         <small> <i class="fas fa-exclamation-triangle mr-2"></i> <?php echo $item['agencia'] ?></small>
+         <br>
+          <small class=" text-muted"><?php $fecha = date_create($item['fecha_limite']); echo 'Fecha limite de pago: '. date_format($fecha, 'd-m-Y') ?></small>
           </a>
-          <?php //endforeach;?>
           <div class="dropdown-divider"></div>
+          <?php endforeach;?>
+           <a href="../reservations/index.php" class="dropdown-item dropdown-footer">Ver todas las reservaciones</a>
           <?php }else{ ?>
          
             <small style="margin-left:50px;">No hay notificaciones pendientes</small>
           <?php } ?>
-          <!-- <a href="../ad_request/index.php" class="dropdown-item dropdown-footer">Ver todas las reservaciones</a> -->
+         
         </div>
       </li>  
      

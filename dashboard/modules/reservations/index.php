@@ -204,6 +204,7 @@ $reservaciones = Reserva::recuperarTodos();
 <th scope="col">Pago operadora</th>
 <th scope="col"> <span style="color:#292b2c;" class="d-block">Reservación</span>Pago agencia</th>
 <th scope="col"> <span style="color:#292b2c;" class="d-block">Reservación</span>Fecha limite</th>
+<th scope="col">Estatus Reservación</th>
 <th scope="col">Editar</th>
 <th scope="col">Eliminar</th>
 
@@ -220,18 +221,26 @@ $reservaciones = Reserva::recuperarTodos();
 
  if($fecha_actual>$fecha_notificacion){
 
-    if($item['pago_operadora']== 'No Pagado' OR $item['pago_agencia']== 'No Pagado' ){
+    if($item['pago_operadora']== 'No Pagado'){
+
+      $notificacion_class = 'class="table-warning"'; 
+
+    }elseif($item['pago_agencia']== 'No Pagado' ){
+
         $notificacion_class = 'class="table-warning"'; 
         
     }else{
-      $notificacion_class = '';
-     
-      
+      $notificacion_class = 'class="table-success"';    
     }
  }else{
-  $notificacion_class = '';
-  
+  $notificacion_class = 'class="table-success"'; 
  }
+
+ if($item['estatus_reserva']== 'Cancelada'){
+  $notificacion_class = 'class="table-danger"';
+ }
+
+
  ?>
 <tr <?php echo $notificacion_class; ?>>
 <td class="text-center"><?php echo $item['idReserva']; ?></td>
@@ -260,7 +269,15 @@ $reservaciones = Reserva::recuperarTodos();
 } 
 ?>
 </td>
-<td><?php $date= date_create($item['fecha_limite']); echo date_format($date,"d-m-Y"); ?></td>
+<td class="text-center font-weight-bold"><?php $date= date_create($item['fecha_limite']); echo date_format($date,"d-m-Y"); ?></td>
+<td class="text-center">
+<?php if ($item['estatus_reserva'] =='Cancelada'){
+ echo '<span class="badge badge-danger">'.$item['estatus_reserva'].'</span>&nbsp;<a href="index.php" class="fas fa-sync">';
+}else{
+  echo '<span class="badge badge-success">'.$item['estatus_reserva'].'</span>&nbsp;<a href="index.php" class="fas fa-sync">';
+} 
+?>
+</td>
 <td class="text-center"><a href="save.php?idReserva=<?php echo $item[0];?>" class="btn btn-warning far fa-edit"></a></td>
 <td class="text-center"><a href="delete.php?idReserva=<?php echo $item[0];?>" onclick="return confirm('¿Está seguro que desea eliminar esta reservación?')" class="btn btn-danger far fa-trash-alt"></a></td> 
 </tr>

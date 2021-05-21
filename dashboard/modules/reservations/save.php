@@ -13,6 +13,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
    
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+          $idReserva = (isset($_POST['idReserva'])) ? $_POST['idReserva'] : null;
           $agencia = (isset($_POST['agencia'])) ? $_POST['agencia'] : null;
           $titular = (isset($_REQUEST['titular'])) ? $_REQUEST['titular'] : null;
           $fecha_reservacion = (isset($_POST['fecha_reservacion'])) ? $_POST['fecha_reservacion'] : null;
@@ -25,8 +26,15 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
           $pago_operadora = (isset($_REQUEST['pago_operadora'])) ? $_REQUEST['pago_operadora'] : null;
           $pago_agencia = (isset($_REQUEST['pago_agencia'])) ? $_REQUEST['pago_agencia'] : null;
           $fecha_limite = (isset($_REQUEST['fecha_limite'])) ? $_REQUEST['fecha_limite'] : null;
-          $fecha_notificacion = (isset($_REQUEST['fecha_notificacion'])) ? $_REQUEST['fecha_notificacion'] : null;
+          
+          if($idReserva==""){
+            
+            $fecha_notificacion = date('Y-m-d',strtotime($fecha_limite."- 7 days"));
+          }else{
+            $fecha_notificacion = (isset($_REQUEST['fecha_notificacion'])) ? $_REQUEST['fecha_notificacion'] : null;
+          }
           $estatus_notificacion = (isset($_REQUEST['estatus_notificacion'])) ? $_REQUEST['estatus_notificacion'] : null;
+          $estatus_reserva = (isset($_REQUEST['estatus_reserva'])) ? $_REQUEST['estatus_reserva'] : null;
           
           $reserva->setAgencia($agencia);
           $reserva->setTitular($titular);
@@ -42,6 +50,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
           $reserva->setFechaLimite($fecha_limite);
           $reserva->setFechaNotificacion($fecha_notificacion);
           $reserva->setEstatusNotificacion($estatus_notificacion);  
+          $reserva->setEstatusReserva($estatus_reserva);  
           $reserva->guardar();
 
           header('Location: index.php');
@@ -169,6 +178,15 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             <div class="form-group">
             <label for="fecha_limite">Fecha límite  <span class="text text-danger">*</span> </label>
             <input class="form-control" type="date" name="fecha_limite" id="fecha_limite" style="width: 50%;" value="<?php echo $reserva->getFechaLimite(); ?>" required>
+            </div>
+
+
+            <div class="form-group">
+              <label for="estatus_reserva">Estatus de la reservación  <span class="text text-danger">*</span> </label>
+            <select name="estatus_reserva" id="estatus_reserva" class="form-control" style="width: 50%;" required>
+              <option value="Activa"  <?php if($reserva->getEstatusReserva()=='Activa'){ echo 'selected';}?>>Activa</option>
+              <option value="Cancelada"  <?php if($reserva->getEstatusReserva()=='Cancelada'){ echo 'selected';}?>>Cancelada</option>
+            </select> 
             </div>
 
             <div class="form-group">
