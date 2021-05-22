@@ -3,6 +3,7 @@ session_start();
 if($_SESSION['idRol']== null){
   header('Location: login.php');
 } 
+require_once ('modules/reservations/send_notification.php');
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">

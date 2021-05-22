@@ -320,7 +320,7 @@ class Reserva
     }
 
 
-    public static function actualizarEstatusNotificacion($idReserva, $estatus_notificacion)
+    public function actualizarEstatusNotificacion($idReserva, $estatus_notificacion)
     {
         $conexion = new Conexion();
         $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET estatus_notificacion = :estatus_notificacion WHERE idReserva = :idReserva');
