@@ -1,5 +1,5 @@
 <?php
-require_once '../../class/Reserva.php';
+require_once 'class/Reserva.php';
 $estatusNotificacion = new Reserva();
 $reservaciones = Reserva::enviarNotificaciones();
 
