@@ -5,7 +5,7 @@ $reservaciones = Reserva::enviarNotificaciones();
 
 
         
-$template_file = "../../../template/email_template/template_notificacion.php";
+$template_file = "../template/email_template/template_notificacion.php";
 $email_from = "Solicitud de registro <soporte@htop.com.mx>";
 $email_to = 'chris.lozano8603@gmail.com';
 $email_subject = "Notificación de fecha de pago de reservación"; 
