@@ -22,6 +22,10 @@ $swap_var = array(
    
 );
 
+$email_headers = "From: ".$email_from."\r\nReply-To: ".$email_from."\r\n";
+$email_headers .= "MIME-Version: 1.0\r\n";
+$email_headers .= "Content-Type: text/html; charset=UTF-8 \r\n";
+
 if (file_exists($template_file)){
     $email_message = file_get_contents($template_file);
 }else{
@@ -41,7 +45,7 @@ if (mail($email_to, $email_subject, $email_message, $email_headers) ){
 }else{
 
 
-header('Location: index.php');
+echo 'Error temporal en el módulo de notificaciones';
 }
 
 
