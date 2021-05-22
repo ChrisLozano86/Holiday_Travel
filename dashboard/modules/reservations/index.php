@@ -223,21 +223,23 @@ $reservaciones = Reserva::recuperarTodos();
 
     if($item['pago_operadora']== 'No Pagado'){
 
-      $notificacion_class = 'class="table-warning"'; 
+      $notificacion_class = 'class="table-danger"'; 
 
     }elseif($item['pago_agencia']== 'No Pagado' ){
 
-        $notificacion_class = 'class="table-warning"'; 
+        $notificacion_class = 'class="table-danger"'; 
         
     }else{
       $notificacion_class = 'class="table-success"';    
     }
+ }elseif($item['pago_agencia']== 'Pagado' AND $item['pago_operadora']== 'Pagado' ){
+    $notificacion_class = 'class="table-success"'; 
  }else{
-  $notificacion_class = 'class="table-success"'; 
+    $notificacion_class = 'class="table-warning"'; 
  }
 
  if($item['estatus_reserva']== 'Cancelada'){
-  $notificacion_class = 'class="table-danger"';
+  $notificacion_class = 'class="table-dark"';
  }
 
 
