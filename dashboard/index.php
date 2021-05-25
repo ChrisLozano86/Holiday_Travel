@@ -49,6 +49,10 @@ require_once ('modules/reservations/send_notification.php');
         <a href="https://webmail.hostinger.mx" target="_blank" class="nav-link">Webmail</a>
       </li>
 
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="https://console.indigitall.com/" target="_blank" class="nav-link">Configuración Push</a>
+      </li>
+
     <!--   <li class="nav-item d-none d-sm-inline-block">
         <a href="https://auth-db270.hostinger.mx/" target="_blank" class="nav-link">PHPMyAdmin</a>
       </li> -->
