@@ -296,62 +296,78 @@ include_once('lib/registrar_agencia.php');
     <!-- Services Section End -->
     <section class="services-section spad" id="servicios">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <span>SERVICIOS</span>
-                        <h2>Descubre Nuestros Servicios</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-040-key-card"></i>
-                        <h4>Circuitos Internacionales</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-047-calendar"></i>
-                        <h4>Vuelos</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-026-bed"></i>
-                        <h4>Hoteles</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-036-parking"></i>
-                        <h4>Autos</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-007-swimming-pool"></i>
-                        <h4>Cruceros</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-034-camera"></i>
-                        <h4>Tours</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="section-title">
+                <span>SERVICIOS</span>
+                <h2>Descubre Nuestros Servicios</h2>
             </div>
         </div>
-        <hr>
-    </section>
+    </div>
+    <div class="row">
+    <div class="col-lg-4 col-sm-6">
+            <div class="service-item">
+                <i class="flaticon-026-bed"></i>
+                <h4>Hoteles</h4>
+                <p>Se cuenta con una oferta de más de 150,000 hoteles en más de 5,000 destinos en todo el mundo.
+                </p>
+            </div>
+        </div>
+            
+        <div class="col-lg-4 col-sm-6">
+            <div class="service-item">
+                <i class="flaticon-036-parking"></i>
+                <h4>Autos</h4>
+                <p>Ofrecemos el mejor respaldo con las principales empresas y las mejores ofertas para renta de autos en todo el
+                    mundo.
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="service-item">
+                <i class="flaticon-034-camera"></i>
+                <h4>Vuelos</h4>
+                <p>Más de 40 aerolíneas internacionales además de las domesticas en todo el mundo y
+                    aterrizando en más de 17,000 mil aeropuertos, garantizando las mejores conexiones para los viajantes.</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="service-item">
+                <i class="flaticon-040-key-card"></i>
+                <h4>Circuitos Internacionales</h4>
+                <p>La mejor opción en circuitos en todo México y en el resto del mundo, con todas las facilidades, opciones y
+                    comodidades para los viajantes</p>
+                <p>EUROPA · MÉXICO · EEUU · CANADÁ · MEDIO ORIENTE · CARIBE · SUDAMERICA · CENTROAMERICA
+                    ÁFRICA · ASIA · ASIA MENOR</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6">
+            <div class="service-item">
+                <i class="flaticon-047-calendar"></i>
+                <h4>Tours</h4>
+                <p>La mejor opción en tours en todo México y en el resto del mundo.</p>
+                <p>GASTRONÓMICO · HOLÍSTICO · RELIGIOSO · AVENTURA Y ECOTURISMO · SOLTEROS · CULTURAL
+                    CORPORATIVO · CITADINO</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6">
+            <div class="service-item">
+                <i class="flaticon-007-swimming-pool"></i>
+                <h4>Cruceros</h4>
+                <p>Más de 30 navieras y más de 250 barcos con los mejores destinos e itinerarios en todo el mundo.</p>
+                <p>MEDITERRÁNEO · FIORDOS NORUEGOS · CAPITALES BÁLTICAS · CARIBE · SUDAMÉRICA · ALASKA ·
+                    CANADÁ · EEUU · ANTÁRTIDA OCEANÍA · ORIENTE MEDIO · VUELTA AL MUNDO</p>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<hr>
+</section>
 
 
     <!-- Testimonial Section Begin -->
