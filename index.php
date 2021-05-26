@@ -79,9 +79,8 @@ include_once('lib/registrar_agencia.php');
                         <li><a href="#d">Circuitos</a></li>
                     </ul>
                 </li>
-                <!-- <li><a href="./blog.html">Servicios</a></li> -->
-                <!-- <li><a href="./contact.html">Contact</a></li> -->
-            </ul>
+                
+                  </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="top-social">
@@ -155,6 +154,7 @@ include_once('lib/registrar_agencia.php');
                                             <li><a href="#s">Circuitos</a></li>
                                         </ul>
                                     </li>
+                                    
                                     <!-- <li><a href="./blog.html">News</a></li>
                                     <li><a href="./contact.html">Contact</a></li> -->
                                 </ul>
@@ -835,7 +835,7 @@ include_once('lib/registrar_agencia.php');
                     <div class="col-lg-7">
                         <ul>
                             <!-- <li><a href="#">Terms of use</a></li> -->
-                            <li><a href="#">Aviso de privacidad</a></li>
+                            <li><b><a href="aviso_privacidad.php" target="_blank">Aviso de privacidad</a></b></li>
                             <!-- <li><a href="#">Environmental Policy</a></li> -->
                         </ul>
                     </div>
