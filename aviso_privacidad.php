@@ -34,7 +34,7 @@ include_once('lib/registrar_agencia.php');
     <!-- <link rel="stylesheet" href="./dashboard/assets/css/adminlte.css" type="text/css"> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
-    
+
 </head>
 
 <body>
@@ -71,16 +71,16 @@ include_once('lib/registrar_agencia.php');
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a href="./index.php">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#promociones">Promociones</a></li>
-                <li><a href="#d" data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
+                <li><a href="./index.php#servicios">Servicios</a></li>
+                <li><a href="./index.php#promociones">Promociones</a></li>
+                <!-- <li><a href="#d" data-toggle="modal" data-target="#exampleModal">Registrate</a></li> -->
                 <li><a href="#d">Internacional</a>
                     <ul class="dropdown">
                         <li><a href="#d">Circuitos</a></li>
                     </ul>
                 </li>
-                
-                  </ul>
+
+            </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="top-social">
@@ -104,7 +104,7 @@ include_once('lib/registrar_agencia.php');
                     <div class="col-lg-6">
                         <ul class="tn-left">
                             <li><i class="fa fa-phone"></i> (52) 443-688-9901 </li>
-                            <li><i class="fa fa-envelope"></i>  agencias@holidaytravel.com.mx</li>
+                            <li><i class="fa fa-envelope"></i> agencias@holidaytravel.com.mx</li>
                         </ul>
                     </div>
                     <div class="col-lg-6">
@@ -137,7 +137,7 @@ include_once('lib/registrar_agencia.php');
                     <div class="col-lg-2">
                         <div class="logo">
                             <a href="./index.php">
-                                <img src="img/logo.png" class="img-fluid" alt="" >
+                                <img src="img/logo.png" class="img-fluid" alt="">
                             </a>
                         </div>
                     </div>
@@ -154,7 +154,7 @@ include_once('lib/registrar_agencia.php');
                                             <li><a href="#s">Circuitos</a></li>
                                         </ul>
                                     </li>
-                                    
+
                                     <!-- <li><a href="./blog.html">News</a></li>
                                     <li><a href="./contact.html">Contact</a></li> -->
                                 </ul>
@@ -177,79 +177,79 @@ include_once('lib/registrar_agencia.php');
     <!-- Services Section End -->
     <section class="services-section spad" id="servicios">
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="section-title">
-                
-                <h3>Aviso de privacidad</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+
+                        <h3>Aviso de privacidad</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <div class="service-item">
+                        <p class="text-justify">De conformidad con lo establecido en la Ley Federal de protección de datos personales en posesión de los particulares,
+                            <b>HOLIDAY TRAVEL OPERADORA MAYORISTA S.A DE C.V.</b> pone a su disposición el siguiente aviso de privacidad. <br><br>
+                            <b> HOLIDAY TRAVEL OPERADORA S.A DE C.V.</b>, es responsable del uso y protección de sus datos personales, en este sentido y atendiendo las obligaciones
+                            legales establecidas en la Ley Federal de protección de datos personales en posesión de los particulares, a través de este instrumento se informa a los titulares
+                            de los datos, la información que de ellos se recaba y los fines que se darán a dicha información <br><br>
+                            Además de lo anterior, informamos a usted que HOLIDAY TRAVEL OPERADORA S.A de C.V. tiene su domicilio ubicado en:
+                        </p>
+                        <p class="text-center"><i>CALLE BRASILIA 135, COLONIA LOMAS DE LAS AMÉRICAS, MORELIA, MICHOACÁN. C.P. 58254</i></p>
+                        <p class="text-justify">Los datos personales que recabamos de usted serán utilizados para las siguientes finalidades,
+                            las cuales son necesarias para completar nuestra relación con usted, así como para atender los servicios y/o pedidos que solicite. </p>
+                        <p class="text-justify">Los datos recabados son únicamente para el uso informativo en los titulares de reservaciones su agencia de viajes de preferencia procede a capturarlos en nuestros sistemas
+                            y nosotros. Como operador mayorista los usamos de manera informativa para el proceso de la misma reserva</p>
+                        <p class="text-justify">Para llevar a cabo las finalidades descritas en el presente aviso de privacidad, utilizaremos los siguientes datos personales:
+                            Nombre y nombre de los acompañantes en su reservación.
+                            Por otra parte, informamos a usted, que sus datos personales serán compartidos con las siguientes autoridades, empresas organizaciones o personas distintas a nosotros:
+                        </p>
+                        <p class="text-justify">Los datos son compartidos por el prestador de servicio final, cómo puede ser Hoteles, Aerolíneas, Navieras, Arrendadoras de autos prestadores de servicios turísticos entre otros.
+
+                            Su información será compartida exclusivamente para los fines que a continuación se mencionan:
+
+                            La información personal compartida con un tercero es únicamente con la finalidad informativa de quién o quiénes son las personas a las que se les deberá dar acceso a las instalaciones, transportes y actividades turísticas a las que hayan realizado su pago.
+                        </p>
+                        <p class="text-justify">Usted tiene en todo momento el derecho a conocerte datos personales tenemos de usted, para que los utilizamos y las condiciones del uso que les damos (Acceso). Así mismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); de igual manera, tiene derecho a que su información se elimine de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada adecuadamente (Cancelación); así como también a oponerse al uso de sus datos personales para fines específicos (Oposición). Estos derechos se conocen como derechos ARCO.
+
+                            Para el ejercicio de cualquiera de los derechos ARCO se deberá presentar la solicitud respectiva por escrito, mediante el envío de una carta o solicitud en formato libre a la siguiente dirección:
+                        </p>
+                        <p class="text-center"><i>AVENIDA PRIMERA DE MAYO 196 ALTOS COLONIA CENTRO, ACÁMBARO, GUANAJUATO MÉXICO 38600</i></p>
+
+                        <p class="text-justify">Lo anterior también servirá para conocer el procedimiento y requisitos para el ejercicio de los derechos, ARCO, no obstante, debe contener la siguiente información:
+                            <br><br>Nombre <br>Dirección <br>e-mail <br>Teléfono <br>Motivo <br> <br>En todo caso la respuesta a la solicitud se darán el siguiente plazo: 15 días hábiles de haberse recibido y deberá ser enviada por correo certificado.
+                            Los datos de contacto de la persona o departamento de datos personales, que está a cargo de dar trámite a la solicitud derechos ARCO, son los siguientes: <br><br>
+                            a) Nombre del responsable departamento de quejas y administrativo <br>
+                            b) Domicilio: Avenida primera de mayo 196 altos Colonia Centro Acámbaro Guanajuato México <br>
+                            c) Teléfono 417 688 2572 <br>
+                            d) Correo electrónico: direccióngeneral@holidaytravel.com.mx
+
+                        </p>
+
+
+
+                        <p class="text-justify">Cabe mencionar, que en cualquier momento usted puede revocar su consentimiento para el uso de sus datos personales. Del mismo modo, usted puede revocar el consentimiento que, en su caso, nos haya otorgado para el tratamiento de sus datos personales.
+                            Así mismo, usted deberá considerar que para ciertos fines la revocación de su consentimiento implicará que no podamos seguir prestando el servicio que nos solicitó, o la conclusión de su relación con nosotros.
+                            Para revocar el consentimiento que usted otorga en este acto o para limitar su divulgación, se deberá presentar la solicitud respectiva a través de la siguiente dirección electrónica: <br>
+
+
+                        </p>
+                        <p class="text-center"> <b>www.holidaytravel.com.mx </b></p>
+                        <p class="text-justify">Del mismo modo, podrá solicitar la información para conocer el procedimiento y requisitos para la revocación del consentimiento, así como limitar el uso y divulgación de su información personal.
+                            La respuesta a la solicitud de revocación o limitación de divulgación de sus datos serán más tardar en el siguiente plazo: 15 días hábiles, y se comunicará de la siguiente forma:
+                            A través de una carta personal que se le hará llegar con correo certificado y/o si se solicita será vía email
+                            De cambios en nuestro modelo de negocios, o por otras causas, por lo cual nos comprometemos a mantenerlo informado sobre los cambios que puede sufrir el presente aviso de privacidad, sin embargo, usted puede solicitar información sobre sí el mismo ha sufrido algún cambio a través de la siguiente dirección electrónica:
+                        </p>
+                        <p class="text-center"> <b>www.holidaytravel.com.mx </b></p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-    <div class="col-lg-12 col-sm-12">
-            <div class="service-item">
-                <p  class="text-justify">De conformidad con lo establecido en la Ley Federal de protección de datos personales en posesión de los particulares, 
-                <b>HOLIDAY TRAVEL OPERADORA MAYORISTA S.A DE C.V.</b> pone a su disposición el siguiente aviso de privacidad. <br><br>
-                <b>   HOLIDAY TRAVEL OPERADORA S.A DE C.V.</b>, es responsable del uso y protección de sus datos personales, en este sentido y atendiendo las obligaciones 
-                legales establecidas en la Ley Federal de protección de datos personales en posesión de los particulares, a través de este instrumento se informa a los titulares 
-                de los datos, la información que de ellos se recaba y los fines que se darán a dicha información <br><br> 
-                Además de lo anterior, informamos a usted que HOLIDAY TRAVEL OPERADORA S.A de C.V. tiene su domicilio ubicado en:
-                </p>
-                <p class="text-center"><i >CALLE BRASILIA 135, COLONIA LOMAS DE LAS AMÉRICAS, MORELIA, MICHOACÁN. C.P. 58254</i></p>
-                <p class="text-justify">Los datos personales que recabamos de usted serán utilizados para las siguientes finalidades, 
-                las cuales son necesarias para completar nuestra relación con usted, así como para atender los servicios y/o pedidos que solicite. </p>
-                <p class="text-justify">Los datos recabados son únicamente para el uso informativo en los titulares de reservaciones su agencia de viajes de preferencia procede a capturarlos en nuestros sistemas 
-                y nosotros. Como operador mayorista los usamos de manera informativa para el proceso de la misma reserva</p>
-                <p class="text-justify">Para llevar a cabo las finalidades descritas en el presente aviso de privacidad, utilizaremos los siguientes datos personales:
-Nombre y nombre de los acompañantes en su reservación.
-Por otra parte, informamos a usted, que sus datos personales serán compartidos con las siguientes autoridades, empresas organizaciones o personas distintas a nosotros:
-</p>
-                <p class="text-justify">Los datos son compartidos por el prestador de servicio final, cómo puede ser Hoteles, Aerolíneas, Navieras, Arrendadoras de autos prestadores de servicios turísticos entre otros.
+        <hr>
+    </section>
 
-Su información será compartida exclusivamente para los fines que a continuación se mencionan:
-
-La información personal compartida con un tercero es únicamente con la finalidad informativa de quién o quiénes son las personas a las que se les deberá dar acceso a las instalaciones, transportes y actividades turísticas a las que hayan realizado su pago.
-</p>
-                <p class="text-justify">Usted tiene en todo momento el derecho a conocerte datos personales tenemos de usted, para que los utilizamos y las condiciones del uso que les damos (Acceso). Así mismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); de igual manera, tiene derecho a que su información se elimine de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada adecuadamente (Cancelación); así como también a oponerse al uso de sus datos personales para fines específicos (Oposición). Estos derechos se conocen como derechos ARCO.
-
-Para el ejercicio de cualquiera de los derechos ARCO se deberá presentar la solicitud respectiva por escrito, mediante el envío de una carta o solicitud en formato libre a la siguiente dirección:
-</p>
-<p class="text-center"><i >AVENIDA PRIMERA DE MAYO 196 ALTOS COLONIA CENTRO, ACÁMBARO, GUANAJUATO MÉXICO 38600</i></p>
- 
-               <p class="text-justify">Lo anterior también servirá para conocer el procedimiento y requisitos para el ejercicio de los derechos, ARCO, no obstante, debe contener la siguiente información:
-               <br><br>Nombre <br>Dirección <br>e-mail <br>Teléfono <br>Motivo <br> <br>En todo caso la respuesta a la solicitud se darán el siguiente plazo: 15 días hábiles de haberse recibido y deberá ser enviada por correo certificado.
-Los datos de contacto de la persona o departamento de datos personales, que está a cargo de dar trámite a la solicitud derechos ARCO, son los siguientes: <br><br>
-a)	Nombre del responsable departamento de quejas y administrativo <br>
-b)	Domicilio:  Avenida primera de mayo 196 altos Colonia Centro Acámbaro Guanajuato México <br>
-c)	Teléfono 417 688 2572 <br>
-d)	Correo electrónico:  direccióngeneral@holidaytravel.com.mx
-
-</p>
-             
-                 
-               
-                <p class="text-justify">Cabe mencionar, que en cualquier momento usted puede revocar su consentimiento para el uso de sus datos personales. Del mismo modo, usted puede revocar el consentimiento que, en su caso, nos haya otorgado para el tratamiento de sus datos personales.
-Así mismo, usted deberá considerar que para ciertos fines la revocación de su consentimiento implicará que no podamos seguir prestando el servicio que nos solicitó, o la conclusión de su relación con nosotros.
-Para revocar el consentimiento que usted otorga en este acto o para limitar su divulgación, se deberá presentar la solicitud respectiva a través de la siguiente dirección electrónica: <br>
-               
-         
-</p>
-                <p class="text-center"> <b>www.holidaytravel.com.mx </b></p>
-                <p class="text-justify">Del mismo modo, podrá solicitar la información para conocer el procedimiento y requisitos para la revocación del consentimiento, así como limitar el uso y divulgación de su información personal.
-La respuesta a la solicitud de revocación o limitación de divulgación de sus datos serán más tardar en el siguiente plazo: 15 días hábiles, y se comunicará de la siguiente forma:
-A través de una carta personal que se le hará llegar con correo certificado y/o si se solicita será vía email
-De cambios en nuestro modelo de negocios, o por otras causas, por lo cual nos comprometemos a mantenerlo informado sobre los cambios que puede sufrir el presente aviso de privacidad, sin embargo, usted puede solicitar información sobre sí el mismo ha sufrido algún cambio a través de la siguiente dirección electrónica:
-</p>
-<p class="text-center"> <b>www.holidaytravel.com.mx </b></p>
-            </div>
-        </div>
-    </div>
-</div>
-<hr>
-</section>
-
-iv>
+    iv>
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">
@@ -277,13 +277,13 @@ iv>
                         <div class="ft-contact">
                             <h6>Contáctanos</h6>
                             <ul>
-                            <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 443-688-9901 </li>
-                            <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-2572 </li>
-                            <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-3468 </li>
-                            <li><i class="fa fa-envelope icolor"></i>&nbsp; agencias@holidaytravel.com.mx</li>
-                            <li><i class="fa fa-address-book-o icolor"></i>&nbsp; Calle Brasilia # 135, Col. Lomas de las Américas. <br> C.P. 58254. Morelia, Mich.</li>
-                        
-                     
+                                <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 443-688-9901 </li>
+                                <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-2572 </li>
+                                <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-3468 </li>
+                                <li><i class="fa fa-envelope icolor"></i>&nbsp; agencias@holidaytravel.com.mx</li>
+                                <li><i class="fa fa-address-book-o icolor"></i>&nbsp; Calle Brasilia # 135, Col. Lomas de las Américas. <br> C.P. 58254. Morelia, Mich.</li>
+
+
                             </ul>
                         </div>
                     </div>
@@ -348,7 +348,7 @@ iv>
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-  
+
 </body>
 
 </html>
