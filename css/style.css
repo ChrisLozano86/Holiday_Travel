@@ -33,8 +33,16 @@
     margin: 0 auto;
 }
 
+.negrita {
+    font-weight: 700 !important;
+}
+
+.partext {
+    color: #c64446 !important;
+}
+
 .icolor {
-    color: #dc9700 !important;
+    color: #eec62c !important;
 }
 
 .boto {
@@ -228,7 +236,7 @@ ol {
 
 .section-title span {
     font-size: 14px;
-    color: #dc9700;
+    color: #c64446;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -467,7 +475,7 @@ ol {
 }
 
 .top-nav .tn-left li i {
-    color: #dc9700;
+    color: #c64446;
     margin-right: 4px;
 }
 
@@ -484,7 +492,7 @@ ol {
 .top-nav .tn-right .top-social a {
     display: inline-block;
     font-size: 16px;
-    color: #3ca090;
+    color: #c64446;
     margin-left: 15px;
 }
 
@@ -561,7 +569,7 @@ ol {
 }
 
 .top-nav .tn-right .language-option .flag-dropdown ul li a:hover {
-    color: #dc9700;
+    color: #c64446;
 }
 
 .menu-item {
@@ -578,7 +586,7 @@ ol {
 }
 
 .menu-item .nav-menu {
-    text-align: right;
+    text-align: center;
 }
 
 .menu-item .nav-menu .mainmenu {
@@ -625,7 +633,7 @@ ol {
     top: 52px;
     width: 100%;
     height: 2px;
-    background: #dfa974;
+    background: #c64446;
     content: "";
     opacity: 0;
     -webkit-transition: all 0.3s;
@@ -666,7 +674,7 @@ ol {
 }
 
 .menu-item .nav-menu .mainmenu li .dropdown li a:hover {
-    color: #dc9700;
+    color: #c64446;
 }
 
 .menu-item .nav-menu .mainmenu li .dropdown li a:after {
@@ -821,18 +829,18 @@ ol {
     display: block;
     font-size: 14px;
     text-transform: uppercase;
-    border: 1px solid #3ca090;
+    border: 1px solid #a14143;
     border-radius: 2px;
     color: #fbfafb;
     font-weight: 500;
-    background: #3ca090;
+    background: #c64446;
     width: 100%;
     height: 46px;
     margin-top: 30px;
 }
 
 .booking-form form button:hover {
-    background: #dc9700;
+    background: #eec62c;
     border: 1px solid #1f2e3e;
 }
 
@@ -1179,8 +1187,8 @@ ol {
     font-size: 16px;
     line-height: 40px;
     text-align: center;
-    color: #ffffff;
-    border: 1px solid #3ca090;
+    color: #c64446;
+    border: 1px solid #eec62c;
     border-radius: 50%;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
@@ -1189,8 +1197,8 @@ ol {
 }
 
 .footer-section .footer-text .ft-about .fa-social a:hover {
-    background: #dc9700;
-    border-color: #dc9700;
+    background: #eec62c;
+    border-color: #eec62c;
 }
 
 .footer-section .footer-text .ft-contact {
@@ -1199,7 +1207,7 @@ ol {
 
 .footer-section .footer-text .ft-contact h6 {
     font-size: 14px;
-    color: #dc9700;
+    color: #eec62c;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 3px;

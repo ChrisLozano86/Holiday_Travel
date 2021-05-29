@@ -1,106 +1,103 @@
-
 <?php
 require_once './dashboard/class/Agencia.php';
 
-    $idAgencia = (isset($_REQUEST['idAgencia'])) ? $_REQUEST['idAgencia'] : null;
-    
-    if($idAgencia){        
-        $agencia = Agencia::buscarPorId($idAgencia);        
-    }else{
-        $agencia = new Agencia();
+$idAgencia = (isset($_REQUEST['idAgencia'])) ? $_REQUEST['idAgencia'] : null;
+
+if ($idAgencia) {
+    $agencia = Agencia::buscarPorId($idAgencia);
+} else {
+    $agencia = new Agencia();
+}
+
+//Request
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $agencia->setRazonSocial($_POST['razon_social']);
+    $agencia->setNombreComercial($_POST['nombre_comercial']);
+    $agencia->setRFC($_POST['rfc']);
+    $agencia->setCalle($_POST['calle']);
+    $agencia->setNumExterior($_POST['num_exterior']);
+    $agencia->setNumInterior($_POST['num_interior']);
+    $agencia->setColonia($_POST['colonia']);
+    $agencia->setMunicipio($_POST['municipio']);
+    $agencia->setCiudad($_POST['ciudad']);
+    $agencia->setEstado($_POST['estado']);
+    $agencia->setCP($_POST['cp']);
+    $agencia->setPais($_POST['pais']);
+    $agencia->setMoneda($_POST['moneda']);
+    $agencia->setTel1($_POST['tel1']);
+    $agencia->setTel2($_POST['tel2']);
+    $agencia->setTel3($_POST['tel3']);
+    $agencia->setPaginaWeb($_POST['pagina_web']);
+    $agencia->setActivo('Si');
+    $agencia->setClaveBackOffice($_POST['clave_back_office']);
+    $agencia->setHeaderFooter('Activo');
+    $agencia->setMenu('Activo');
+    //$agencia->setObservaciones($_POST['observaciones']);
+    $agencia->setNombreContacto($_POST['nombre_contacto']);
+    $agencia->setApellidoPaterno($_POST['apellido_paterno']);
+    $agencia->setApellidoMaterno($_POST['apellido_materno']);
+    $agencia->setCargo($_POST['cargo']);
+    $agencia->setSexo($_POST['sexo']);
+    $agencia->setTelDirecto($_POST['tel_directo']);
+    $agencia->setTelMovil($_POST['tel_movil']);
+    $agencia->setEmailContacto($_POST['email_contacto']);
+    $agencia->setEmailServidor($_POST['email_servidor']);
+    $agencia->setClave($_POST['clave']);
+    $agencia->setServidorSMTP($_POST['servidor_smtp']);
+    $agencia->setPortSMTP($_POST['port_smtp']);
+    $agencia->setFechaCreacion(date('Y-m-d'));
+
+
+    $rutaServidor = 'uploads/images';
+    $rutaServidorFiles = 'uploads/files';
+
+    if ($_FILES['url_img1']['name'] != null) {
+
+        if (!is_dir('uploads/images')) {
+            mkdir('uploads/images', 0777, true);
+        }
+
+        $rutaTemporal1 = $_FILES['url_img1']['tmp_name'];
+        $extension = pathinfo($_FILES['url_img1']['name'], PATHINFO_EXTENSION);
+        $nombreImagen1 = date('YmdHis') . '_logo.' . $extension;
+        $rutaDestino1 = $rutaServidor . '/' . $nombreImagen1;
+        unlink($_POST['logo']);
+        move_uploaded_file($rutaTemporal1, $rutaDestino1);
+        $agencia->setLogo($rutaDestino1);
+    } else {
+        $agencia->setLogo($_POST['logo']);
     }
 
-    //Request
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-        $agencia->setRazonSocial($_POST['razon_social']);
-        $agencia->setNombreComercial($_POST['nombre_comercial']);
-        $agencia->setRFC($_POST['rfc']);
-        $agencia->setCalle($_POST['calle']);
-        $agencia->setNumExterior($_POST['num_exterior']);
-        $agencia->setNumInterior($_POST['num_interior']);
-        $agencia->setColonia($_POST['colonia']);
-        $agencia->setMunicipio($_POST['municipio']);
-        $agencia->setCiudad($_POST['ciudad']);
-        $agencia->setEstado($_POST['estado']);
-        $agencia->setCP($_POST['cp']);
-        $agencia->setPais($_POST['pais']);
-        $agencia->setMoneda($_POST['moneda']);
-        $agencia->setTel1($_POST['tel1']);
-        $agencia->setTel2($_POST['tel2']);
-        $agencia->setTel3($_POST['tel3']);
-        $agencia->setPaginaWeb($_POST['pagina_web']);
-        $agencia->setActivo('Si');
-        $agencia->setClaveBackOffice($_POST['clave_back_office']);
-        $agencia->setHeaderFooter('Activo');
-        $agencia->setMenu('Activo');
-        //$agencia->setObservaciones($_POST['observaciones']);
-        $agencia->setNombreContacto($_POST['nombre_contacto']);
-        $agencia->setApellidoPaterno($_POST['apellido_paterno']);
-        $agencia->setApellidoMaterno($_POST['apellido_materno']);
-        $agencia->setCargo($_POST['cargo']);
-        $agencia->setSexo($_POST['sexo']);
-        $agencia->setTelDirecto($_POST['tel_directo']);
-        $agencia->setTelMovil($_POST['tel_movil']);
-        $agencia->setEmailContacto($_POST['email_contacto']);
-        $agencia->setEmailServidor($_POST['email_servidor']);
-        $agencia->setClave($_POST['clave']);
-        $agencia->setServidorSMTP($_POST['servidor_smtp']);
-        $agencia->setPortSMTP($_POST['port_smtp']);
-        $agencia->setFechaCreacion(date('Y-m-d'));
+    $agencia->guardar();
 
+    if ($idAgencia != "") {
+        header('Location: index.php?status_code=2');
+    } else {
 
-        $rutaServidor = 'uploads/images';
-        $rutaServidorFiles = 'uploads/files';
-
-        if ($_FILES['url_img1']['name']!=null) {
-    
-          if (!is_dir('uploads/images')) {
-            mkdir('uploads/images', 0777, true); 
-          }
-         
-          $rutaTemporal1 = $_FILES['url_img1']['tmp_name'];
-          $extension = pathinfo($_FILES['url_img1']['name'], PATHINFO_EXTENSION);
-          $nombreImagen1 = date('YmdHis').'_logo.'.$extension;
-          $rutaDestino1 = $rutaServidor.'/'.$nombreImagen1;
-          unlink($_POST['logo']);
-          move_uploaded_file($rutaTemporal1, $rutaDestino1); 
-          $agencia->setLogo($rutaDestino1); 
-        
-    } else{
-          $agencia->setLogo($_POST['logo']);    
-  } 
-
-
-        $agencia->guardar();
-       
-        if($idAgencia != ""){
-            header('Location: index.php?status_code=2');
-        }else{
-            
-            //header('Location: index.php?status_code=1');
-            echo '<script>
+        //header('Location: index.php?status_code=1');
+        echo '<script>
             alert("Se Guardó Correctamente");
             
             window.location.href="index.php";
             </script>';
-
-        }
-        
     }
+}
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="zxx">
 
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Holidaytravel">
-    <meta name="keywords" content="holidaytravel, travel, viajar, viajes">
+    <meta name="keywords" content="sigatours, travel, viajar, viajes, agencia">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>::Holiday Travel::</title>
+    <title>::Sigatours::</title>
     <!--Icon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/favicon.ico">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
@@ -117,12 +114,15 @@ require_once './dashboard/class/Agencia.php';
     <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="./dashboard/assets/css/style.css" type="text/css">
     <!-- <link rel="stylesheet" href="./dashboard/assets/css/adminlte.css" type="text/css"> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
-    
+
 </head>
 
 <body>
@@ -159,14 +159,14 @@ require_once './dashboard/class/Agencia.php';
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a href="./index.php">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#promociones">Promociones</a></li>
-                <li><a href="#d" data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
+                <li><a href="#franquicias">Franquicias</a></li>
+                <li><a href="#destinos">Destinos</a></li>
+                <!-- <li><a href="#d" data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
                 <li><a href="#d">Internacional</a>
                     <ul class="dropdown">
                         <li><a href="#d">Circuitos</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <!-- <li><a href="./blog.html">Servicios</a></li> -->
                 <!-- <li><a href="./contact.html">Contact</a></li> -->
             </ul>
@@ -180,7 +180,7 @@ require_once './dashboard/class/Agencia.php';
         </div>
         <ul class="top-widget">
             <li><i class="fa fa-phone"></i> (52) 443-688-9901</li>
-            <li><i class="fa fa-envelope"></i> agencias@holidaytravel.com.mx</li>
+            <li><i class="fa fa-envelope"></i> agencias@sigatours.com.mx</li>
         </ul>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -193,7 +193,7 @@ require_once './dashboard/class/Agencia.php';
                     <div class="col-lg-6">
                         <ul class="tn-left">
                             <li><i class="fa fa-phone"></i> (52) 443-688-9901 </li>
-                            <li><i class="fa fa-envelope"></i>  agencias@holidaytravel.com.mx</li>
+                            <li><i class="fa fa-envelope"></i> agencias@sigatours.com.mx</li>
                         </ul>
                     </div>
                     <div class="col-lg-6">
@@ -226,7 +226,7 @@ require_once './dashboard/class/Agencia.php';
                     <div class="col-lg-2">
                         <div class="logo">
                             <a href="./index.php">
-                                <img src="img/logo.png" class="img-fluid" alt="" >
+                                <img src="img/logo.png" class="img-fluid" alt="">
                             </a>
                         </div>
                     </div>
@@ -235,22 +235,22 @@ require_once './dashboard/class/Agencia.php';
                             <nav class="mainmenu">
                                 <ul>
                                     <li class="active"><a href="./index.php">Inicio</a></li>
-                                    <li><a href="#servicios">Servicios</a></li>
-                                    <li><a href="#promociones">Promociones</a></li>
-                                    <li><a href="#exampleModal" data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
+                                    <li><a href="#franquicias">Franquicias</a></li>
+                                    <li><a href="#destinos">Destinos</a></li>
+                                    <!-- <li><a href="#exampleModal" data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
                                     <li><a href="#s">Internacional</a>
                                         <ul class="dropdown">
                                             <li><a href="#s">Circuitos</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                     <!-- <li><a href="./blog.html">News</a></li>
                                     <li><a href="./contact.html">Contact</a></li> -->
                                 </ul>
                             </nav>
-                            <div class="nav-right">
+                            <div class="nav-right sear">
                                 <form class="form-inline my-2 my-lg-0">
                                     <input class="form-control mr-sm-2" type="search" placeholder="Buscar aquí" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Buscar</button>
                                 </form>
                             </div>
                         </div>
@@ -316,31 +316,31 @@ require_once './dashboard/class/Agencia.php';
             </div>
         </div>
         <div class="hero-slider owl-carousel">
-        <?php
+            <?php
             include_once './dashboard/class/Slider.php';
             $slider = Slider::recuperarPublicados();
 
             if (count($slider) > 0) :
             ?>
-              <?php foreach ($slider as $item) : ?>
-            <div class="hs-item set-bg img-fluid" data-setbg="./dashboard/modules/slider/<?php echo $item['url_imagen1']; ?> ">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero-text ocultar-text">
-                                <h1><?php echo $item['titulo']; ?></h1>
-                                <p><?php echo $item['descripcion']; ?></p>
-                                <!-- <a href="#" class="primary-btn">Más Información</a>  -->
+                <?php foreach ($slider as $item) : ?>
+                    <div class="hs-item set-bg img-fluid" data-setbg="./dashboard/modules/slider/<?php echo $item['url_imagen1']; ?> ">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="hero-text ocultar-text">
+                                        <h1><?php echo $item['titulo']; ?></h1>
+                                        <p><?php echo $item['descripcion']; ?></p>
+                                        <!-- <a href="#" class="primary-btn">Más Información</a>  -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-            </div>
-            <?php endforeach; ?>
-    <?php else : ?>
-        <p class="alert alert-info"> No hay imagenes para el slider </p>
-    <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p class="alert alert-info"> No hay imagenes para el slider </p>
+            <?php endif; ?>
 
         </div>
     </section>
@@ -380,63 +380,168 @@ require_once './dashboard/class/Agencia.php';
     <!-- About Us Section End -->
 
     <!-- Services Section End -->
-    <section class="services-section spad" id="servicios">
+    <section class="services-section spad" id="franquicias">
 
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>SERVICIOS</span>
-                        <h2>Descubre Nuestros Servicios</h2>
+                        <span>FRANQUICIAS</span>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="section-title">
+                        <h3 class="negrita">Ventajas de tener una Franquicia Sigatours</h3>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-040-key-card"></i>
-                        <h4>Circuitos Internacionales</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                <div class="col-lg-4 col-md-4 ">
+                    <div class="section-title">
+                        <p class="text-justify partext"> <strong> EN LA INDRUSTRIA DEL TURISMO</strong></p>
+                        <ul class="text-justify">
+
+                            <li> Lorem ipsum dolor sit amet consectetur. </li>
+                            <li> Suscipit, incidunt! Architecto aut dolor. </li>
+                            <li> Laboriosam quis molestias tenetur ea. </li>
+                            <li> Natus suscipit veritatis explicabo laborum hic. </li>
+
+                        </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-047-calendar"></i>
-                        <h4>Vuelos</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                <div class="col-lg-4 col-md-4  ">
+                    <div class="section-title">
+                        <p class="text-justify partext"> <strong> EN OTROS GIROS</strong></p>
+                        <ul class="text-justify">
+
+                            <li> Lorem ipsum dolor sit amet consectetur. </li>
+                            <li> Suscipit, incidunt! Architecto aut dolor. </li>
+                            <li> Laboriosam quis molestias tenetur ea. </li>
+                            <li> Natus suscipit veritatis explicabo laborum hic. </li>
+
+                        </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-026-bed"></i>
-                        <h4>Hoteles</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-036-parking"></i>
-                        <h4>Autos</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-007-swimming-pool"></i>
-                        <h4>Cruceros</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-034-camera"></i>
-                        <h4>Tours</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                <div class="col-lg-4 col-md-4  ">
+                    <div class="section-title">
+                        <p class="text-justify partext"> <strong> VENTAJAS DE SIGATOURS</strong></p>
+                        <ul class="text-justify">
+                            <li> Lorem ipsum dolor sit amet consectetur. </li>
+                            <li> Suscipit, incidunt! Architecto aut dolor. </li>
+                            <li> Laboriosam quis molestias tenetur ea. </li>
+                            <li> Natus suscipit veritatis explicabo laborum hic. </li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <hr>
+    </section>
+
+
+    <section class="testimonial-section spad" id="promociones">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+
+                        <h3 class="negrita">Opciones de Franquicia</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+
+                <?php
+                include_once './dashboard/class/Promocion.php';
+                $promo = Promocion::recuperarTodos();
+
+                if (count($promo) > 0) :
+                ?>
+                    <?php foreach ($promo as $item) : ?>
+                        <div class="col-md-4">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="./img/test.jpg" alt="Card image cap">
+                                <div class="card-body">
+
+                                    <p class="card-text"><i class="far fa-check-circle partext"></i>&nbsp;&nbsp;No Necesitas Local Comercial.</p>
+                                    <p class="card-text"><i class="far fa-check-circle partext"></i>&nbsp;&nbsp;El mejor buscador de precios.</p>
+                                    <p class="card-text"><i class="far fa-check-circle partext"></i>&nbsp;&nbsp;Facturas en Línea Incluidas.</p>
+                                    <p class="card-text"><i class="far fa-check-circle partext"></i>&nbsp;&nbsp;Soporte Técnico.</p>
+                                    <p class="card-text"><i class="far fa-check-circle partext"></i>&nbsp;&nbsp;Página Web con Venta en Línea.</p>
+                                    <p class="card-text"><i class="far fa-check-circle partext"></i>&nbsp;&nbsp;Potente Motor de Reservas en línea.</p>
+                                    <br>
+                                    <div class="text-center">
+                                        <a href="#" class="btn btn-danger">COMENZAR AHORA</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="">
+                        <p class="alert alert-info justify-content-center"> No hay promociones para mostrar </p>
+                    </div>
+                <?php endif; ?>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario -->
+    <section class="services-section spad" id="franquicias">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="section-title">
+                        <h3 class="negrita">Forma parte de nuestra red de Franquicias</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 ">
+                    <form>
+                    <div class="form-group">
+                            <label for="inputAddress2" class="partext negrita">Nombre Completo:</label>
+                            <input type="text" class="form-control" id="inputAddress2" placeholder="Tu Nombre Completo">
+                        </div>
+                      
+                            <div class="form-group">
+                                <label for="inputEmail4"  class="partext negrita">Email:</label>
+                                <input type="email" class="form-control" id="inputEmail4" placeholder="Tu Email">
+                            </div>
+        
+                
+                        <div class="form-group">
+                            <label for="inputAddress"  class="partext negrita">Ciudad:</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="Ciudad">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputAddress2"  class="partext negrita">Teléfono:</label>
+                            <input type="text" class="form-control" id="inputAddress2" placeholder="Teléfono (con lada)">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputAddress2"  class="partext negrita">Comentarios:</label>
+                            <textarea class="form-control" id="mensaje" rows="5" name="mensaje" placeholder="Comentarios"></textarea>
+                        </div>
+                
+                    
+                        <button type="submit" class="btn btn-danger">ENVIAR SOLICITUD</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </section>
 
 
@@ -446,73 +551,68 @@ require_once './dashboard/class/Agencia.php';
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>PROMOCIONES</span>
-                        <h2>Descubre Nuestras Promociones</h2>
+
+                        <h3 class="negrita">Destinos más populares</h3>
                     </div>
                 </div>
             </div>
             <div class="row">
 
 
-            <?php
-            include_once './dashboard/class/Promocion.php';
-            $promo = Promocion::recuperarTodos();
+                <?php
+                include_once './dashboard/class/Promocion.php';
+                $promo = Promocion::recuperarTodos();
 
-            if (count($promo) > 0) :
-            ?>
-             <?php foreach ($promo as $item) : ?>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="hovereffects">
-                        <img src="./dashboard/modules/promos/<?php echo $item['url_imagen1']; ?>" class="img-fluid" height="300px" width="100%" alt="images">
-                        <div class="overlay">
-                            <!-- <h2>Awesome Temples</h2> -->
-                            <a class="info" href="#" data-toggle="modal" data-target="#myModal1">Más Información...</a>
-                        </div>
-                    </div>
+                if (count($promo) > 0) :
+                ?>
+                    <?php foreach ($promo as $item) : ?>
+                        <div class="col-md-4">
+                            <div class="hovereffects">
+                                <img src="./dashboard/modules/promos/<?php echo $item['url_imagen1']; ?>" class="img-fluid" height="300px" width="100%" alt="images">
+                                <div class="overlay">
+                                    <!-- <h2>Awesome Temples</h2> -->
+                                    <a class="info" href="#" data-toggle="modal" data-target="#myModal1">Más Información...</a>
+                                </div>
+                            </div>
 
-                    <div class="modal fade" id="myModal1" role="dialog">
-                        <div class="modal-dialog ">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <div class="">
-                                        <img src="img/logo.png" alt="" height="34px">
+                            <div class="modal fade" id="myModal1" role="dialog">
+                                <div class="modal-dialog ">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="">
+                                                <img src="img/logo.png" alt="" height="34px">
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="./dashboard/modules/promos/<?php echo $item['url_imagen1']; ?>" class="img-fluid" width="100%" height="100%">
+                                            <hr>
+                                            <a class="btn btn-warning boto btn-lg btn-block mt-2" href="./dashboard/modules/promos/<?php echo $item['descripcion']; ?>" download="Itinerario.pdf" role="button">Descargar Itinerario</a>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </div>
                                     </div>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="./dashboard/modules/promos/<?php echo $item['url_imagen1']; ?>" class="img-fluid" width="100%" height="100%">
-                                    <hr>
-                                    <a class="btn btn-warning boto btn-lg btn-block mt-2" href="./dashboard/modules/promos/<?php echo $item['descripcion']; ?>" download="Itinerario.pdf" role="button">Descargar Itinerario</a>
-                          
-                                </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
 
                         </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="">
+                        <p class="alert alert-info justify-content-center"> No hay promociones para mostrar </p>
                     </div>
-
-                </div>
-                <?php endforeach; ?>
-    <?php else : ?>
-        <div class="">
-        <p class="alert alert-info justify-content-center"> No hay promociones para mostrar </p>
-        </div>
-    <?php endif; ?>
-
-
-
-       
+                <?php endif; ?>
 
             </div>
         </div>
     </section>
-    <!-- Testimonial Section End -->
 
     <div class="row justify-content-center">
         <div style="height:35px;" class="col-12 d-md-none d-lg-none"></div>
@@ -712,8 +812,8 @@ require_once './dashboard/class/Agencia.php';
                                         <div class="form-group">
                                             <label for="url_img1">Logo </label>
                                             <br><small class="text text-danger"> Si cuenta con el logo de la empresa, puede subir la imagen con dimensiones de 180 x 180 píxeles en formato JPG o PNG</small>
-                        
-                                        
+
+
                                             <input type="file" class="form-control-file" name="url_img1" id="url_img1" ?>
                                         </div>
 
@@ -795,7 +895,7 @@ require_once './dashboard/class/Agencia.php';
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-default btn-custom" value="Guardar información">
                                         </div>
-                                        
+
 
                                     </form>
                                 </div>
@@ -842,13 +942,13 @@ require_once './dashboard/class/Agencia.php';
                         <div class="ft-contact">
                             <h6>Contáctanos</h6>
                             <ul>
-                            <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 443-688-9901 </li>
-                            <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-2572 </li>
-                            <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-3468 </li>
-                            <li><i class="fa fa-envelope icolor"></i>&nbsp; agencias@holidaytravel.com.mx</li>
-                            <li><i class="fa fa-address-book-o icolor"></i>&nbsp; Calle Basilia # 135, Col. Lomas de las Américas. <br> C.P. 58254. Morelia, Mich.</li>
-                        
-                     
+                                <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 443-688-9901 </li>
+                                <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-2572 </li>
+                                <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-3468 </li>
+                                <li><i class="fa fa-envelope icolor"></i>&nbsp; agencias@holidaytravel.com.mx</li>
+                                <li><i class="fa fa-address-book-o icolor"></i>&nbsp; Calle Basilia # 135, Col. Lomas de las Américas. <br> C.P. 58254. Morelia, Mich.</li>
+
+
                             </ul>
                         </div>
                     </div>
@@ -913,7 +1013,7 @@ require_once './dashboard/class/Agencia.php';
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-  
+
 </body>
 
 </html>
