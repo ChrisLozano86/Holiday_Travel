@@ -4,6 +4,8 @@ if($_SESSION['idRol']== null){
   header('Location: login.php');
 } 
 require_once ('modules/reservations/send_notification.php');
+$notifications = Reserva::recuperarPendientesPago();
+$num_notifications = count($notifications);
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
@@ -67,6 +69,39 @@ require_once ('modules/reservations/send_notification.php');
       <a class="dropdown-item" href="logout.php">Cerrar Sesión</a>
         </div>
       </li>
+
+     <!-- Notifications Dropdown Menu -->
+     <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <?php if($num_notifications>0){?>
+          <span class="badge badge-danger navbar-badge"><?php echo $num_notifications; ?></span>
+          <?php } ?>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+       <?php if($num_notifications>0){ ?>
+          <span class="dropdown-header"><?php echo $num_notifications.' reservaciones requieren su atención';?></span>
+          <?php  foreach($notifications as $item ): ?>
+          <div class="dropdown-divider"></div>
+          <a href="modules/reservations/save.php?idReserva=<?php echo $item[0] ?>" class="dropdown-item">
+         <small> <i class="fas fa-exclamation-triangle mr-2"></i> <?php echo $item['agencia'] ?></small>
+         <br>
+          <small class=" text-muted"><?php $fecha = date_create($item['fecha_limite']); echo 'Fecha limite de pago: '. date_format($fecha, 'd-m-Y') ?></small>
+          </a>
+          <div class="dropdown-divider"></div>
+          <?php endforeach;?>
+           <a href="modules/reservations/index.php" class="dropdown-item dropdown-footer">Ver todas las reservaciones</a>
+          <?php }else{ ?>
+         
+            <small style="margin-left:50px;">No hay notificaciones pendientes</small>
+          <?php } ?>
+         
+        </div>
+      </li>  
+     
+
+
+
     </ul>
   </nav>
   <!-- /.navbar -->
