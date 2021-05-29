@@ -144,7 +144,7 @@ require_once ('modules/reservations/send_notification.php');
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="modules/reservations/index.php" class="nav-link">
                 <i class="fas fa-clipboard-check"></i>
                   <p>Reservaciones</p>
                 </a>
