@@ -331,7 +331,7 @@ class Reserva
         
     }
 
-    public static function actualizarEstatusReserva($idReserva, $estatus_reserva)
+    public function actualizarEstatusReserva($idReserva, $estatus_reserva)
     {
         $conexion = new Conexion();
         $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET estatus_reserva = :estatus_reserva WHERE idReserva = :idReserva');
@@ -341,6 +341,29 @@ class Reserva
         $conexion = null;
         
     }
+
+    public function actualizarPagoOperadora($idReserva, $pago_operadora)
+    {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET pago_operadora = :pago_operadora WHERE idReserva = :idReserva');
+        $consulta->bindParam(':idReserva', $idReserva);
+        $consulta->bindParam(':pago_operadora', $pago_operadora);
+        $consulta->execute();
+        $conexion = null;
+        
+    }
+
+    public function actualizarPagoAgencia($idReserva, $pago_agencia)
+    {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET pago_agencia = :pago_agencia WHERE idReserva = :idReserva');
+        $consulta->bindParam(':idReserva', $idReserva);
+        $consulta->bindParam(':pago_agencia', $pago_agencia);
+        $consulta->execute();
+        $conexion = null;
+        
+    }
+  
 
 
 
