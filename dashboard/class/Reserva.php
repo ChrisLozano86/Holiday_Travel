@@ -12,6 +12,7 @@ class Reserva
     private $broker;
     private $clave;
     private $descripcion;
+    private $destino;
     private $fecha_inicio;
     private $precio;
     private $estatus_servicio;
@@ -26,7 +27,7 @@ class Reserva
     const TABLA = 'reservaciones';
 
     public function __construct($agencia = null, $titular = null, $fecha_reservacion = null, $broker = null,
-     $clave = null, $descripcion = null, $fecha_inicio = null, $precio = null, $estatus_servicio = null,
+     $clave = null, $descripcion = null, $destino=null, $fecha_inicio = null, $precio = null, $estatus_servicio = null,
      $pago_operadora = null, $pago_agencia = null, $fecha_limite = null, $fecha_notificacion = null, $estatus_notificacion = null, $estatus_reserva=null, $idReserva = null)
     {
         
@@ -36,6 +37,7 @@ class Reserva
         $this->broker = $broker;
         $this->clave = $clave;
         $this->descripcion = $descripcion;
+        $this->destino = $destino;
         $this->fecha_inicio = $fecha_inicio;
         $this->precio = $precio;
         $this->estatus_servicio = $estatus_servicio;
@@ -83,6 +85,11 @@ class Reserva
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    public function getDestino()
+    {
+        return $this->destino;
     }
 
     public function getFechaInicio()
@@ -162,6 +169,11 @@ class Reserva
         $this->descripcion = $descripcion;
     }
 
+    public function setDestino($destino)
+    {
+        $this->destino = $destino;
+    }
+
     public function setFechaInicio($fecha_inicio)
     {
         $this->fecha_inicio = $fecha_inicio;
@@ -214,7 +226,7 @@ class Reserva
         $conexion = new Conexion();
         if ($this->idReserva) /* Modifica */ {
             $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET agencia = :agencia, titular = :titular, fecha_reservacion = :fecha_reservacion,
-             broker=:broker, clave = :clave, descripcion = :descripcion, fecha_inicio = :fecha_inicio, precio = :precio, estatus_servicio = :estatus_servicio, pago_operadora = :pago_operadora, 
+             broker=:broker, clave = :clave, descripcion = :descripcion, destino=:destino, fecha_inicio = :fecha_inicio, precio = :precio, estatus_servicio = :estatus_servicio, pago_operadora = :pago_operadora, 
              pago_agencia = :pago_agencia, fecha_limite = :fecha_limite, fecha_notificacion = :fecha_notificacion, estatus_notificacion = :estatus_notificacion, estatus_reserva = :estatus_reserva WHERE idReserva = :idReserva');
             $consulta->bindParam(':idReserva', $this->idReserva);
             $consulta->bindParam(':agencia', $this->agencia);
@@ -223,6 +235,7 @@ class Reserva
             $consulta->bindParam(':broker', $this->broker);
             $consulta->bindParam(':clave', $this->clave);
             $consulta->bindParam(':descripcion', $this->descripcion);
+            $consulta->bindParam(':destino', $this->destino);
             $consulta->bindParam(':fecha_inicio', $this->fecha_inicio);
             $consulta->bindParam(':precio', $this->precio);
             $consulta->bindParam(':estatus_servicio', $this->estatus_servicio);
@@ -234,14 +247,15 @@ class Reserva
             $consulta->bindParam(':estatus_reserva', $this->estatus_reserva);
             $consulta->execute();
         } else /* Inserta */ {
-            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (agencia, titular, fecha_reservacion, broker, clave, descripcion, fecha_inicio, precio, estatus_servicio, pago_operadora, pago_agencia, fecha_limite, fecha_notificacion, estatus_notificacion, estatus_reserva)
-             VALUES (:agencia, :titular, :fecha_reservacion, :broker, :clave, :descripcion, :fecha_inicio, :precio, :estatus_servicio, :pago_operadora, :pago_agencia, :fecha_limite, :fecha_notificacion, :estatus_notificacion, :estatus_reserva)');
+            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (agencia, titular, fecha_reservacion, broker, clave, descripcion, destino, fecha_inicio, precio, estatus_servicio, pago_operadora, pago_agencia, fecha_limite, fecha_notificacion, estatus_notificacion, estatus_reserva)
+             VALUES (:agencia, :titular, :fecha_reservacion, :broker, :clave, :descripcion, :destino, :fecha_inicio, :precio, :estatus_servicio, :pago_operadora, :pago_agencia, :fecha_limite, :fecha_notificacion, :estatus_notificacion, :estatus_reserva)');
             $consulta->bindParam(':agencia', $this->agencia);
             $consulta->bindParam(':titular', $this->titular);
             $consulta->bindParam(':fecha_reservacion', $this->fecha_reservacion);
             $consulta->bindParam(':broker', $this->broker);
             $consulta->bindParam(':clave', $this->clave);
             $consulta->bindParam(':descripcion', $this->descripcion);
+            $consulta->bindParam(':destino', $this->destino);
             $consulta->bindParam(':fecha_inicio', $this->fecha_inicio);
             $consulta->bindParam(':precio', $this->precio);
             $consulta->bindParam(':estatus_servicio', $this->estatus_servicio);
@@ -282,7 +296,7 @@ class Reserva
         //var_dump($registro);
         $conexion = null;
         if ($registro) {
-            return new self($registro['agencia'], $registro['titular'], $registro['fecha_reservacion'], $registro['broker'], $registro['clave'], $registro['descripcion'], $registro['fecha_inicio'], $registro['precio'], $registro['estatus_servicio'], $registro['pago_operadora'], $registro['pago_agencia'], $registro['fecha_limite'], $registro['fecha_notificacion'], $registro['estatus_notificacion'], $registro['estatus_reserva'], $idReserva);
+            return new self($registro['agencia'], $registro['titular'], $registro['fecha_reservacion'], $registro['broker'], $registro['clave'], $registro['descripcion'], $registro['destino'], $registro['fecha_inicio'], $registro['precio'], $registro['estatus_servicio'], $registro['pago_operadora'], $registro['pago_agencia'], $registro['fecha_limite'], $registro['fecha_notificacion'], $registro['estatus_notificacion'], $registro['estatus_reserva'], $idReserva);
         } else {
             return false;
         }

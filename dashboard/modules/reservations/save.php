@@ -20,6 +20,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
           $broker = (isset($_REQUEST['broker'])) ? $_REQUEST['broker'] : null;
           $clave = (isset($_REQUEST['clave'])) ? $_REQUEST['clave'] : null;
           $descripcion = (isset($_REQUEST['descripcion'])) ? $_REQUEST['descripcion'] : null;  
+          $destino = (isset($_REQUEST['destino'])) ? $_REQUEST['destino'] : null;  
           $fecha_inicio = (isset($_REQUEST['fecha_inicio'])) ? $_REQUEST['fecha_inicio'] : null;
           $precio = (isset($_REQUEST['precio'])) ? $_REQUEST['precio'] : null;
           $estatus_servicio = (isset($_REQUEST['estatus_servicio'])) ? $_REQUEST['estatus_servicio'] : null;
@@ -42,6 +43,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
           $reserva->setBroker($broker);
           $reserva->setClave($clave);
           $reserva->setDescripcion($descripcion);
+          $reserva->setDestino($destino);
           $reserva->setFechaInicio($fecha_inicio);
           $reserva->setPrecio($precio);
           $reserva->setEstatusServicio($estatus_servicio);
@@ -125,6 +127,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
               <option value="Jumbo Tours" <?php if($reserva->getBroker()=='Jumbo Tours'){ echo 'selected';}?>>Jumbo Tours</option>
               <option value="Go Global" <?php if($reserva->getBroker()=='Go Global'){ echo 'selected';}?>>Go Global</option>
               <option value="Nuitee" <?php if($reserva->getBroker()=='Nuitee'){ echo 'selected';}?>>Nuitee</option>
+              <option value="Nuitee" <?php if($reserva->getBroker()=='Hotel'){ echo 'selected';}?>>Hotel</option>
             </select> 
             </div>
 
@@ -135,8 +138,13 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             </div>
 
             <div class="form-group">
-            <label for="descripcion">Descripcion  </label>
-            <textarea name="descripcion" class="form-control" id="descripcion" rows="2"><?php echo $reserva->getDescripcion(); ?></textarea>
+            <label for="descripcion">Hotel  <span class="text text-danger">*</span> </label>
+            <input class="form-control" type="text" name="descripcion" id="descripcion" value="<?php echo $reserva->getDescripcion(); ?>" required>
+            </div>
+
+            <div class="form-group">
+            <label for="descripcion">Destino  <span class="text text-danger">*</span> </label>
+            <input class="form-control" type="text" name="destino" id="destino" value="<?php echo $reserva->getDestino(); ?>" required>
             </div>
 
             <div class="form-group">

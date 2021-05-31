@@ -256,7 +256,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <th scope="col">Fecha Reservación</th>
 <th scope="col">Broker</th>
 <th scope="col">Clave</th>
-<th scope="col">Descripción</th>
+<th scope="col">Hotel</th>
+<th scope="col">Destino</th>
 <th scope="col"> <span style="color:#292b2c;" class="d-block">Reservación</span>Fecha Inicio</th>
 <th scope="col">Precio</th>
 <th scope="col">Estatus servicio</th>
@@ -313,6 +314,7 @@ foreach ($reservaciones as $item):
 <td><?php echo $item['broker']?></td>
 <td><?php echo $item['clave']; ?></td>
 <td><?php echo $item['descripcion']; ?></td>
+<td><?php echo $item['destino']; ?></td>
 <td><?php $date= date_create($item['fecha_inicio']); echo date_format($date,"d-m-Y"); ?></td>
 <td>$<?php echo $item['precio']; ?></td>
 <td class="text-center"><?php echo $item['estatus_servicio']; ?></td>
