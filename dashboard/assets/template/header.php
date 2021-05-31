@@ -67,6 +67,7 @@ $num_notifications = count($notifications);
       </li>
 
      <!-- Notifications Dropdown Menu -->
+     <?php if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 ){ ?>
      <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
@@ -94,7 +95,7 @@ $num_notifications = count($notifications);
          
         </div>
       </li>  
-     
+     <?php } ?>
 
 
     </ul>
@@ -147,20 +148,23 @@ $num_notifications = count($notifications);
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <?php if ($_SESSION['idRol']!=3){ ?>
+            <?php if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2){ ?>
             <li class="nav-item">
                 <a href="../users/index.php" class="nav-link">
                 <i class="fas fa-users"></i>
                   <p>Administrar usuarios</p>
                 </a>
               </li>
-              <?php } ?>
+              <?php 
+              } 
+               if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 OR $_SESSION['idRol']==3){ ?>
               <li class="nav-item">
                 <a href="../travel_agencies/index.php" class="nav-link">
                   <i class="fa fa-hotel"></i>
                   <p>Solicitudes de Agencias</p>
                 </a>
               </li>
+              <?php } ?>
               <li class="nav-item">
                 <a href="../slider/index.php" class="nav-link">
                   <i class="fas fa-image"></i>
@@ -173,12 +177,14 @@ $num_notifications = count($notifications);
                   <p>Promociones</p>
                 </a>
               </li>
+              <?php if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2){ ?>
               <li class="nav-item">
                 <a href="../reservations/index.php" class="nav-link">
                  <i class="fas fa-clipboard-check"></i>
                   <p>Reservaciones</p>
                 </a>
               </li>
+              <?php } ?>
             </ul>
           </li>
         </ul>
