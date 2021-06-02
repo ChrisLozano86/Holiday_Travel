@@ -29,8 +29,8 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
           $fecha_limite = (isset($_REQUEST['fecha_limite'])) ? $_REQUEST['fecha_limite'] : null;
           
           if($idReserva==""){
-            
             $fecha_notificacion = date('Y-m-d',strtotime($fecha_limite."- 7 days"));
+            $saldo_restante = $precio;
           }else{
             $fecha_notificacion = (isset($_REQUEST['fecha_notificacion'])) ? $_REQUEST['fecha_notificacion'] : null;
           }
@@ -53,6 +53,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
           $reserva->setFechaNotificacion($fecha_notificacion);
           $reserva->setEstatusNotificacion($estatus_notificacion);  
           $reserva->setEstatusReserva($estatus_reserva);  
+          $reserva->setSaldoRestante($saldo_restante); 
           $reserva->guardar();
 
           header('Location: index.php');
@@ -161,7 +162,15 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             <div class="form-group">
               <label for="estatus_servicio">Estatus Servicio  <span class="text text-danger">*</span></label>
             <select name="estatus_servicio" id="estatus_servicio" class="form-control" style="width: 50%;">
-              <option value="OK">OK</option>
+              <option value="OK" <?php if($reserva->getPagoOperadora()=='OK'){ echo 'selected';}?>>OK</option>
+              <option value="XL" <?php if($reserva->getPagoOperadora()=='XL'){ echo 'selected';}?>>XL</option>
+              <option value="RQ" <?php if($reserva->getPagoOperadora()=='RQ'){ echo 'selected';}?>>RQ</option>
+              <option value="NC" <?php if($reserva->getPagoOperadora()=='NC'){ echo 'selected';}?>>NC</option>
+              <option value="RJ" <?php if($reserva->getPagoOperadora()=='RJ'){ echo 'selected';}?>>RJ</option>
+              <option value="PP" <?php if($reserva->getPagoOperadora()=='PP'){ echo 'selected';}?>>PP</option>
+              <option value="PR" <?php if($reserva->getPagoOperadora()=='PR'){ echo 'selected';}?>>PR</option>
+              <option value="XL" <?php if($reserva->getPagoOperadora()=='XL'){ echo 'selected';}?>>XL con cargo</option>
+              <option value="Error" <?php if($reserva->getPagoOperadora()=='XL'){ echo 'selected';}?>>Error al cancelar</option>
             </select> 
             </div>
 
