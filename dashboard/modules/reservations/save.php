@@ -170,7 +170,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
               <option value="PP" <?php if($reserva->getPagoOperadora()=='PP'){ echo 'selected';}?>>PP</option>
               <option value="PR" <?php if($reserva->getPagoOperadora()=='PR'){ echo 'selected';}?>>PR</option>
               <option value="XL" <?php if($reserva->getPagoOperadora()=='XL'){ echo 'selected';}?>>XL con cargo</option>
-              <option value="Error" <?php if($reserva->getPagoOperadora()=='XL'){ echo 'selected';}?>>Error al cancelar</option>
+              <option value="Error" <?php if($reserva->getPagoOperadora()=='Error'){ echo 'selected';}?>>Error al cancelar</option>
             </select> 
             </div>
 
