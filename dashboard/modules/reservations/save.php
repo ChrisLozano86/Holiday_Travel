@@ -1,10 +1,14 @@
 <?php
 require_once '../../class/Reserva.php';
+require_once '../../class/Pago.php';
+
 $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
+$pagos_reservas = Pago::recuperarPagosAgencia($idReserva); 
+   
 
     if($idReserva){        
-        $reserva = Reserva::buscarPorId($idReserva);   
-          
+        $reserva = Reserva::buscarPorId($idReserva); 
+    
     }else{
         $reserva = new Reserva(); 
        
@@ -23,17 +27,29 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
           $destino = (isset($_REQUEST['destino'])) ? $_REQUEST['destino'] : null;  
           $fecha_inicio = (isset($_REQUEST['fecha_inicio'])) ? $_REQUEST['fecha_inicio'] : null;
           $precio = (isset($_REQUEST['precio'])) ? $_REQUEST['precio'] : null;
+
+          
           $estatus_servicio = (isset($_REQUEST['estatus_servicio'])) ? $_REQUEST['estatus_servicio'] : null;
-          $pago_operadora = (isset($_REQUEST['pago_operadora'])) ? $_REQUEST['pago_operadora'] : null;
-          $pago_agencia = (isset($_REQUEST['pago_agencia'])) ? $_REQUEST['pago_agencia'] : null;
           $fecha_limite = (isset($_REQUEST['fecha_limite'])) ? $_REQUEST['fecha_limite'] : null;
           
           if($idReserva==""){
             $fecha_notificacion = date('Y-m-d',strtotime($fecha_limite."- 7 days"));
-            $saldo_restante = $precio;
+            $pago_agencia = 'No Pagado';
+            $pago_operadora = 'No Pagado';
           }else{
             $fecha_notificacion = (isset($_REQUEST['fecha_notificacion'])) ? $_REQUEST['fecha_notificacion'] : null;
+            $pago_operadora = (isset($_REQUEST['pago_operadora'])) ? $_REQUEST['pago_operadora'] : null;
+            $pago_agencia = (isset($_REQUEST['pago_agencia'])) ? $_REQUEST['pago_agencia'] : null;
           }
+
+          if(count($pagos_reservas)>0){
+            $moneda = (isset($_REQUEST['moneda_aux'])) ? $_REQUEST['moneda_aux'] : null;
+            $saldo_restante = (isset($_REQUEST['saldo_restante'])) ? $_REQUEST['saldo_restante'] : null;
+          }else{
+            $moneda = (isset($_REQUEST['moneda'])) ? $_REQUEST['moneda'] : null;
+            $saldo_restante = $precio;
+          }
+
           $estatus_notificacion = (isset($_REQUEST['estatus_notificacion'])) ? $_REQUEST['estatus_notificacion'] : null;
           $estatus_reserva = (isset($_REQUEST['estatus_reserva'])) ? $_REQUEST['estatus_reserva'] : null;
           
@@ -46,6 +62,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
           $reserva->setDestino($destino);
           $reserva->setFechaInicio($fecha_inicio);
           $reserva->setPrecio($precio);
+          $reserva->setMoneda($moneda);
           $reserva->setEstatusServicio($estatus_servicio);
           $reserva->setPagoOperadora($pago_operadora);
           $reserva->setPagoAgencia($pago_agencia);
@@ -101,6 +118,20 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             <input class="form-control" type="hidden" name="estatus_notificacion" id="estatus_notificacion" value="<?php echo $reserva->getEstatusNotificacion(); ?>">
             </div>
 
+            <div class="form-group">
+            <input class="form-control" type="hidden" name="saldo_restante" id="saldo_restante" value="<?php echo $reserva->getSaldoRestante(); ?>">
+            </div>
+
+            <div class="form-group">
+              <input class="form-control" type="hidden" name="pago_operadora" id="pago_operadora" value="<?php echo $reserva->getPagoOperadora(); ?>">
+            </div>
+
+            <div class="form-group">
+              
+              <input class="form-control" type="hidden" name="pago_agencia" id="pago_agencia" value="<?php echo $reserva->getPagoAgencia(); ?>" >
+            </div>
+
+
 
 
             <div class="form-group">
@@ -154,9 +185,19 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             </div>
 
 
-            <div class="form-group">
-            <label for="precio">Precio  <span class="text text-danger">*</span> </label>
-            <input class="form-control" type="text" name="precio" id="precio" value="<?php echo $reserva->getPrecio(); ?>" style="width: 50%;" required>
+            <div class="form-group form-inline">
+            <label for="precio" class="mr-2">Precio  <span class="text text-danger">*</span> </label>
+            
+            <span class="mr-1">$</span><input class="form-control mr-2" type="text" name="precio" id="precio" value="<?php echo $reserva->getPrecio(); ?>" style="width: 27%;" required <?php if(count($pagos_reservas)>0){echo 'readonly';} ?> placeholder="0.00">
+            <?php if(count($pagos_reservas)>0){ ?>
+              <input class="form-control" type="text" name="moneda_aux" id="moneda_aux" value="<?php echo $reserva->getMoneda(); ?>" style="width: 15%;" readonly >
+            <?php }else{ ?>
+            <select name="moneda" id="moneda" class="form-control" style="width: 15%;">
+              <option value="MXN" <?php if($reserva->getMoneda()=='MXN'){ echo 'selected';}?>>MXN</option>
+              <option value="USD" <?php if($reserva->getMoneda()=='USD'){ echo 'selected';}?>>USD</option>
+            </select>
+            <?php } ?>
+            <?php if(count($pagos_reservas)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos registrados, para editar el precio primero debe reestablecer el historial pagos.</p>';} ?>
             </div>
 
             <div class="form-group">
@@ -174,23 +215,6 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             </select> 
             </div>
 
-            <div class="form-group">
-              <label for="pago_operadora">Pago Operadora  <span class="text text-danger">*</span></label>
-            <select name="pago_operadora" id="pago_operadora" class="form-control" style="width: 50%;">
-              <option value="">Seleccione una opción</option>
-              <option value="No Pagado" <?php if($reserva->getPagoOperadora()=='No Pagado'){ echo 'selected';}?>>No Pagado</option>
-              <option value="Pagado" <?php if($reserva->getPagoOperadora()=='Pagado'){ echo 'selected';}?>>Pagado</option>
-            </select> 
-            </div>
-
-            <div class="form-group">
-              <label for="pago_agencia">Pago Agencia  <span class="text text-danger">*</span></label>
-            <select name="pago_agencia" id="pago_agencia" class="form-control" style="width: 50%;">
-            <option value="">Seleccione una opción</option>
-              <option value="No Pagado" <?php if($reserva->getPagoOperadora()=='No Pagado'){ echo 'selected';}?>>No Pagado</option>
-              <option value="Pagado" <?php if($reserva->getPagoOperadora()=='Pagado'){ echo 'selected';}?>>Pagado</option>
-            </select> 
-            </div>
 
             <div class="form-group">
             <label for="fecha_limite">Fecha límite  <span class="text text-danger">*</span> </label>

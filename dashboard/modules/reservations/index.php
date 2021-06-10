@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
 if($_SESSION['idRol']== null){
-  header('Location: login.php');
+  header('Location: ../../login.php');
 } 
 require_once '../../class/Reserva.php';
 $notifications = Reserva::recuperarPendientesPago();
@@ -12,17 +12,6 @@ $actualizar_reserva = new Reserva();
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
   $idReserva = $_POST['idReserva'];
-
-  if(isset($_POST['pago_operadora'])){
-    
-    $actualizar_reserva->actualizarPagoOperadora($idReserva, $_POST['pago_operadora']);
-  }
-
-  if(isset($_POST['pago_agencia'])){
-
-    $actualizar_reserva->actualizarPagoAgencia($idReserva, $_POST['pago_agencia']);
-    
-  }
 
   if(isset($_POST['estatus_reserva'])){
 
@@ -316,30 +305,40 @@ foreach ($reservaciones as $item):
 <td><?php echo $item['descripcion']; ?></td>
 <td><?php echo $item['destino']; ?></td>
 <td><?php $date= date_create($item['fecha_inicio']); echo date_format($date,"d-m-Y"); ?></td>
-<td>$<?php echo $item['precio']; ?></td>
+<td>$<?php echo $item['precio'].$item['moneda']; ?></td>
 <td class="text-center"><?php echo $item['estatus_servicio']; ?></td>
 <td class="text-center">
 <?php if ($item['pago_operadora'] =='No Pagado'){
- echo '<span class="badge badge-danger">'.$item['pago_operadora'].'</span>&nbsp;<a href="" class="fas fa-sync" data-toggle="modal" data-target="#modalPagoOperadora'.$item[0].'"></a>';
+ echo '<a href="" class="btn btn-danger" data-toggle="modal" data-target="#modalPagoOperadora'.$item[0].'"><span class="badge">'.$item['pago_operadora'].'</span></a>';
 }else{
-  echo '<span class="badge badge-success">'.$item['pago_operadora'].'</span>&nbsp;<a href="" class="fas fa-sync" data-toggle="modal" data-target="#modalPagoOperadora'.$item[0].'"></a>';
+  echo '<a href="" class="btn btn-success" data-toggle="modal" data-target="#modalPagoOperadora'.$item[0].'"><span class="badge">'.$item['pago_operadora'].'</span></a>';
 } 
 ?>
 </td>
 <td class="text-center">
-<?php if ($item['pago_agencia'] =='No Pagado'){
- echo '<span class="badge badge-danger">'.$item['pago_agencia'].'</span>&nbsp;<a href="" class="fas fa-sync" data-toggle="modal" data-target="#modalPagoAgencia'.$item[0].'"></a>';
-}else{
-  echo '<span class="badge badge-success">'.$item['pago_agencia'].'</span>&nbsp;<a href="" class="fas fa-sync" data-toggle="modal" data-target="#modalPagoAgencia'.$item[0].'"></a>';
-} 
-?>
+<?php if ($item['pago_agencia'] =='No Pagado'){?>
+
+<form action="../reservations_payments/index.php" method="post"> 
+   <input type="hidden" name="idReserva" value="<?php echo $item[0] ?>">
+  <button type="submit" class="btn btn-danger">
+  <span class="badge"><?php echo $item['pago_agencia']?></span>
+  </button> 
+ </form>
+<?php }else{ ?>
+  <form action="../reservations_payments/index.php" method="post"> 
+   <input type="hidden" name="idReserva" value="<?php echo $item[0] ?>">
+  <button type="submit" class="btn btn-success">
+  <span class="badge"><?php echo $item['pago_agencia']?></span>
+  </button> 
+ </form>
+<?php } ?>
 </td>
 <td class="text-center font-weight-bold"><?php $date= date_create($item['fecha_limite']); echo date_format($date,"d-m-Y"); ?></td>
 <td class="text-center">
 <?php if ($item['estatus_reserva'] =='Cancelada'){
- echo '<span class="badge badge-danger">'.$item['estatus_reserva'].'</span>&nbsp;<a href="" class="fas fa-sync" data-toggle="modal" data-target="#modalEstatusReserva'.$item[0].'"></a>';
+ echo '<a href="" class="btn btn-danger" data-toggle="modal" data-target="#modalEstatusReserva'.$item[0].'"><span class="badge">'.$item['estatus_reserva'].'</span></a>';
 }else{
-  echo '<span class="badge badge-success">'.$item['estatus_reserva'].'</span>&nbsp;<a href="" class="fas fa-sync" data-toggle="modal" data-target="#modalEstatusReserva'.$item[0].'"></a>';
+  echo '<a href="" class="btn btn-success" data-toggle="modal" data-target="#modalEstatusReserva'.$item[0].'"><span class="badge">'.$item['estatus_reserva'].'</span></a>';
 } 
 ?>
 </td>
@@ -349,23 +348,36 @@ foreach ($reservaciones as $item):
 
 <!-- Modal Pago Operadora-->
 <div class="modal fade" id="modalPagoOperadora<?php echo $item[0]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Pago Operadora</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Referencia Pago Operadora (<?php echo $item['broker']." - ".$item['clave']; ?>)</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <form action="" method="post">
 
-      <div class="form-group">
-        <label>Clave: <?php echo $item['clave'];?></label>
-        </div>
+      <div >
 
-             <div class="form-group">
-            <input class="form-control" type="hidden" name="token" id="token" value="1">
+      <?php 
+
+      if($item['pago_operadora']!='Pagado'){ 
+          if($item['pago_agencia']=='Pagado'){
+        ?>
+              
+            <p><strong> Registrado por: </strong> <?php echo $_SESSION['nombre']; ?></p>
+            <p><strong>Fecha: </strong><?php echo date("d-m-Y"); ?></p>
+            <p><strong>Hora:</strong> <?php echo date("H:i:s"); ?></p>
+            <hr>
+
+     
+      <form action="../reservations_payments/payment_register.php" method="post">
+
+            
+
+            <div class="form-group">
+            <input class="form-control" type="hidden" name="fecha_pago" id="fecha_pago" value="<?php echo date("Y-m-d H:i:s"); ?>">
             </div>
 
             <div class="form-group">
@@ -373,66 +385,87 @@ foreach ($reservaciones as $item):
             </div>
 
             <div class="form-group">
-            <select name="pago_operadora" id="pago_operadora" class="form-control">
-              <option value="No Pagado" <?php if($item['pago_operadora']=='No Pagado'){ echo 'selected';}?>>No Pagado</option>
-              <option value="Pagado" <?php if($item['pago_operadora']=='Pagado'){ echo 'selected';}?>>Pagado</option>
+            <input class="form-control" type="hidden" name="categoria_pago" id="categoria_pago" value="2">
+            </div>
+
+            <div class="form-group form-inline">
+            <label for="precio" class="mr-2">Precio</label>
+            <span class="mr-1">$</span>
+            <input class="form-control mr-2" style="width: 25%;" type="number" name="precio" id="precio" value="<?php echo $item['precio']; ?>" readonly>
+            <input class="form-control" style="width: 12%;" type="text" name="moneda" id="moneda" value="<?php echo $item['moneda']; ?>" readonly>
+            </div>
+
+
+            <div class="form-group form-inline">
+            <label for="tipo_cambio" class="mr-2">Tipo de cambio</label>
+            <span class="mr-1">$</span>
+            <input class="form-control mr-1" style="width: 15%;" type="number" name="tipo_cambio" id="tipo_cambio" value="1.00" <?php if($item['moneda']=='MXN'){echo 'readonly';}?>>
+            <span class="mr-1">MXN</span>
+            </div>
+
+            <div class="form-group form-inline">
+            <label for="referencia" class="mr-2">Importe de pago</label>
+            <span class="mr-1">$</span>
+            <input class="form-control mr-1" style="width: 29%;" type="number" name="monto" id="monto" value="<?php echo $item['precio']; ?>" readonly>
+            <span><?php if($item['moneda']=='MXN'){echo 'MXN';}?></span>
+            </div>
+
+            <div class="form-group form-inline">
+            <label for="referencia" class="mr-2">Forma de pago <span class="text text-danger">*</span></label>
+            <select name="forma_pago" id="forma_pago" class="form-control" style="width: 70%;" required>
+              <option value="">Selecciona una opción</option>
+              <option value="Efectivo">Efectivo</option>
+              <option value="Transferencia">Transferencia</option>
+              <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+              <option value="Depósito Bancario">Depósito Bancario</option>
+              <option value="Paypal">Paypal</option>
             </select> 
             </div>
+
+            <div class="form-group form-inline">
+            <label for="referencia" class="mr-2">Referencia <span class="text text-danger">*</span></label>
+            <input class="form-control" style="width: 76%;" type="text" name="referencia" id="referencia" value="" required>
+            </div>
+
             <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Confirmar cambios">
+            <label for="referencia">Comentario <small>Opcional</small></label>
+            <textarea class="form-control" rows="1" name="descripcion" id="descripcion"></textarea>
+            </div>
+
+           
+            <div class="form-group">
+            <input type="submit" class="btn btn-custom w-100" value="Registrar Pago">
             </div> 
       </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
+      <?php
+          }else{
+            echo '<p class="alert alert-warning">Aún no se ha registrado el Pago Agencia, realice dicho pago para poder registrar el pago Operadora. </p>';
+          }
+      }else{
+        ?>
 
-<!-- Modal Pago Operadora-->
-<div class="modal fade" id="modalPagoAgencia<?php echo $item[0]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Pago Agencia</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-              <form action="" method="post">
+        <p class="alert alert-success">El pago operadora de esta reservación ya fue registrado.</p>
 
-              <div class="form-group">
-        <label>Clave: <?php echo $item['clave'];?></label>
-        </div>
-
+        <form action="../reservations_payments/index.php" method="post">
         <div class="form-group">
-        <input class="form-control" type="hidden" name="token" id="token" value="2">
-        </div>
-
-        <div class="form-group">
-        <input class="form-control" type="hidden" name="idReserva" id="idReserva" value="<?php echo $item[0]; ?>">
-        </div>
-
-        <div class="form-group">
-        <select name="pago_agencia" id="pago_agencia" class="form-control">
-        <option value="No Pagado" <?php if($item['pago_agencia']=='No Pagado'){ echo 'selected';}?>>No Pagado</option>
-        <option value="Pagado" <?php if($item['pago_agencia']=='Pagado'){ echo 'selected';}?>>Pagado</option>
-        </select> 
-        </div>
-        <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Confirmar cambios">
-        </div> 
+            <input class="form-control" type="hidden" name="idReserva" id="idReserva" value="<?php echo $item[0]; ?>">
+            </div>
+            <button type="submit" class="btn btn-custom">Ver historial de pagos</button>
         </form>
+
+      <?php
+      }
+      ?>
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        
       </div>
     </div>
   </div>
 </div>
+
+
 
 <!-- Modal Estatus Reservación-->
 <div class="modal fade" id="modalEstatusReserva<?php echo $item[0]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -450,7 +483,7 @@ foreach ($reservaciones as $item):
               <form action="" method="post">
 
               <div class="form-group">
-        <label>Clave: <?php echo $item['clave'];?></label>
+        <label>Clave de la reservación: <?php echo $item['clave'];?></label>
         </div>
 
         <div class="form-group">
