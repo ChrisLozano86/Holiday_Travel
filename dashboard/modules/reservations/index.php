@@ -439,7 +439,7 @@ foreach ($reservaciones as $item):
       </form>
       <?php
           }else{
-            echo '<p class="alert alert-warning">Aún no se ha registrado el Pago Agencia, realice dicho pago para poder registrar el pago Operadora. </p>';
+            echo '<p class="alert alert-warning">Aún no se ha registrado el Pago Agencia, por favor registre dicho pago para proceder con el registro el pago Operadora. </p>';
           }
       }else{
         ?>

@@ -191,7 +191,7 @@ foreach($monto as $pago){
                 <td><?php echo $item['monto'].$reserva->getMoneda(); ?></td>
                 <td><small><?php echo $item['descripcion']; ?></small></td>
                 <td><?php echo $item['creado_por']; ?></td>
-                <td><a href=""><img src="../../assets/img/icon-pdf.png" width="70" height="70" alt="Descargar Acuse"></a></td>
+                <td><a href="#"><img src="../../assets/img/icon-pdf.png" width="70" height="70" alt="Descargar Acuse"></a></td>
                
                
           
