@@ -217,10 +217,10 @@ class Pago
     }
 
 
-    public static function recuperarTotalAbonado($idReserva)
+    public static function recuperarPagosOperadora($idReserva)
     {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT monto FROM pago_reservaciones WHERE idReserva = :idReserva AND categoria_pago = 1');
+        $consulta = $conexion->prepare('SELECT * FROM pago_reservaciones WHERE idReserva = :idReserva AND categoria_pago = 2 ORDER BY fecha_pago ASC');
         $consulta->bindParam(':idReserva', $idReserva);
         $consulta->execute();
         $registros = $consulta->fetchAll();
@@ -228,12 +228,37 @@ class Pago
         return $registros;
     }
 
-    public function eliminarHistorialPago($idReserva)
+
+    public static function recuperarTotalAbonado($idReserva, $category)
+    {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT monto FROM pago_reservaciones WHERE idReserva = :idReserva AND categoria_pago = :category');
+        $consulta->bindParam(':idReserva', $idReserva);
+        $consulta->bindParam(':category', $category);
+        $consulta->execute();
+        $registros = $consulta->fetchAll();
+        $conexion = null;
+        return $registros;
+    }
+
+    public static function recuperarTotalAbonadoOperadora($idReserva)
+    {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT monto FROM pago_reservaciones WHERE idReserva = :idReserva AND categoria_pago = 2');
+        $consulta->bindParam(':idReserva', $idReserva);
+        $consulta->execute();
+        $registros = $consulta->fetchAll();
+        $conexion = null;
+        return $registros;
+    }
+
+    public function eliminarHistorialPago($idReserva, $category)
     {
         //echo $this->id;
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('DELETE FROM ' . self::TABLA . ' WHERE idReserva = :idReserva');
+        $consulta = $conexion->prepare('DELETE FROM ' . self::TABLA . ' WHERE idReserva = :idReserva AND categoria_pago = :category');
         $consulta->bindParam(':idReserva', $idReserva);
+        $consulta->bindParam(':category', $category);
         $consulta->execute();
         $conexion = null;
     }

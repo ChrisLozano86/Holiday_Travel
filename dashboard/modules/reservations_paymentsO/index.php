@@ -4,8 +4,8 @@ require_once '../../class/Pago.php';
 require_once '../../class/Reserva.php';
 include_once '../../assets/template/header.php';
 $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
-$pagos_reservas = Pago::recuperarPagosAgencia($idReserva);
-$monto = Pago::recuperarTotalAbonado($idReserva,1);       
+$pagos_reservas = Pago::recuperarPagosOperadora($idReserva);
+$monto = Pago::recuperarTotalAbonado($idReserva,2);       
 $reserva = Reserva::buscarPorId($idReserva);  
 
 $total_abonado = 0;
@@ -26,7 +26,7 @@ foreach($monto as $pago){
         <div class="col">
         <a href="../reservations/index.php" class="btn btn-default btn-lg btn-custom" > <i class="fas fa-clipboard-check"></i> Ver todas las reservaciones</a><br><br>
         <div  style="width:80%; margin-left:10%; margin-top:30px; background-color: white; padding:20px; border-radius:10px;">
-        <h4 class="section-form">Referencia de pago agencia (<?php echo $reserva->getBroker()." - ".$reserva->getClave(); ?> ) </h4>
+        <h4 class="section-form">Referencia de pago operadora (<?php echo $reserva->getBroker()." - ".$reserva->getClave(); ?> ) </h4>
 
         <?php 
         
@@ -60,7 +60,7 @@ foreach($monto as $pago){
               </tr>
 
               <tr>
-                <td> <strong> Precio: </strong> $<?php echo $reserva->getPrecio().$reserva->getMoneda(); ?></td>
+                <td> <strong> Precio Neto: </strong> $<?php echo $reserva->getPrecioNeto().$reserva->getMoneda(); ?></td>
                 <td> </td>
               </tr>
             </table>
@@ -77,7 +77,7 @@ foreach($monto as $pago){
             </div>
 
             <div class="form-group">
-            <input class="form-control" type="hidden" name="categoria_pago" id="categoria_pago" value="1">
+            <input class="form-control" type="hidden" name="categoria_pago" id="categoria_pago" value="2">
             </div>
 
             <div class="form-group form-inline">
@@ -85,18 +85,18 @@ foreach($monto as $pago){
             <span class="mr-1">$</span>
             <input class="form-control mr-2" type="number" style="width: 25%;" name="saldo_abonado" id="saldo_abonado" value="<?php echo $total_abonado; ?>" readonly>
             <input class="form-control" style="width: 12%;" type="text" name="moneda" id="moneda" value="<?php echo $reserva->getMoneda(); ?>" readonly>&nbsp;
-            <?php if($reserva->getSaldoRestante()==0){ echo '<i class="far fa-check-circle fa-2x text-success"></i>';} ?>
+            <?php if($reserva->getSaldoRestanteOperadora()==0){ echo '<i class="far fa-check-circle fa-2x text-success"></i>';} ?>
             </div>
 
             <div class="form-group form-inline">
-            <label for="referencia" class="mr-2">Saldo restante</label>
+            <label for="referencia" class="mr-2">Saldo Neto restante</label>
             <span class="mr-1">$</span>
-            <input class="form-control mr-2" style="width: 25%;" type="number" name="saldo_restante" id="saldo_restante" value="<?php echo $reserva->getSaldoRestante(); ?>" readonly>
+            <input class="form-control mr-2" style="width: 25%;" type="number" name="saldo_restanteO" id="saldo_restanteO" value="<?php echo $reserva->getSaldoRestanteOperadora(); ?>" readonly>
             <input class="form-control" style="width: 12%;" type="text" name="moneda" id="moneda" value="<?php echo $reserva->getMoneda(); ?>" readonly>
             </div>
 
             <?php 
-              if($reserva->getSaldoRestante()!=0){
+              if($reserva->getSaldoRestanteOperadora()!=0){
             ?>
             <?php if($reserva->getMoneda()=='USD'){ ?>
             <div class="form-group">
@@ -107,7 +107,7 @@ foreach($monto as $pago){
 
             <div class="form-group">
             <label for="referencia">Importe de pago <span class="text text-danger">*</span></label>
-            <input class="form-control" style="width: 50%;" type="number" name="monto" id="monto" min="0" max="<?php echo $reserva->getSaldoRestante(); ?>" value="" placeholder="0" required>
+            <input class="form-control" style="width: 50%;" type="number" name="monto" id="monto" min="0" max="<?php echo $reserva->getSaldoRestanteOperadora(); ?>" value="" placeholder="0" required>
             </div>
 
             <div class="form-group">
@@ -137,7 +137,7 @@ foreach($monto as $pago){
             </div> 
             <?php
               }else{
-                echo '<p class="alert alert-success">La reservación ha sido pagada, consulte el historial de pagos para más detalle.</p>';
+                echo '<p class="alert alert-success">El pago operadora ha sido pagado, consulte el historial de pagos para más detalle.</p>';
               }
             ?>
           </form>
@@ -153,7 +153,7 @@ foreach($monto as $pago){
 
           <div  style="width:80%; margin-left:10%; margin-top:30px; background-color: white; padding:20px; border-radius:10px;">
             
-          <h4 class="section-form">Historial de pagos</h4>
+          <h4 class="section-form">Historial de pagos operadora</h4>
           
           <?php
             if(count($pagos_reservas)>0){
@@ -215,7 +215,7 @@ foreach($monto as $pago){
             <small class="text text-danger">*Esta acción borrará todo el historial de pagos y se reestablecerá el pago de la reservación a su estado inicial, se requiere autorización de un administrador.</small>
           <?php
             }else{
-              echo ' <p class="text text-primary">No se han recibido pagos de esta reservación</p>';
+              echo ' <p class="text text-primary">No se han recibido pagos operadora de esta reservación</p>';
             }
           ?>
          

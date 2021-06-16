@@ -4,6 +4,7 @@ require_once '../../class/Pago.php';
 
 $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
 $pagos_reservas = Pago::recuperarPagosAgencia($idReserva); 
+$pagos_reservasO = Pago::recuperarPagosOperadora($idReserva); 
    
 
     if($idReserva){        
@@ -19,6 +20,8 @@ $pagos_reservas = Pago::recuperarPagosAgencia($idReserva);
 
           $idReserva = (isset($_POST['idReserva'])) ? $_POST['idReserva'] : null;
           $agencia = (isset($_POST['agencia'])) ? $_POST['agencia'] : null;
+          $porcentaje = (isset($_REQUEST['porcentaje'])) ? $_REQUEST['porcentaje'] : null;
+          $precio_neto = (isset($_REQUEST['precio_neto'])) ? $_REQUEST['precio_neto'] : null;
           $titular = (isset($_REQUEST['titular'])) ? $_REQUEST['titular'] : null;
           $fecha_reservacion = (isset($_POST['fecha_reservacion'])) ? $_POST['fecha_reservacion'] : null;
           $broker = (isset($_REQUEST['broker'])) ? $_REQUEST['broker'] : null;
@@ -27,6 +30,7 @@ $pagos_reservas = Pago::recuperarPagosAgencia($idReserva);
           $destino = (isset($_REQUEST['destino'])) ? $_REQUEST['destino'] : null;  
           $fecha_inicio = (isset($_REQUEST['fecha_inicio'])) ? $_REQUEST['fecha_inicio'] : null;
           $precio = (isset($_REQUEST['precio'])) ? $_REQUEST['precio'] : null;
+         
 
           
           $estatus_servicio = (isset($_REQUEST['estatus_servicio'])) ? $_REQUEST['estatus_servicio'] : null;
@@ -50,10 +54,21 @@ $pagos_reservas = Pago::recuperarPagosAgencia($idReserva);
             $saldo_restante = $precio;
           }
 
+
+          if(count($pagos_reservasO)>0){
+            //$moneda = (isset($_REQUEST['moneda_aux'])) ? $_REQUEST['moneda_aux'] : null;
+            $saldo_restanteO = (isset($_REQUEST['saldo_restanteO'])) ? $_REQUEST['saldo_restanteO'] : null;
+          }else{
+            $moneda = (isset($_REQUEST['moneda'])) ? $_REQUEST['moneda'] : null;
+            $saldo_restanteO = $precio_neto;
+          }
+
           $estatus_notificacion = (isset($_REQUEST['estatus_notificacion'])) ? $_REQUEST['estatus_notificacion'] : null;
           $estatus_reserva = (isset($_REQUEST['estatus_reserva'])) ? $_REQUEST['estatus_reserva'] : null;
           
           $reserva->setAgencia($agencia);
+          $reserva->setPorcentaje($porcentaje);
+          $reserva->setPrecioNeto($precio_neto);
           $reserva->setTitular($titular);
           $reserva->setFechaReservacion($fecha_reservacion);
           $reserva->setBroker($broker);
@@ -71,6 +86,7 @@ $pagos_reservas = Pago::recuperarPagosAgencia($idReserva);
           $reserva->setEstatusNotificacion($estatus_notificacion);  
           $reserva->setEstatusReserva($estatus_reserva);  
           $reserva->setSaldoRestante($saldo_restante); 
+          $reserva->setSaldoRestanteOperadora($saldo_restanteO); 
           $reserva->guardar();
 
           header('Location: index.php');
@@ -123,6 +139,10 @@ $pagos_reservas = Pago::recuperarPagosAgencia($idReserva);
             </div>
 
             <div class="form-group">
+            <input class="form-control" type="hidden" name="saldo_restanteO" id="saldo_restanteO" value="<?php echo $reserva->getSaldoRestanteOperadora(); ?>">
+            </div>
+
+            <div class="form-group">
               <input class="form-control" type="hidden" name="pago_operadora" id="pago_operadora" value="<?php echo $reserva->getPagoOperadora(); ?>">
             </div>
 
@@ -135,8 +155,29 @@ $pagos_reservas = Pago::recuperarPagosAgencia($idReserva);
 
 
             <div class="form-group">
-            <label for="agencia">Nombre de la agencia <span class="text text-danger">*</span> </label>
+            <label for="agencia">Agencia <span class="text text-danger">*</span> </label>
             <input class="form-control" type="text" name="agencia" id="agencia" value="<?php echo $reserva->getAgencia(); ?>" required>
+            </div>
+
+            <div class="form-group form-inline">
+            <label for="porcentaje" class="mr-2">Porcentaje <span class="text text-danger">*</span> </label>
+            <input class="form-control" type="number" min="1" max="100" name="porcentaje" id="porcentaje" style="width: 10%;" value="<?php if ($reserva->getPorcentaje()!= ""){echo $reserva->getPorcentaje();}else{ echo 14;} ?>" required>
+            <span class="ml-2 font-weight-bold">%</span>
+            </div>
+
+            <div class="form-group form-inline">
+            <label for="precio_neto" class="mr-2">Precio Neto  <span class="text text-danger">*</span> </label>
+            
+            <span class="mr-1">$</span><input class="form-control mr-2" type="text" name="precio_neto" id="precio_neto" value="<?php echo $reserva->getPrecioNeto(); ?>" style="width: 27%;" required <?php if(count($pagos_reservasO)>0){echo 'readonly';} ?> placeholder="0.00">
+            <?php if(count($pagos_reservasO)>0){ ?>
+              <input class="form-control" type="text" name="moneda_aux" id="moneda_aux" value="<?php echo $reserva->getMoneda(); ?>" style="width: 15%;" readonly >
+            <?php }else{ ?>
+            <select name="moneda" id="moneda" class="form-control" style="width: 15%;">
+              <option value="MXN" <?php if($reserva->getMoneda()=='MXN'){ echo 'selected';}?>>MXN</option>
+              <option value="USD" <?php if($reserva->getMoneda()=='USD'){ echo 'selected';}?>>USD</option>
+            </select>
+            <?php } ?>
+            <?php if(count($pagos_reservasO)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos de Operadora registrados, para editar el precio neto primero debe reestablecer el historial pagos.</p>';} ?>
             </div>
 
             <div class="form-group">

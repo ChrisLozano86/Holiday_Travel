@@ -7,6 +7,8 @@ class Reserva
 
     private $idReserva;
     private $agencia;
+    private $porcentaje;
+    private $precio_neto;
     private $titular;
     private $fecha_reservacion;
     private $broker;
@@ -24,16 +26,19 @@ class Reserva
     private $estatus_notificacion;
     private $estatus_reserva;
     private $saldo_restante;
+    private $saldo_restanteO;
 
 
     const TABLA = 'reservaciones';
 
-    public function __construct($agencia = null, $titular = null, $fecha_reservacion = null, $broker = null,
+    public function __construct($agencia = null, $porcentaje = null, $precio_neto = null, $titular = null, $fecha_reservacion = null, $broker = null,
      $clave = null, $descripcion = null, $destino=null, $fecha_inicio = null, $precio = null, $moneda = null, $estatus_servicio = null,
-     $pago_operadora = null, $pago_agencia = null, $fecha_limite = null, $fecha_notificacion = null, $estatus_notificacion = null, $estatus_reserva=null, $saldo_restante=null, $idReserva = null)
+     $pago_operadora = null, $pago_agencia = null, $fecha_limite = null, $fecha_notificacion = null, $estatus_notificacion = null, $estatus_reserva=null, $saldo_restante=null, $saldo_restanteO=null, $idReserva = null)
     {
         
         $this->agencia = $agencia;
+        $this->porcentaje = $porcentaje;
+        $this->precio_neto = $precio_neto;
         $this->fecha_reservacion = $fecha_reservacion;
         $this->titular = $titular;
         $this->broker = $broker;
@@ -51,6 +56,7 @@ class Reserva
         $this->estatus_notificacion = $estatus_notificacion;
         $this->estatus_reserva = $estatus_reserva;
         $this->saldo_restante = $saldo_restante;
+        $this->saldo_restanteO = $saldo_restanteO;
         $this->idReserva = $idReserva;
     }
 
@@ -65,6 +71,18 @@ class Reserva
     {
         return $this->agencia;
     }
+
+    public function getPorcentaje()
+    {
+        return $this->porcentaje;
+    }
+
+    public function getPrecioNeto()
+    {
+        return $this->precio_neto;
+    }
+
+
 
     public function getTitular()
     {
@@ -149,12 +167,27 @@ class Reserva
     {
         return $this->saldo_restante;
     }
+    public function getSaldoRestanteOperadora()
+    {
+        return $this->saldo_restanteO;
+    }
+
 
     //Setters
 
     public function setAgencia($agencia)
     {
         $this->agencia = $agencia;
+    }
+
+    public function setPorcentaje($porcentaje)
+    {
+        $this->porcentaje = $porcentaje;
+    }
+
+    public function setPrecioNeto($precio_neto)
+    {
+        $this->precio_neto = $precio_neto;
     }
 
     public function setTitular($titular)
@@ -242,6 +275,11 @@ class Reserva
         $this->saldo_restante = $saldo_restante;
     }
 
+    public function setSaldoRestanteOperadora($saldo_restanteO)
+    {
+        $this->saldo_restanteO = $saldo_restanteO;
+    }
+
 
 
 
@@ -250,11 +288,13 @@ class Reserva
     {
         $conexion = new Conexion();
         if ($this->idReserva) /* Modifica */ {
-            $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET agencia = :agencia, titular = :titular, fecha_reservacion = :fecha_reservacion,
+            $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET agencia = :agencia, porcentaje = :porcentaje, precio_neto = :precio_neto, titular = :titular, fecha_reservacion = :fecha_reservacion,
              broker=:broker, clave = :clave, descripcion = :descripcion, destino=:destino, fecha_inicio = :fecha_inicio, precio = :precio, moneda = :moneda, estatus_servicio = :estatus_servicio, pago_operadora = :pago_operadora, 
-             pago_agencia = :pago_agencia, fecha_limite = :fecha_limite, fecha_notificacion = :fecha_notificacion, estatus_notificacion = :estatus_notificacion, estatus_reserva = :estatus_reserva, saldo_restante = :saldo_restante WHERE idReserva = :idReserva');
+             pago_agencia = :pago_agencia, fecha_limite = :fecha_limite, fecha_notificacion = :fecha_notificacion, estatus_notificacion = :estatus_notificacion, estatus_reserva = :estatus_reserva, saldo_restante = :saldo_restante, saldo_restanteO = :saldo_restanteO WHERE idReserva = :idReserva');
             $consulta->bindParam(':idReserva', $this->idReserva);
             $consulta->bindParam(':agencia', $this->agencia);
+            $consulta->bindParam(':porcentaje', $this->porcentaje);
+            $consulta->bindParam(':precio_neto', $this->precio_neto);
             $consulta->bindParam(':titular', $this->titular);
             $consulta->bindParam(':fecha_reservacion', $this->fecha_reservacion);
             $consulta->bindParam(':broker', $this->broker);
@@ -272,12 +312,15 @@ class Reserva
             $consulta->bindParam(':estatus_notificacion', $this->estatus_notificacion);
             $consulta->bindParam(':estatus_reserva', $this->estatus_reserva);
             $consulta->bindParam(':saldo_restante', $this->saldo_restante);
+            $consulta->bindParam(':saldo_restanteO', $this->saldo_restanteO);
 
             $consulta->execute();
         } else /* Inserta */ {
-            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (agencia, titular, fecha_reservacion, broker, clave, descripcion, destino, fecha_inicio, precio, moneda, estatus_servicio, pago_operadora, pago_agencia, fecha_limite, fecha_notificacion, estatus_notificacion, estatus_reserva, saldo_restante)
-             VALUES (:agencia, :titular, :fecha_reservacion, :broker, :clave, :descripcion, :destino, :fecha_inicio, :precio, :moneda, :estatus_servicio, :pago_operadora, :pago_agencia, :fecha_limite, :fecha_notificacion, :estatus_notificacion, :estatus_reserva, :saldo_restante)');
+            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (agencia, porcentaje, precio_neto, titular, fecha_reservacion, broker, clave, descripcion, destino, fecha_inicio, precio, moneda, estatus_servicio, pago_operadora, pago_agencia, fecha_limite, fecha_notificacion, estatus_notificacion, estatus_reserva, saldo_restante, saldo_restanteO)
+             VALUES (:agencia, :porcentaje, :precio_neto, :titular, :fecha_reservacion, :broker, :clave, :descripcion, :destino, :fecha_inicio, :precio, :moneda, :estatus_servicio, :pago_operadora, :pago_agencia, :fecha_limite, :fecha_notificacion, :estatus_notificacion, :estatus_reserva, :saldo_restante, :saldo_restanteO)');
             $consulta->bindParam(':agencia', $this->agencia);
+            $consulta->bindParam(':porcentaje', $this->porcentaje);
+            $consulta->bindParam(':precio_neto', $this->precio_neto);
             $consulta->bindParam(':titular', $this->titular);
             $consulta->bindParam(':fecha_reservacion', $this->fecha_reservacion);
             $consulta->bindParam(':broker', $this->broker);
@@ -295,6 +338,7 @@ class Reserva
             $consulta->bindParam(':estatus_notificacion', $this->estatus_notificacion);
             $consulta->bindParam(':estatus_reserva', $this->estatus_reserva);
             $consulta->bindParam(':saldo_restante', $this->saldo_restante);
+            $consulta->bindParam(':saldo_restanteO', $this->saldo_restanteO);
             if ($consulta->execute()) {
                 $this->idReserva = $conexion->lastInsertId();
                 return true;
@@ -326,7 +370,7 @@ class Reserva
         //var_dump($registro);
         $conexion = null;
         if ($registro) {
-            return new self($registro['agencia'], $registro['titular'], $registro['fecha_reservacion'], $registro['broker'], $registro['clave'], $registro['descripcion'], $registro['destino'], $registro['fecha_inicio'], $registro['precio'], $registro['moneda'], $registro['estatus_servicio'], $registro['pago_operadora'], $registro['pago_agencia'], $registro['fecha_limite'], $registro['fecha_notificacion'], $registro['estatus_notificacion'], $registro['estatus_reserva'], $registro['saldo_restante'], $idReserva);
+            return new self($registro['agencia'], $registro['porcentaje'], $registro['precio_neto'], $registro['titular'], $registro['fecha_reservacion'], $registro['broker'], $registro['clave'], $registro['descripcion'], $registro['destino'], $registro['fecha_inicio'], $registro['precio'], $registro['moneda'], $registro['estatus_servicio'], $registro['pago_operadora'], $registro['pago_agencia'], $registro['fecha_limite'], $registro['fecha_notificacion'], $registro['estatus_notificacion'], $registro['estatus_reserva'], $registro['saldo_restante'], $registro['saldo_restanteO'], $idReserva);
         } else {
             return false;
         }
@@ -415,6 +459,19 @@ class Reserva
         $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET saldo_restante = :saldo_restante WHERE idReserva = :idReserva');
         $consulta->bindParam(':idReserva', $idReserva);
         $consulta->bindParam(':saldo_restante', $saldo_restante);
+        $consulta->execute();
+        $conexion = null;
+        
+    }
+
+    
+
+    public function actualizarSaldoRestanteOperadora($idReserva, $saldo_restanteO)
+    {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET saldo_restanteO = :saldo_restanteO WHERE idReserva = :idReserva');
+        $consulta->bindParam(':idReserva', $idReserva);
+        $consulta->bindParam(':saldo_restanteO', $saldo_restanteO);
         $consulta->execute();
         $conexion = null;
         

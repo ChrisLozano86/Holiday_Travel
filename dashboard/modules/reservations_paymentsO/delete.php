@@ -7,13 +7,11 @@
      $reserva=new Reserva();
     
     $idReserva = (isset($_POST['idReserva'])) ? $_POST['idReserva'] : null;
-    $precio = (isset($_POST['precio'])) ? $_POST['precio'] : null;
     $precioNeto = (isset($_POST['precioNeto'])) ? $_POST['precioNeto'] : null;
     
-    
     if($idReserva){        
-        $historial_pago->eliminarHistorialPago($idReserva,1);
-        $reserva->actualizarSaldoRestante($idReserva, $precio);
+        $historial_pago->eliminarHistorialPago($idReserva,2);
+        $reserva->actualizarSaldoRestanteOperadora($idReserva, $precioNeto);
         $reserva->actualizarPagoAgencia($idReserva, 'No Pagado');
         $reserva->actualizarPagoOperadora($idReserva, 'No Pagado');
         echo $idReserva;
