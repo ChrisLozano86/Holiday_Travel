@@ -7,7 +7,8 @@ class Reserva
 
     private $idReserva;
     private $agencia;
-    private $porcentaje;
+    private $markup_operadora;
+    private $comision_agencia;
     private $precio_neto;
     private $titular;
     private $fecha_reservacion;
@@ -31,13 +32,14 @@ class Reserva
 
     const TABLA = 'reservaciones';
 
-    public function __construct($agencia = null, $porcentaje = null, $precio_neto = null, $titular = null, $fecha_reservacion = null, $broker = null,
+    public function __construct($agencia = null, $markup_operadora=null,  $comision_agencia = null, $precio_neto = null, $titular = null, $fecha_reservacion = null, $broker = null,
      $clave = null, $descripcion = null, $destino=null, $fecha_inicio = null, $precio = null, $moneda = null, $estatus_servicio = null,
      $pago_operadora = null, $pago_agencia = null, $fecha_limite = null, $fecha_notificacion = null, $estatus_notificacion = null, $estatus_reserva=null, $saldo_restante=null, $saldo_restanteO=null, $idReserva = null)
     {
         
         $this->agencia = $agencia;
-        $this->porcentaje = $porcentaje;
+        $this->markup_operadora = $markup_operadora;
+        $this->comision_agencia = $comision_agencia;
         $this->precio_neto = $precio_neto;
         $this->fecha_reservacion = $fecha_reservacion;
         $this->titular = $titular;
@@ -72,9 +74,14 @@ class Reserva
         return $this->agencia;
     }
 
-    public function getPorcentaje()
+    public function getMarkupOperadora()
     {
-        return $this->porcentaje;
+        return $this->markup_operadora;
+    }
+
+    public function getComisionAgencia()
+    {
+        return $this->comision_agencia;
     }
 
     public function getPrecioNeto()
@@ -180,9 +187,15 @@ class Reserva
         $this->agencia = $agencia;
     }
 
-    public function setPorcentaje($porcentaje)
+    public function setMarkupOperadora($markup_operadora)
     {
-        $this->porcentaje = $porcentaje;
+        $this->markup_operadora = $markup_operadora;
+    }
+
+
+    public function setComisionAgencia($comision_agencia)
+    {
+        $this->comision_agencia = $comision_agencia;
     }
 
     public function setPrecioNeto($precio_neto)
@@ -288,12 +301,13 @@ class Reserva
     {
         $conexion = new Conexion();
         if ($this->idReserva) /* Modifica */ {
-            $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET agencia = :agencia, porcentaje = :porcentaje, precio_neto = :precio_neto, titular = :titular, fecha_reservacion = :fecha_reservacion,
+            $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET agencia = :agencia, markup_operadora = :markup_operadora, comision_agencia = :comision_agencia, precio_neto = :precio_neto, titular = :titular, fecha_reservacion = :fecha_reservacion,
              broker=:broker, clave = :clave, descripcion = :descripcion, destino=:destino, fecha_inicio = :fecha_inicio, precio = :precio, moneda = :moneda, estatus_servicio = :estatus_servicio, pago_operadora = :pago_operadora, 
              pago_agencia = :pago_agencia, fecha_limite = :fecha_limite, fecha_notificacion = :fecha_notificacion, estatus_notificacion = :estatus_notificacion, estatus_reserva = :estatus_reserva, saldo_restante = :saldo_restante, saldo_restanteO = :saldo_restanteO WHERE idReserva = :idReserva');
             $consulta->bindParam(':idReserva', $this->idReserva);
             $consulta->bindParam(':agencia', $this->agencia);
-            $consulta->bindParam(':porcentaje', $this->porcentaje);
+            $consulta->bindParam(':markup_operadora', $this->markup_operadora);
+            $consulta->bindParam(':comision_agencia', $this->comision_agencia);
             $consulta->bindParam(':precio_neto', $this->precio_neto);
             $consulta->bindParam(':titular', $this->titular);
             $consulta->bindParam(':fecha_reservacion', $this->fecha_reservacion);
@@ -316,10 +330,11 @@ class Reserva
 
             $consulta->execute();
         } else /* Inserta */ {
-            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (agencia, porcentaje, precio_neto, titular, fecha_reservacion, broker, clave, descripcion, destino, fecha_inicio, precio, moneda, estatus_servicio, pago_operadora, pago_agencia, fecha_limite, fecha_notificacion, estatus_notificacion, estatus_reserva, saldo_restante, saldo_restanteO)
-             VALUES (:agencia, :porcentaje, :precio_neto, :titular, :fecha_reservacion, :broker, :clave, :descripcion, :destino, :fecha_inicio, :precio, :moneda, :estatus_servicio, :pago_operadora, :pago_agencia, :fecha_limite, :fecha_notificacion, :estatus_notificacion, :estatus_reserva, :saldo_restante, :saldo_restanteO)');
+            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (agencia, markup_operadora, comision_agencia, precio_neto, titular, fecha_reservacion, broker, clave, descripcion, destino, fecha_inicio, precio, moneda, estatus_servicio, pago_operadora, pago_agencia, fecha_limite, fecha_notificacion, estatus_notificacion, estatus_reserva, saldo_restante, saldo_restanteO)
+             VALUES (:agencia,  :markup_operadora, :comision_agencia, :precio_neto, :titular, :fecha_reservacion, :broker, :clave, :descripcion, :destino, :fecha_inicio, :precio, :moneda, :estatus_servicio, :pago_operadora, :pago_agencia, :fecha_limite, :fecha_notificacion, :estatus_notificacion, :estatus_reserva, :saldo_restante, :saldo_restanteO)');
             $consulta->bindParam(':agencia', $this->agencia);
-            $consulta->bindParam(':porcentaje', $this->porcentaje);
+            $consulta->bindParam(':markup_operadora', $this->markup_operadora);
+            $consulta->bindParam(':comision_agencia', $this->comision_agencia);
             $consulta->bindParam(':precio_neto', $this->precio_neto);
             $consulta->bindParam(':titular', $this->titular);
             $consulta->bindParam(':fecha_reservacion', $this->fecha_reservacion);
@@ -370,7 +385,7 @@ class Reserva
         //var_dump($registro);
         $conexion = null;
         if ($registro) {
-            return new self($registro['agencia'], $registro['porcentaje'], $registro['precio_neto'], $registro['titular'], $registro['fecha_reservacion'], $registro['broker'], $registro['clave'], $registro['descripcion'], $registro['destino'], $registro['fecha_inicio'], $registro['precio'], $registro['moneda'], $registro['estatus_servicio'], $registro['pago_operadora'], $registro['pago_agencia'], $registro['fecha_limite'], $registro['fecha_notificacion'], $registro['estatus_notificacion'], $registro['estatus_reserva'], $registro['saldo_restante'], $registro['saldo_restanteO'], $idReserva);
+            return new self($registro['agencia'], $registro['markup_operadora'], $registro['comision_agencia'], $registro['precio_neto'], $registro['titular'], $registro['fecha_reservacion'], $registro['broker'], $registro['clave'], $registro['descripcion'], $registro['destino'], $registro['fecha_inicio'], $registro['precio'], $registro['moneda'], $registro['estatus_servicio'], $registro['pago_operadora'], $registro['pago_agencia'], $registro['fecha_limite'], $registro['fecha_notificacion'], $registro['estatus_notificacion'], $registro['estatus_reserva'], $registro['saldo_restante'], $registro['saldo_restanteO'], $idReserva);
         } else {
             return false;
         }

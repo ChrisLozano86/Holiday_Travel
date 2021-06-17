@@ -20,7 +20,8 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
 
           $idReserva = (isset($_POST['idReserva'])) ? $_POST['idReserva'] : null;
           $agencia = (isset($_POST['agencia'])) ? $_POST['agencia'] : null;
-          $porcentaje = (isset($_REQUEST['porcentaje'])) ? $_REQUEST['porcentaje'] : null;
+          $comision_agencia = (isset($_REQUEST['comision_agencia'])) ? $_REQUEST['comision_agencia'] : null;
+          $markup_operadora = (isset($_REQUEST['markup_operadora'])) ? $_REQUEST['markup_operadora'] : null;
           $precio_neto = (isset($_REQUEST['precio_neto'])) ? $_REQUEST['precio_neto'] : null;
           $titular = (isset($_REQUEST['titular'])) ? $_REQUEST['titular'] : null;
           $fecha_reservacion = (isset($_POST['fecha_reservacion'])) ? $_POST['fecha_reservacion'] : null;
@@ -67,7 +68,8 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
           $estatus_reserva = (isset($_REQUEST['estatus_reserva'])) ? $_REQUEST['estatus_reserva'] : null;
           
           $reserva->setAgencia($agencia);
-          $reserva->setPorcentaje($porcentaje);
+          $reserva->setMarkupOperadora($markup_operadora);
+          $reserva->setComisionAgencia($comision_agencia);
           $reserva->setPrecioNeto($precio_neto);
           $reserva->setTitular($titular);
           $reserva->setFechaReservacion($fecha_reservacion);
@@ -159,26 +161,19 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
             <input class="form-control" type="text" name="agencia" id="agencia" value="<?php echo $reserva->getAgencia(); ?>" required>
             </div>
 
+            
             <div class="form-group form-inline">
-            <label for="porcentaje" class="mr-2">Porcentaje <span class="text text-danger">*</span> </label>
-            <input class="form-control" type="number" min="1" max="100" name="porcentaje" id="porcentaje" style="width: 10%;" value="<?php if ($reserva->getPorcentaje()!= ""){echo $reserva->getPorcentaje();}else{ echo 14;} ?>" required>
+            <label for="porcentaje" class="mr-2">Markup Operadora <span class="text text-danger">*</span> </label>
+            <input class="form-control" type="number" min="1" max="100" name="markup_operadora" id="markup_operadora" style="width: 10%;" value="<?php if ($reserva->getMarkupOperadora()!= ""){echo $reserva->getMarkupOperadora();}else{ echo 18;} ?>" required>
             <span class="ml-2 font-weight-bold">%</span>
             </div>
 
             <div class="form-group form-inline">
-            <label for="precio_neto" class="mr-2">Precio Neto  <span class="text text-danger">*</span> </label>
-            
-            <span class="mr-1">$</span><input class="form-control mr-2" type="text" name="precio_neto" id="precio_neto" value="<?php echo $reserva->getPrecioNeto(); ?>" style="width: 27%;" required <?php if(count($pagos_reservasO)>0){echo 'readonly';} ?> placeholder="0.00">
-            <?php if(count($pagos_reservasO)>0){ ?>
-              <input class="form-control" type="text" name="moneda_aux" id="moneda_aux" value="<?php echo $reserva->getMoneda(); ?>" style="width: 15%;" readonly >
-            <?php }else{ ?>
-            <select name="moneda" id="moneda" class="form-control" style="width: 15%;">
-              <option value="MXN" <?php if($reserva->getMoneda()=='MXN'){ echo 'selected';}?>>MXN</option>
-              <option value="USD" <?php if($reserva->getMoneda()=='USD'){ echo 'selected';}?>>USD</option>
-            </select>
-            <?php } ?>
-            <?php if(count($pagos_reservasO)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos de Operadora registrados, para editar el precio neto primero debe reestablecer el historial pagos.</p>';} ?>
+            <label for="porcentaje" class="mr-2">Comision Agencia <span class="text text-danger">*</span> </label>
+            <input class="form-control" type="number" min="1" max="100" name="comision_agencia" id="comision_agencia" style="width: 10%;" value="<?php if ($reserva->getComisionAgencia()!= ""){echo $reserva->getComisionAgencia();}else{ echo 16;} ?>" required>
+            <span class="ml-2 font-weight-bold">%</span>
             </div>
+
 
             <div class="form-group">
             <label for="agencia">Titular  <span class="text text-danger">*</span> </label>
@@ -227,7 +222,23 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
 
 
             <div class="form-group form-inline">
-            <label for="precio" class="mr-2">Precio  <span class="text text-danger">*</span> </label>
+            <label for="precio_neto" class="mr-2">Precio Neto  <span class="text text-danger">*</span> </label>
+            
+            <span class="mr-1">$</span><input class="form-control mr-2" type="text" name="precio_neto" id="precio_neto" value="<?php echo $reserva->getPrecioNeto(); ?>" style="width: 27%;" required <?php if(count($pagos_reservasO)>0){echo 'readonly';} ?> placeholder="0.00">
+            <?php if(count($pagos_reservasO)>0){ ?>
+              <input class="form-control" type="text" name="moneda_aux" id="moneda_aux" value="<?php echo $reserva->getMoneda(); ?>" style="width: 15%;" readonly >
+            <?php }else{ ?>
+            <select name="moneda" id="moneda" class="form-control" style="width: 15%;">
+              <option value="MXN" <?php if($reserva->getMoneda()=='MXN'){ echo 'selected';}?>>MXN</option>
+              <option value="USD" <?php if($reserva->getMoneda()=='USD'){ echo 'selected';}?>>USD</option>
+            </select>
+            <?php } ?>
+            <?php if(count($pagos_reservasO)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos de operadora registrados, para editar el precio neto primero debe reestablecer el historial pagos.</p>';} ?>
+            </div>
+
+
+            <div class="form-group form-inline">
+            <label for="precio" class="mr-2">Precio Total <span class="text text-danger">*</span> </label>
             
             <span class="mr-1">$</span><input class="form-control mr-2" type="text" name="precio" id="precio" value="<?php echo $reserva->getPrecio(); ?>" style="width: 27%;" required <?php if(count($pagos_reservas)>0){echo 'readonly';} ?> placeholder="0.00">
             <?php if(count($pagos_reservas)>0){ ?>
@@ -238,7 +249,7 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
               <option value="USD" <?php if($reserva->getMoneda()=='USD'){ echo 'selected';}?>>USD</option>
             </select>
             <?php } ?>
-            <?php if(count($pagos_reservas)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos registrados, para editar el precio primero debe reestablecer el historial pagos.</p>';} ?>
+            <?php if(count($pagos_reservas)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos de agencia registrados, para editar el precio primero debe reestablecer el historial pagos.</p>';} ?>
             </div>
 
             <div class="form-group">
