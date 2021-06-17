@@ -254,7 +254,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <th scope="col"> <span style="color:#292b2c;" class="d-block">Reservación</span>Pago agencia</th>
 <th scope="col"> <span style="color:#292b2c;" class="d-block">Reservación</span>Fecha limite</th>
 <th scope="col">Estatus Reservación</th>
-<th scope="col">Markup</th>
+<!-- <th scope="col">Markup</th> -->
 <th scope="col">Editar</th>
 <th scope="col">Eliminar</th>
 
@@ -364,7 +364,7 @@ if ($item['pago_operadora'] =='No Pagado'){
 } 
 ?>
 </td>
-<td class="text-center"><a href="markup.php?idReserva=<?php echo $item[0];?>" > <span class="btn btn-custom"><i class="fas fa-file-invoice-dollar"></i> </span> </a></td>
+<!-- <td class="text-center"><a href="markup.php?idReserva=" > <span class="btn btn-custom"><i class="fas fa-file-invoice-dollar"></i> </span> </a></td> -->
 <td class="text-center"><a href="save.php?idReserva=<?php echo $item[0];?>" class="btn btn-warning far fa-edit"></a></td>
 <td class="text-center"><a href="delete.php?idReserva=<?php echo $item[0];?>" onclick="return confirm('¿Está seguro que desea eliminar esta reservación?')" class="btn btn-danger fas fa-trash-alt"></a></td> 
 </tr>
