@@ -220,36 +220,36 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
             <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" style="width: 50%;" value="<?php echo $reserva->getFechaInicio(); ?>" required>
             </div>
 
-
             <div class="form-group form-inline">
-            <label for="precio_neto" class="mr-2">Precio Neto  <span class="text text-danger">*</span> </label>
-            
-            <span class="mr-1">$</span><input class="form-control mr-2" type="text" name="precio_neto" id="precio_neto" value="<?php echo $reserva->getPrecioNeto(); ?>" style="width: 27%;" required <?php if(count($pagos_reservasO)>0){echo 'readonly';} ?> placeholder="0.00">
-            <?php if(count($pagos_reservasO)>0){ ?>
+            <label for="moneda" class="mr-2">Moneda a utilizar<span class="text text-danger">*</span> </label>
+            <?php if(count($pagos_reservas)>0 OR count($pagos_reservasO)>0){ ?>
               <input class="form-control" type="text" name="moneda_aux" id="moneda_aux" value="<?php echo $reserva->getMoneda(); ?>" style="width: 15%;" readonly >
             <?php }else{ ?>
-            <select name="moneda" id="moneda" class="form-control" style="width: 15%;">
+            <select name="moneda" id="moneda" class="form-control" style="width: 15%;" onchange="establecerMoneda();">
               <option value="MXN" <?php if($reserva->getMoneda()=='MXN'){ echo 'selected';}?>>MXN</option>
               <option value="USD" <?php if($reserva->getMoneda()=='USD'){ echo 'selected';}?>>USD</option>
             </select>
             <?php } ?>
-            <?php if(count($pagos_reservasO)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos de operadora registrados, para editar el precio neto primero debe reestablecer el historial pagos.</p>';} ?>
+            </div>
+
+
+            <div class="form-group form-inline">
+            <label for="precio_neto" class="mr-2">Precio Neto  <span class="text text-danger">*</span> </label>
+            
+            <span class="mr-1">$</span><input class="form-control mr-2" type="text" name="precio_neto" id="precio_neto" value="<?php echo $reserva->getPrecioNeto(); ?>" style="width: 27%;" required <?php if(count($pagos_reservas)>0 OR count($pagos_reservasO)>0){echo 'readonly';} ?> placeholder="0.00">
+            
+              <input class="form-control" type="text" name="moneda_precio_neto" id="moneda_precio_neto" value="<?php if($reserva->getMoneda()==""){ echo 'MXN'; }else{ echo $reserva->getMoneda();} ?>" style="width: 15%;" readonly >
+            
             </div>
 
 
             <div class="form-group form-inline">
             <label for="precio" class="mr-2">Precio Total <span class="text text-danger">*</span> </label>
             
-            <span class="mr-1">$</span><input class="form-control mr-2" type="text" name="precio" id="precio" value="<?php echo $reserva->getPrecio(); ?>" style="width: 27%;" required <?php if(count($pagos_reservas)>0){echo 'readonly';} ?> placeholder="0.00">
-            <?php if(count($pagos_reservas)>0){ ?>
-              <input class="form-control" type="text" name="moneda_aux" id="moneda_aux" value="<?php echo $reserva->getMoneda(); ?>" style="width: 15%;" readonly >
-            <?php }else{ ?>
-            <select name="moneda" id="moneda" class="form-control" style="width: 15%;">
-              <option value="MXN" <?php if($reserva->getMoneda()=='MXN'){ echo 'selected';}?>>MXN</option>
-              <option value="USD" <?php if($reserva->getMoneda()=='USD'){ echo 'selected';}?>>USD</option>
-            </select>
-            <?php } ?>
-            <?php if(count($pagos_reservas)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos de agencia registrados, para editar el precio primero debe reestablecer el historial pagos.</p>';} ?>
+            <span class="mr-1">$</span><input class="form-control mr-2" type="text" name="precio" id="precio" value="<?php echo $reserva->getPrecio(); ?>" style="width: 27%;" required <?php if(count($pagos_reservas)>0 OR count($pagos_reservasO)>0){echo 'readonly';} ?> placeholder="0.00">
+            <input class="form-control" type="text" name="moneda_precio_total" id="moneda_precio_total" value="<?php if($reserva->getMoneda()==""){ echo 'MXN'; }else{ echo $reserva->getMoneda();} ?>" style="width: 15%;" readonly >
+            <br>
+            <?php if(count($pagos_reservas)>0 OR count($pagos_reservasO)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos registrados en su historial, para editar el precio primero debe reestablecer el historial pagos.</p>';} ?>
             </div>
 
             <div class="form-group">
@@ -287,6 +287,19 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
             </div>  
            
             </form>
+
+
+            <script>
+              
+                function establecerMoneda(){
+                    var moneda = document.getElementById('moneda').value;
+                       
+
+                        document.getElementById('moneda_precio_neto').value = moneda;
+                        document.getElementById('moneda_precio_total').value = moneda;
+                    
+                }
+          </script>
            
           
           </div>
