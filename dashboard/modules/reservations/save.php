@@ -225,9 +225,23 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
             <?php if(count($pagos_reservas)>0 OR count($pagos_reservasO)>0){ ?>
               <input class="form-control" type="text" name="moneda_aux" id="moneda_aux" value="<?php echo $reserva->getMoneda(); ?>" style="width: 15%;" readonly >
             <?php }else{ ?>
-            <select name="moneda" id="moneda" class="form-control" style="width: 15%;" onchange="establecerMoneda();">
-              <option value="MXN" <?php if($reserva->getMoneda()=='MXN'){ echo 'selected';}?>>MXN</option>
-              <option value="USD" <?php if($reserva->getMoneda()=='USD'){ echo 'selected';}?>>USD</option>
+            <select name="moneda" id="moneda" class="form-control" style="width: 25%;" onchange="establecerMoneda();">
+              <option value="MXN" <?php if($reserva->getMoneda()=='MXN'){ echo 'selected';}?>>Peso Mexicano</option>
+              <option value="USD" <?php if($reserva->getMoneda()=='USD'){ echo 'selected';}?>>Dólar estadounidense</option>
+              <option value="AUD" <?php if($reserva->getMoneda()=='AUD'){ echo 'selected';}?>>Dólar australiano</option>
+              <option value="CAD" <?php if($reserva->getMoneda()=='CAD'){ echo 'selected';}?>>Dólar canandiene</option>
+              <option value="CRC" <?php if($reserva->getMoneda()=='CRC'){ echo 'selected';}?>>Colón Costarricense</option>
+              <option value="EUR" <?php if($reserva->getMoneda()=='EUR'){ echo 'selected';}?>>Euro</option>
+              <option value="HNL" <?php if($reserva->getMoneda()=='HNL'){ echo 'selected';}?>>Lempira</option>
+              <option value="GBP" <?php if($reserva->getMoneda()=='GBP'){ echo 'selected';}?>>Libra esterlina</option>
+              <option value="PEN" <?php if($reserva->getMoneda()=='PEN'){ echo 'selected';}?>>Nuevo Sol Peruano</option>
+              <option value="ARS" <?php if($reserva->getMoneda()=='ARS'){ echo 'selected';}?>>Peso argentino</option>
+              <option value="CLP" <?php if($reserva->getMoneda()=='CLP'){ echo 'selected';}?>>Peso chileno</option>
+              <option value="PEN" <?php if($reserva->getMoneda()=='PEN'){ echo 'selected';}?>>Peso colombiano</option>
+              <option value="GTQ" <?php if($reserva->getMoneda()=='GTQ'){ echo 'selected';}?>>Quetzal Guatemalteco</option>
+              <option value="BRL" <?php if($reserva->getMoneda()=='BRL'){ echo 'selected';}?>>Real Brasileño</option>
+              
+
             </select>
             <?php } ?>
             </div>
