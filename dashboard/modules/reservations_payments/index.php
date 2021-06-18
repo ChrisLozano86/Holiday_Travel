@@ -54,15 +54,11 @@ foreach($monto as $pago){
 
               <tr>
                 <td>
-                <?php if($reserva->getMoneda()=='MXN'){ ?> <strong>Tipo de cambio:  </strong> $ 1.00 MXN <?php }?>
+                <strong> Precio: </strong> $<?php echo $reserva->getPrecio().$reserva->getMoneda(); ?>
                 </td>
                 <td><strong>Hora:</strong> <?php echo date("H:i:s"); ?></td>
               </tr>
 
-              <tr>
-                <td> <strong> Precio: </strong> $<?php echo $reserva->getPrecio().$reserva->getMoneda(); ?></td>
-                <td> </td>
-              </tr>
             </table>
 
            <hr>
@@ -84,7 +80,7 @@ foreach($monto as $pago){
             <label for="saldo_abonado" class="mr-2">Saldo abonado</label>
             <span class="mr-1">$</span>
             <input class="form-control mr-2" type="number" style="width: 25%;" name="saldo_abonado" id="saldo_abonado" value="<?php echo $total_abonado; ?>" readonly>
-            <input class="form-control" style="width: 12%;" type="text" name="moneda" id="moneda" value="<?php echo $reserva->getMoneda(); ?>" readonly>&nbsp;
+            <input class="form-control" style="width: 8%;" type="text" name="moneda" id="moneda" value="<?php echo $reserva->getMoneda(); ?>" readonly>&nbsp;
             <?php if($reserva->getSaldoRestante()==0){ echo '<i class="far fa-check-circle fa-2x text-success"></i>';} ?>
             </div>
 
@@ -92,22 +88,25 @@ foreach($monto as $pago){
             <label for="referencia" class="mr-2">Saldo restante</label>
             <span class="mr-1">$</span>
             <input class="form-control mr-2" style="width: 25%;" type="number" name="saldo_restante" id="saldo_restante" value="<?php echo $reserva->getSaldoRestante(); ?>" readonly>
-            <input class="form-control" style="width: 12%;" type="text" name="moneda" id="moneda" value="<?php echo $reserva->getMoneda(); ?>" readonly>
+            <input class="form-control" style="width: 8%;" type="text" name="moneda" id="moneda" value="<?php echo $reserva->getMoneda(); ?>" readonly>
             </div>
 
             <?php 
               if($reserva->getSaldoRestante()!=0){
             ?>
-            <?php if($reserva->getMoneda()=='USD'){ ?>
-            <div class="form-group">
-            <label for="tipo_cambio">Tipo de cambio</label>
-            <input class="form-control" type="number" name="tipo_cambio" id="tipo_cambio" min=1 value="1" style="width: 20%;" >
+           
+            <div class="form-group form-inline">
+            <label for="tipo_cambio">Tipo de cambio <span class="text text-danger mr-2">*</span></label>
+            <input class="form-control mr-2" style="width: 10%;"  type="number" name="tipo_cambio" id="tipo_cambio" min=1 value="1" <?php if($reserva->getMoneda() =='MXN'){ echo 'readonly'; }?> style="width: 20%;" >
+            <span>MXN</span>
             </div>
-            <?php } ?>
+            
 
-            <div class="form-group">
-            <label for="referencia">Importe de pago <span class="text text-danger">*</span></label>
-            <input class="form-control" style="width: 50%;" type="number" name="monto" id="monto" min="0" max="<?php echo $reserva->getSaldoRestante(); ?>" value="" placeholder="0" required>
+            <div class="form-group form-inline">
+            <label for="referencia">Importe de pago <span class="text text-danger mr-2">*</span></label>
+            <span class="mr-1">$</span>
+            <input class="form-control mr-2" style="width: 23%;" type="number" name="monto" id="monto" min="0" max="<?php echo $reserva->getSaldoRestante(); ?>" value="" placeholder="0" required>
+            <input class="form-control" style="width: 8%;" type="text" name="moneda" id="moneda" value="<?php echo $reserva->getMoneda(); ?>" readonly>
             </div>
 
             <div class="form-group">
@@ -168,6 +167,7 @@ foreach($monto as $pago){
               <th scope="col">Referencia</th>
               <th scope="col">Forma de pago</th>
               <th scope="col">Monto</th>
+              <th scope="col">Tipo de cambio</th>
               <th scope="col">Comentario</th>
               <th scope="col">Registrado por</th>
               <th scope="col">Acuse</th>
@@ -189,6 +189,7 @@ foreach($monto as $pago){
                 <td><?php echo $item['referencia']; ?></td>
                 <td><?php echo $item['forma_pago']; ?></td>
                 <td><?php echo $item['monto'].$reserva->getMoneda(); ?></td>
+                <td><?php echo $item['tipo_cambio'].' MXN' ?></td>
                 <td><small><?php echo $item['descripcion']; ?></small></td>
                 <td><?php echo $item['creado_por']; ?></td>
                 <td><a href="#"><img src="../../assets/img/icon-pdf.png" width="70" height="70" alt="Descargar Acuse"></a></td>
