@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2021 a las 14:54:51
+-- Tiempo de generación: 22-06-2021 a las 20:46:26
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -64,8 +64,45 @@ CREATE TABLE `agencias` (
   `clave` varchar(100) DEFAULT NULL,
   `servidor_smtp` varchar(100) DEFAULT NULL,
   `port_smtp` varchar(100) DEFAULT NULL,
-  `fecha_creacion` date DEFAULT NULL
+  `fecha_creacion` date DEFAULT NULL,
+  `rnt` varchar(20) DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `agencias`
+--
+
+INSERT INTO `agencias` (`idAgencia`, `razon_social`, `nombre_comercial`, `rfc`, `calle`, `num_exterior`, `num_interior`, `colonia`, `municipio`, `ciudad`, `estado`, `cp`, `pais`, `moneda`, `tel1`, `tel2`, `tel3`, `pagina_web`, `activo`, `clave_back_office`, `header_footer`, `menu`, `logo`, `observaciones`, `nombre_contacto`, `apellido_paterno`, `apellido_materno`, `cargo`, `sexo`, `tel_directo`, `tel_movil`, `email_contacto`, `email_servidor`, `clave`, `servidor_smtp`, `port_smtp`, `fecha_creacion`, `rnt`) VALUES
+(12, 'razon_social 1', 'nombre_comercial 1', 'rfc1', 'Calle de muestra', 'asa', '', 'Centro', 'Acámbaro', 'ciudad1', 'estado1', '2', 'México', 'Peso Mexicano', '3434', '', '', '', 'Si', '', 'Activo', 'Activo', 'uploads/images/20210509174949_logo.png', '', 'hjghgh', 'Prueba', '43434', 'Programador', 'M', '4171111111', '', 'sasa@asas.com', '', '', '', '', '2021-05-09', '11111111');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pago_reservaciones`
+--
+
+CREATE TABLE `pago_reservaciones` (
+  `idPagoReserva` int(11) NOT NULL,
+  `idReserva` int(11) NOT NULL,
+  `fecha_pago` datetime DEFAULT NULL,
+  `referencia` varchar(100) DEFAULT NULL,
+  `forma_pago` varchar(100) DEFAULT NULL,
+  `monto` decimal(10,2) DEFAULT NULL,
+  `tipo_cambio` decimal(10,2) DEFAULT 1.00,
+  `descripcion` varchar(200) DEFAULT NULL,
+  `creado_por` varchar(50) DEFAULT NULL,
+  `categoria_pago` enum('1','2') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pago_reservaciones`
+--
+
+INSERT INTO `pago_reservaciones` (`idPagoReserva`, `idReserva`, `fecha_pago`, `referencia`, `forma_pago`, `monto`, `tipo_cambio`, `descripcion`, `creado_por`, `categoria_pago`) VALUES
+(102, 37, '2021-06-17 21:58:02', '12121', 'Transferencia', '10000.00', '1.00', '', 'Soporte', '1'),
+(103, 37, '2021-06-17 21:59:11', '121212', 'Efectivo', '9999.00', '1.00', '', 'Soporte', '2'),
+(107, 39, '2021-06-18 17:08:17', '12121', 'Transferencia', '100.00', '20.36', '', 'Soporte', '2'),
+(108, 37, '2021-06-18 17:12:41', '111', 'Efectivo', '1.00', '1.00', '', 'Soporte', '2');
 
 -- --------------------------------------------------------
 
@@ -88,6 +125,48 @@ CREATE TABLE `promociones` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `reservaciones`
+--
+
+CREATE TABLE `reservaciones` (
+  `idReserva` int(11) NOT NULL,
+  `agencia` varchar(50) NOT NULL,
+  `markup_operadora` int(11) DEFAULT NULL,
+  `comision_agencia` int(11) DEFAULT NULL,
+  `precio_neto` decimal(10,2) DEFAULT NULL,
+  `titular` varchar(200) NOT NULL,
+  `fecha_reservacion` date NOT NULL,
+  `broker` varchar(100) NOT NULL,
+  `clave` varchar(50) NOT NULL,
+  `descripcion` varchar(100) DEFAULT NULL,
+  `destino` varchar(100) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `moneda` varchar(50) NOT NULL DEFAULT 'MXN',
+  `estatus_servicio` varchar(20) NOT NULL DEFAULT 'OK',
+  `pago_operadora` enum('No Pagado','Pagado') NOT NULL DEFAULT 'No Pagado',
+  `pago_agencia` enum('No Pagado','Pagado') NOT NULL DEFAULT 'No Pagado',
+  `fecha_limite` date NOT NULL,
+  `fecha_notificacion` date NOT NULL,
+  `estatus_notificacion` tinyint(1) NOT NULL DEFAULT 0,
+  `estatus_reserva` enum('Activa','Cancelada') NOT NULL DEFAULT 'Activa',
+  `saldo_restante` decimal(10,2) DEFAULT NULL,
+  `saldo_restanteO` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `reservaciones`
+--
+
+INSERT INTO `reservaciones` (`idReserva`, `agencia`, `markup_operadora`, `comision_agencia`, `precio_neto`, `titular`, `fecha_reservacion`, `broker`, `clave`, `descripcion`, `destino`, `fecha_inicio`, `precio`, `moneda`, `estatus_servicio`, `pago_operadora`, `pago_agencia`, `fecha_limite`, `fecha_notificacion`, `estatus_notificacion`, `estatus_reserva`, `saldo_restante`, `saldo_restanteO`) VALUES
+(37, 'Agencia de prueba', 20, 14, '10000.00', 'Nuevo', '2021-06-16', 'HotelDo', '1111111', '11', '1212', '2021-06-17', '12000.00', 'MXN', 'OK', 'Pagado', 'No Pagado', '2021-06-15', '2021-06-08', 0, 'Activa', '2000.00', '0.00'),
+(38, 'Agencia de prueba', 18, 16, '25727.51', 'Chris U', '2021-06-17', 'Hotelbeds', '1234567', 'Tesoro', 'Detiny', '2021-06-18', '31376.00', 'MXN', 'OK', 'No Pagado', 'No Pagado', '2021-07-10', '2021-07-03', 0, 'Activa', '31376.00', '25727.51'),
+(39, 'Agencia de prueba', 18, 16, '10000.00', 'asas', '2021-06-04', 'HotelDo', '1234567', 'hcfhfng', 'Detiny', '2021-06-17', '12000.00', 'USD', 'OK', 'No Pagado', 'No Pagado', '2021-06-24', '2021-06-17', 0, 'Activa', '12000.00', '9900.00'),
+(40, 'Agencia de prueba 122', 18, 16, '12000.00', 'Chris U', '2021-06-22', 'HotelDo', '1234567', 'Tesoro', 'Ixtapa', '2021-06-19', '80000.00', 'EUR', 'OK', 'No Pagado', 'No Pagado', '2021-06-26', '2021-06-19', 0, 'Activa', '80000.00', '12000.00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -104,7 +183,8 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`idRol`, `rol`, `descripcion`) VALUES
 (1, 'Super Administrador', 'Control y acceso total a todos los módulos de la plataforma'),
 (2, 'Administrador', 'Administrador de todos los módulos del sitio web'),
-(3, 'Colaborador', 'Permisos limitados');
+(3, 'Colaborador administrativo', 'Permisos limitados a módulos definidos por el administrador'),
+(4, 'Colaborador de diseño', 'Permisos limitados a módulos para diseño del sitio web');
 
 -- --------------------------------------------------------
 
@@ -146,7 +226,8 @@ INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `email`, `password`, 
 (1, 'Soporte', 'Holiday Travel', 'soporte@htop.com.mx', '9b412514e83ca55cabf81b68fd0b2a83', 'Activo', '9b412514e83ca55cabf81b68fd0b2a83', 1),
 (2, 'Sinuhe', 'Chacón', 'sinuhe.chacon@htop.com.mx', '824ff5c24e2077f10b1f95893a576150', 'Activo', '824ff5c24e2077f10b1f95893a576150', 2),
 (4, 'Edmundo', 'Sanchez', 'edmundo.sanchez@htop.com.mx', 'fda1d9125ffc6512c974638cf9a5bc6b', 'Activo', 'fda1d9125ffc6512c974638cf9a5bc6b', 2),
-(5, 'Luis Fernando', 'Hernández', 'luis.hernandez@htop.com.mx', '16adcd1b84c8cff504a243ffa6c94282', 'Activo', '16adcd1b84c8cff504a243ffa6c94282', 3);
+(5, 'Luis Fernando', 'Hernández', 'luis.hernandez@htop.com.mx', '16adcd1b84c8cff504a243ffa6c94282', 'Activo', '16adcd1b84c8cff504a243ffa6c94282', 3),
+(6, 'Dummy', 'Daa', 'a@a.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Activo', 'd10ca8d11301c2f4993ac2279ce4b930', 3);
 
 --
 -- Disparadores `usuarios`
@@ -169,10 +250,23 @@ ALTER TABLE `agencias`
   ADD PRIMARY KEY (`idAgencia`);
 
 --
+-- Indices de la tabla `pago_reservaciones`
+--
+ALTER TABLE `pago_reservaciones`
+  ADD PRIMARY KEY (`idPagoReserva`),
+  ADD KEY `idPagoReserva` (`idReserva`);
+
+--
 -- Indices de la tabla `promociones`
 --
 ALTER TABLE `promociones`
   ADD PRIMARY KEY (`idPromocion`);
+
+--
+-- Indices de la tabla `reservaciones`
+--
+ALTER TABLE `reservaciones`
+  ADD PRIMARY KEY (`idReserva`);
 
 --
 -- Indices de la tabla `roles`
@@ -202,35 +296,53 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `agencias`
 --
 ALTER TABLE `agencias`
-  MODIFY `idAgencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idAgencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `pago_reservaciones`
+--
+ALTER TABLE `pago_reservaciones`
+  MODIFY `idPagoReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT de la tabla `promociones`
 --
 ALTER TABLE `promociones`
-  MODIFY `idPromocion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPromocion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `reservaciones`
+--
+ALTER TABLE `reservaciones`
+  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `pago_reservaciones`
+--
+ALTER TABLE `pago_reservaciones`
+  ADD CONSTRAINT `idPagoReserva` FOREIGN KEY (`idReserva`) REFERENCES `reservaciones` (`idReserva`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
