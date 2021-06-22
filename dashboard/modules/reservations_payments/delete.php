@@ -15,8 +15,8 @@
         $historial_pago->eliminarHistorialPago($idReserva,1);
         $reserva->actualizarSaldoRestante($idReserva, $precio);
         $reserva->actualizarPagoAgencia($idReserva, 'No Pagado');
-        $reserva->actualizarPagoOperadora($idReserva, 'No Pagado');
-        echo $idReserva;
+        //$reserva->actualizarPagoOperadora($idReserva, 'No Pagado');
+        //echo $idReserva;
         header('Location: payment_confirm.php?processing=1');
     }else{
         header('Location: index.php');

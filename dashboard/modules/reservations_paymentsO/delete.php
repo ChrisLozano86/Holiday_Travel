@@ -12,7 +12,7 @@
     if($idReserva){        
         $historial_pago->eliminarHistorialPago($idReserva,2);
         $reserva->actualizarSaldoRestanteOperadora($idReserva, $precioNeto);
-        $reserva->actualizarPagoAgencia($idReserva, 'No Pagado');
+        //$reserva->actualizarPagoAgencia($idReserva, 'No Pagado');
         $reserva->actualizarPagoOperadora($idReserva, 'No Pagado');
         echo $idReserva;
         header('Location: payment_confirm.php?processing=1');
