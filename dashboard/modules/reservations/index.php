@@ -158,7 +158,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <?php if ($_SESSION['idRol']!=3 OR $_SESSION['idRol']!=4){ ?>
+            <?php if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2){ ?>
             <li class="nav-item">
                 <a href="../users/index.php" class="nav-link">
                 <i class="fas fa-users"></i>
