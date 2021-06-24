@@ -171,7 +171,7 @@ foreach($monto as $pago){
               <th scope="col">Tipo de cambio</th>
               <th scope="col">Comentario</th>
               <th scope="col">Registrado por</th>
-              <th scope="col">Acuse</th>
+              <th scope="col">Papeleta</th>
              </tr>
             </thead>
             <tbody>
@@ -193,7 +193,7 @@ foreach($monto as $pago){
                 <td><?php echo $item['tipo_cambio'].' MXN' ?></td>
                 <td><small><?php echo $item['descripcion']; ?></small></td>
                 <td><?php echo $item['creado_por']; ?></td>
-                <td><a href="#"><img src="../../assets/img/icon-pdf.png" width="70" height="70" alt="Descargar Acuse"></a></td>
+                <td><a href="../payments_reports/crearPdf.php?idReserva=<?php echo $item['idReserva']; ?>&idPagoReserva=<?php echo $item['idPagoReserva']; ?>"><img src="../../assets/img/icon-pdf.png" width="70" height="70" alt="Descargar papeleta"></a></a></td>
                
                
           
