@@ -158,7 +158,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <?php if ($_SESSION['idRol']!=3){ ?>
+            <?php if ($_SESSION['idRol']!=3 OR $_SESSION['idRol']!=4){ ?>
             <li class="nav-item">
                 <a href="../users/index.php" class="nav-link">
                 <i class="fas fa-users"></i>
@@ -173,6 +173,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 </a>
               </li>
               <li class="nav-item">
+                <a href="../markups/index.php" class="nav-link">
+                <i class="fas fa-file-invoice-dollar"></i>
+                  <p>Comisiones de Agencias</p>
+                </a>
+              </li>
+              <?if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 OR $_SESSION['idRol']==4){ ?>
+              <li class="nav-item">
                 <a href="../slider/index.php" class="nav-link">
                   <i class="fas fa-image"></i>
                   <p>Slider Principal</p>
@@ -184,6 +191,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                   <p>Promociones</p>
                 </a>
               </li>
+              <?php 
+              }
+              ?>
               <li class="nav-item">
                 <a href="../reservations/index.php" class="nav-link">
                  <i class="fas fa-clipboard-check"></i>
@@ -298,7 +308,7 @@ foreach ($reservaciones as $item):
  ?>
 <tr <?php echo $notificacion_class; ?>>
 <td class="text-center"><?php echo $item['idReserva']; ?></td>
-<td><?php echo $item['agencia']; ?></td>
+<td><?php echo $item['idAgencia']; ?></td>
 <td><?php echo $item['titular']; ?></td>
 <td><?php $date= date_create($item['fecha_reservacion']); echo date_format($date,"d-m-Y"); ?></td>
 <td><?php echo $item['broker']?></td>

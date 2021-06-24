@@ -41,7 +41,8 @@ class Agencia {
     private $port_smtp;
     private $fecha_creacion;
     private $rnt;
-    
+    private $markup_operadora;
+    private $comision_agencia;
     
 
     const TABLA = 'agencias';
@@ -53,7 +54,7 @@ class Agencia {
      $moneda=null, $tel1=null, $tel2=null, $tel3=null, $pagina_web=null, $activo=null, $clave_back_office=null,
      $header_footer=null, $menu=null, $logo=null, $observaciones=null, $nombre_contacto=null, $apelldido_paterno=null, 
      $apelldido_materno=null, $cargo=null, $sexo=null, $tel_directo=null, $tel_movil=null, $email_contacto=null, $email_servidor=null,
-     $clave=null, $servidor_smtp=null, $port_smtp=null, $fecha_creacion=null, $rnt=null, $idAgencia=null) {
+     $clave=null, $servidor_smtp=null, $port_smtp=null, $fecha_creacion=null, $rnt=null, $markup_operadora=null, $comision_agencia = null, $idAgencia=null) {
        
         
         $this->razon_social = $razon_social;
@@ -93,6 +94,8 @@ class Agencia {
         $this->port_smtp = $port_smtp;
         $this->fecha_creacion = $fecha_creacion;
         $this->rnt=$rnt;
+        $this->markup_operadora=$markup_operadora;
+        $this->comision_agencia=$comision_agencia;
         $this->idAgencia = $idAgencia;
        
         
@@ -249,6 +252,14 @@ class Agencia {
     public function getRNT() {
         return $this->rnt;
     }
+
+    public function getMarkupOperadora() {
+        return $this->markup_operadora;
+    }
+
+    public function getComisionAgencia() {
+        return $this->comision_agencia;
+    }
     
     //Setters
     public function setRazonSocial($razon_social) {
@@ -394,6 +405,14 @@ class Agencia {
 
     public function setRNT($rnt) {
         $this->rnt = $rnt;
+    }
+
+    public function setMarkupOperadora($markup_operadora) {
+        $this->markup_operadora = $markup_operadora;
+    }
+
+    public function setComisionAgencia($comision_agencia) {
+        $this->comision_agencia = $comision_agencia;
     }
 
 
@@ -542,7 +561,7 @@ class Agencia {
              $registro['activo'],  $registro['clave_back_office'], $registro['header_footer'], $registro['menu'], $registro['logo'],
              $registro['observaciones'], $registro['nombre_contacto'], $registro['apellido_paterno'], $registro['apellido_materno'],
              $registro['cargo'], $registro['sexo'], $registro['tel_directo'], $registro['tel_movil'], $registro['email_contacto'], $registro['email_servidor'],
-             $registro['clave'], $registro['servidor_smtp'],  $registro['port_smtp'], $registro['fecha_creacion'], $registro['rnt'], $idAgencia);
+             $registro['clave'], $registro['servidor_smtp'],  $registro['port_smtp'], $registro['fecha_creacion'], $registro['rnt'], $registro['markup_operadora'], $registro['comision_agencia'], $idAgencia);
         } else {
 
             return false;
@@ -559,6 +578,30 @@ class Agencia {
         $registros = $consulta->fetchAll();
         $conexion = null;
         return $registros;
+    }
+
+    public static function recuperarIdAgencias() {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT idAgencia, nombre_comercial FROM ' . self::TABLA. '  ORDER BY fecha_creacion DESC');
+        $consulta->execute();
+        $registros = $consulta->fetchAll();
+        $conexion = null;
+        return $registros;
+    }
+
+
+
+    public function establecerComision(){
+        
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET markup_operadora = :markup_operadora, comision_agencia = :comision_agencia WHERE idAgencia = :idAgencia');
+        $consulta->bindParam(':idAgencia', $this->idAgencia);
+        $consulta->bindParam(':markup_operadora', $this->markup_operadora);
+        $consulta->bindParam(':comision_agencia', $this->comision_agencia);
+
+        $consulta->execute();
+        $conexion = null;
+        return true;
     }
 
     

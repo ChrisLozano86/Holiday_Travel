@@ -39,7 +39,7 @@ foreach($monto as $pago){
             <table class="table table-borderless">
               <tr>
                 <td class="w-50">
-                <strong> Agencia: </strong> <?php echo $reserva->getAgencia(); ?>
+                <strong> Agencia: </strong> <?php echo $reserva->getidAgencia(); ?>
                 </td>
                 <td class="w-50">
                     <strong> Registrado por: </strong> <?php echo $_SESSION['nombre']; ?>

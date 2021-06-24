@@ -169,7 +169,16 @@ $num_notifications = count($notifications);
                   <p>Solicitudes de Agencias</p>
                 </a>
               </li>
-              <?php } ?>
+              <li class="nav-item">
+                <a href="../markups/index.php" class="nav-link">
+                <i class="fas fa-file-invoice-dollar"></i>
+                  <p>Comisiones de Agencias</p>
+                </a>
+              </li>
+              <?php }
+               if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 OR $_SESSION['idRol']==4){
+                  ?>
+             
               <li class="nav-item">
                 <a href="modules/slider/index.php" class="nav-link">
                   <i class="far fa-image"></i>
@@ -182,7 +191,10 @@ $num_notifications = count($notifications);
                   <p>Promociones</p>
                 </a>
               </li>
-              <?php if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 ){ ?>
+              <?php 
+    
+               }
+               if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 OR $_SESSION['idRol']==3){ ?>
               <li class="nav-item">
                 <a href="modules/reservations/index.php" class="nav-link">
                 <i class="fas fa-clipboard-check"></i>

@@ -1,11 +1,12 @@
 <?php
 require_once '../../class/Reserva.php';
 require_once '../../class/Pago.php';
+require_once '../../class/Agencia.php';
 
 $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
 $pagos_reservas = Pago::recuperarPagosAgencia($idReserva); 
 $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva); 
-   
+$agencias = Agencia::recuperarIdAgencias(); 
 
     if($idReserva){        
         $reserva = Reserva::buscarPorId($idReserva); 
@@ -19,7 +20,7 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
           $idReserva = (isset($_POST['idReserva'])) ? $_POST['idReserva'] : null;
-          $agencia = (isset($_POST['agencia'])) ? $_POST['agencia'] : null;
+          $idAgencia = (isset($_POST['idAgencia'])) ? $_POST['idAgencia'] : null;
           $comision_agencia = (isset($_REQUEST['comision_agencia'])) ? $_REQUEST['comision_agencia'] : null;
           $markup_operadora = (isset($_REQUEST['markup_operadora'])) ? $_REQUEST['markup_operadora'] : null;
           $precio_neto = (isset($_REQUEST['precio_neto'])) ? $_REQUEST['precio_neto'] : null;
@@ -67,7 +68,7 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
           $estatus_notificacion = (isset($_REQUEST['estatus_notificacion'])) ? $_REQUEST['estatus_notificacion'] : null;
           $estatus_reserva = (isset($_REQUEST['estatus_reserva'])) ? $_REQUEST['estatus_reserva'] : null;
           
-          $reserva->setAgencia($agencia);
+          $reserva->setIdAgencia($idAgencia);
           $reserva->setMarkupOperadora($markup_operadora);
           $reserva->setComisionAgencia($comision_agencia);
           $reserva->setPrecioNeto($precio_neto);
@@ -158,19 +159,26 @@ $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva);
 
             <div class="form-group">
             <label for="agencia">Agencia <span class="text text-danger">*</span> </label>
-            <input class="form-control" type="text" name="agencia" id="agencia" value="<?php echo $reserva->getAgencia(); ?>" required>
+
+            <select name="idAgencia" id="idAgencia" class="form-control" style="width: 50%;" required>
+              <option value="">Selecciona una agencia</option>
+              <?php foreach($agencias as $agencia): ?>
+              <option value="<?php echo $agencia[0]; ?>"  <?php if($reserva->getIdAgencia()== $agencia[0]  ){ echo 'selected';}?>> <?php echo $agencia['nombre_comercial'];?> </option>
+             <?php endforeach; ?>
+            </select> 
+            
             </div>
 
             
             <div class="form-group form-inline">
-            <label for="porcentaje" class="mr-2">Markup Operadora <span class="text text-danger">*</span> </label>
-            <input class="form-control" type="number" min="1" max="100" name="markup_operadora" id="markup_operadora" style="width: 10%;" value="<?php if ($reserva->getMarkupOperadora()!= ""){echo $reserva->getMarkupOperadora();}else{ echo 18;} ?>" required>
+            <label for="porcentaje" class="mr-2">Markup Operadora  </label>
+            <input class="form-control" type="number" min="1" max="100" name="markup_operadora" id="markup_operadora" style="width: 10%;" value="" readonly>
             <span class="ml-2 font-weight-bold">%</span>
             </div>
 
             <div class="form-group form-inline">
-            <label for="porcentaje" class="mr-2">Comision Agencia <span class="text text-danger">*</span> </label>
-            <input class="form-control" type="number" min="1" max="100" name="comision_agencia" id="comision_agencia" style="width: 10%;" value="<?php if ($reserva->getComisionAgencia()!= ""){echo $reserva->getComisionAgencia();}else{ echo 16;} ?>" required>
+            <label for="porcentaje" class="mr-2">Comision Agencia </label>
+            <input class="form-control" type="number" min="1" max="100" name="comision_agencia" id="comision_agencia" style="width: 10%;" value="" readonly>
             <span class="ml-2 font-weight-bold">%</span>
             </div>
 
