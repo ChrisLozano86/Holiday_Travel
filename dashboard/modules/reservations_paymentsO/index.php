@@ -7,6 +7,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
 $pagos_reservas = Pago::recuperarPagosOperadora($idReserva);
 $monto = Pago::recuperarTotalAbonado($idReserva,2);       
 $reserva = Reserva::buscarPorId($idReserva);  
+$nombre_agencia = Reserva::buscarNombreAgencia($idReserva);
 
 $total_abonado = 0;
 foreach($monto as $pago){
@@ -39,7 +40,7 @@ foreach($monto as $pago){
             <table class="table table-borderless">
               <tr>
                 <td class="w-50">
-                <strong> Agencia: </strong> <?php echo $reserva->getAgencia(); ?>
+                <strong> Agencia: </strong> <?php echo $nombre_agencia['nombre_comercial']; ?>
                 </td>
                 <td class="w-50">
                     <strong> Registrado por: </strong> <?php echo $_SESSION['nombre']; ?>

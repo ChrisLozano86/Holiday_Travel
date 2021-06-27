@@ -3,10 +3,13 @@ require_once '../../class/Reserva.php';
 require_once '../../class/Pago.php';
 require_once '../../class/Agencia.php';
 
+
 $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
 $pagos_reservas = Pago::recuperarPagosAgencia($idReserva); 
 $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva); 
 $agencias = Agencia::recuperarIdAgencias(); 
+$agenciasSC = Agencia::recuperarIdAgenciasSC(); 
+
 
     if($idReserva){        
         $reserva = Reserva::buscarPorId($idReserva); 
@@ -154,11 +157,42 @@ $agencias = Agencia::recuperarIdAgencias();
               <input class="form-control" type="hidden" name="pago_agencia" id="pago_agencia" value="<?php echo $reserva->getPagoAgencia(); ?>" >
             </div>
 
+          <div class="form-group">
 
+         
+          <?php 
+              if(count($agenciasSC)>0){
+                echo ' <div class="alert alert-danger">';
+                $plural = '';
+                $num_agencias = count($agenciasSC);
+                if(count($agenciasSC)>1){
+                  $plural = 's';
+                }
+
+                echo "<small> Hay $num_agencias agencia$plural sin comisión o markup establecido </small>";
+                echo '<ul>';
+                foreach($agenciasSC as $sc){
+                  ?>
+                  
+                 <li> <strong> <?php echo $sc['nombre_comercial']; ?> </strong> no tiene comisión o markup definido, puede hacer clic <a href="../markups/save.php?idAgencia=<?php echo $sc[0]; ?>">aquí </a> para modificar sus ajustes.</li>
+                  
+               <?php
+                }
+                echo '</ul>';
+                echo '</div>';
+              }
+
+
+            ?>
+          
+          
+          </div>
 
 
             <div class="form-group">
             <label for="agencia">Agencia <span class="text text-danger">*</span> </label>
+
+           
 
             <select name="idAgencia" id="idAgencia" class="form-control" style="width: 50%;" required>
               <option value="">Selecciona una agencia</option>
@@ -167,19 +201,6 @@ $agencias = Agencia::recuperarIdAgencias();
              <?php endforeach; ?>
             </select> 
             
-            </div>
-
-            
-            <div class="form-group form-inline">
-            <label for="porcentaje" class="mr-2">Markup Operadora  </label>
-            <input class="form-control" type="number" min="1" max="100" name="markup_operadora" id="markup_operadora" style="width: 10%;" value="" readonly>
-            <span class="ml-2 font-weight-bold">%</span>
-            </div>
-
-            <div class="form-group form-inline">
-            <label for="porcentaje" class="mr-2">Comision Agencia </label>
-            <input class="form-control" type="number" min="1" max="100" name="comision_agencia" id="comision_agencia" style="width: 10%;" value="" readonly>
-            <span class="ml-2 font-weight-bold">%</span>
             </div>
 
 
@@ -321,6 +342,23 @@ $agencias = Agencia::recuperarIdAgencias();
                         document.getElementById('moneda_precio_total').value = moneda;
                     
                 }
+
+
+                            /* function cargarValores(valor){
+                $.ajax({     
+                  url : 'cargar_comisiones.php',     
+                  data : { valor : valor },
+                  type : 'POST',
+                  dataType : 'json',
+                  success : function(json) {
+                    $("#rendimiento").val(json.rendimiento);
+                  
+                  },
+                    error : function(xhr, status) {
+                    alert('Disculpe, existió un problema');
+                  }
+              });
+              } */
           </script>
            
           

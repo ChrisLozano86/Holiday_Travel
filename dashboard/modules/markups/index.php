@@ -75,10 +75,10 @@ $agencia = Agencia::recuperarTodos();
         </button>
       </div>
       <div class="modal-body">
-      <img src="<?php echo $item['logo']; ?>" class="article-image-thumbnail2">
+      <img src="../travel_agencies/<?php echo $item['logo']; ?>" class="article-image-thumbnail2">
       <br>
       <div class="text-center">
-      <a href="<?php echo $item['logo']; ?>" download="<?php echo $item['nombre_comercial'].'_logo'?>" target="_blank">Descargar Logo</a>
+      <a href="../travel_agencies/<?php echo $item['logo']; ?>" download="<?php echo $item['nombre_comercial'].'_logo'?>" target="_blank">Descargar Logo</a>
       </div>
       </div>
       <div class="modal-footer">
@@ -93,7 +93,7 @@ $agencia = Agencia::recuperarTodos();
     <?php
       if($item['logo']!=""){
     ?>
-      <td class="text-center"><a href="#" data-toggle="modal" data-target="#showLogo<?php echo $item[0] ?>"> <img src="<?php echo $item['logo']; ?>" width="50"
+      <td class="text-center"><a href="#" data-toggle="modal" data-target="#showLogo<?php echo $item[0] ?>"> <img src="../travel_agencies/<?php echo $item['logo']; ?>" width="50"
       height="50"></a> </td>
     <?php
     }else{

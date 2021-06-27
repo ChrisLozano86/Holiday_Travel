@@ -85,7 +85,7 @@ $num_notifications = count($notifications);
           <?php  foreach($notifications as $item ): ?>
           <div class="dropdown-divider"></div>
           <a href="modules/reservations/save.php?idReserva=<?php echo $item[0] ?>" class="dropdown-item">
-         <small> <i class="fas fa-exclamation-triangle mr-2"></i> <?php echo $item['agencia'] ?></small>
+         <small> <i class="fas fa-exclamation-triangle mr-2"></i> <?php echo $item['nombre_comercial'] ?></small>
          <br>
           <small class=" text-muted"><?php $fecha = date_create($item['fecha_limite']); echo 'Fecha limite de pago: '. date_format($fecha, 'd-m-Y') ?></small>
           </a>
@@ -170,12 +170,20 @@ $num_notifications = count($notifications);
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../markups/index.php" class="nav-link">
+                <a href="modules/markups/index.php" class="nav-link">
                 <i class="fas fa-file-invoice-dollar"></i>
                   <p>Comisiones de Agencias</p>
                 </a>
               </li>
               <?php }
+               if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 OR $_SESSION['idRol']==3){ ?>
+                <li class="nav-item">
+                  <a href="modules/reservations/index.php" class="nav-link">
+                  <i class="fas fa-clipboard-check"></i>
+                    <p>Reservaciones</p>
+                  </a>
+                </li>
+                <?php }
                if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 OR $_SESSION['idRol']==4){
                   ?>
              
@@ -194,14 +202,7 @@ $num_notifications = count($notifications);
               <?php 
     
                }
-               if ($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 OR $_SESSION['idRol']==3){ ?>
-              <li class="nav-item">
-                <a href="modules/reservations/index.php" class="nav-link">
-                <i class="fas fa-clipboard-check"></i>
-                  <p>Reservaciones</p>
-                </a>
-              </li>
-              <?php } ?>
+               ?>
             </ul>
           </li>
         </ul>

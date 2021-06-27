@@ -12,6 +12,7 @@ $email_subject = "Notificación de fecha de pago de reservación";
 
 foreach($reservaciones as $item){
 
+$titular = $item['titular'];
 $clave = $item['clave'];
 $date = date_create($item['fecha_limite']); 
 $fecha_limite = date_format($date,"d-m-Y");

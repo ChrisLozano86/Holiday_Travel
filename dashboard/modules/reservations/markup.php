@@ -2,12 +2,16 @@
 
 require_once '../../class/Pago.php';
 require_once '../../class/Reserva.php';
+require_once '../../class/Agencia.php';
 include_once '../../assets/template/header.php';
 $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;      
 $reserva = Reserva::buscarPorId($idReserva);  
+$agencia = Agencia::buscarPorId($reserva->getIdAgencia());
 
-$comision_agencia = $reserva->getPrecio() * ($reserva->getComisionAgencia()/100);
-$markup_operadora = $reserva->getPrecio() * ($reserva->getMarkupOperadora()/100);
+//echo $agencia->getIdAgencia();
+
+$comision_agencia = $reserva->getPrecio() * ($agencia->getComisionAgencia()/100);
+$markup_operadora = $reserva->getPrecio() * ($agencia->getMarkupOperadora()/100);
 
 
 
@@ -35,14 +39,14 @@ $markup_operadora = $reserva->getPrecio() * ($reserva->getMarkupOperadora()/100)
               </tr>
               <tr>
                 <td>
-                <strong> Markup Operadora <?php echo $reserva->getMarkupOperadora(); ?>%  </strong> $<?php echo $markup_operadora." ". $reserva->getMoneda(); ?>
+                <strong> Markup Operadora <?php echo $agencia->getMarkupOperadora(); ?>%  </strong> $<?php echo $markup_operadora." ". $reserva->getMoneda(); ?>
                 </td>
                 
               </tr>
 
               <tr>
                 <td>
-                <strong> Comisión Agencia <?php echo $reserva->getComisionAgencia(); ?>%  </strong> $<?php echo $comision_agencia." ". $reserva->getMoneda(); ?>
+                <strong> Comisión Agencia <?php echo $agencia->getComisionAgencia(); ?>%  </strong> $<?php echo $comision_agencia." ". $reserva->getMoneda(); ?>
                 </td>
               </tr>
 

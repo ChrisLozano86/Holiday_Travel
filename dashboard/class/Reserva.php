@@ -395,7 +395,7 @@ class Reserva
     public static function recuperarTodos()
     {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM reservaciones ORDER BY idReserva DESC');
+        $consulta = $conexion->prepare('SELECT r.idReserva, r.titular, r.broker, r.fecha_reservacion, r.clave, r.destino, r.descripcion, r.destino, r.fecha_inicio, r.precio, r.moneda, r.estatus_servicio, r.pago_operadora, r.pago_agencia, r.fecha_limite, r.fecha_notificacion, r.estatus_reserva, r.saldo_restante, r.saldo_restanteO, a.nombre_comercial FROM reservaciones r JOIN agencias a ON r.idAgencia = a.idAgencia ORDER BY idReserva DESC');
         $consulta->execute();
         $registros = $consulta->fetchAll();
         $conexion = null;
@@ -406,17 +406,30 @@ class Reserva
     public static function recuperarPendientesPago()
     {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM reservaciones WHERE NOW() > fecha_notificacion AND (pago_operadora = "No Pagado" OR pago_agencia = "No Pagado") AND estatus_reserva = "Activa" ORDER BY idReserva ASC');
+        $consulta = $conexion->prepare('SELECT r.idReserva, r.fecha_limite, r.fecha_notificacion, r.pago_operadora, r.pago_agencia, r.estatus_reserva, a.nombre_comercial FROM reservaciones r JOIN agencias a ON r.idAgencia = a.idAgencia WHERE NOW() > r.fecha_notificacion AND (r.pago_operadora = "No Pagado" OR r.pago_agencia = "No Pagado") AND r.estatus_reserva = "Activa" ORDER BY r.idReserva ASC');
         $consulta->execute();
         $registros = $consulta->fetchAll();
         $conexion = null;
         return $registros;
     }
 
+
+    public static function buscarNombreAgencia($idReserva)
+    {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT r.idReserva, a.nombre_comercial FROM reservaciones r JOIN agencias a ON r.idAgencia = a.idAgencia WHERE  r.idReserva = :idReserva');
+        $consulta->bindParam(':idReserva', $idReserva);
+        $consulta->execute();
+        $registro = $consulta->fetch();
+        $conexion = null;
+        return $registro;
+    }
+
+
     public static function enviarNotificaciones()
     {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM reservaciones WHERE NOW() > fecha_notificacion AND (pago_operadora = "No Pagado" OR pago_agencia = "No Pagado") AND estatus_reserva = "Activa" AND estatus_notificacion = 0 ORDER BY idReserva DESC');
+        $consulta = $conexion->prepare('SELECT r.idReserva, r.titular, r.broker, r.fecha_reservacion, r.clave, r.destino, r.descripcion, r.destino, r.fecha_inicio, r.precio, r.moneda, r.estatus_servicio, r.pago_operadora, r.pago_agencia, r.fecha_limite, r.fecha_notificacion, r.estatus_reserva, r.saldo_restante, r.saldo_restanteO, a.nombre_comercial FROM reservaciones r JOIN agencias a ON r.idAgencia = a.idAgencia WHERE NOW() > r.fecha_notificacion AND (r.pago_operadora = "No Pagado" OR r.pago_agencia = "No Pagado") AND r.estatus_reserva = "Activa" AND r.estatus_notificacion = 0 ORDER BY r.idReserva DESC');
         $consulta->execute();
         $registros = $consulta->fetchAll();
         $conexion = null;

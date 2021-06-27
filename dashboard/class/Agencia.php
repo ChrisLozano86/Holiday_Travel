@@ -582,7 +582,16 @@ class Agencia {
 
     public static function recuperarIdAgencias() {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT idAgencia, nombre_comercial FROM ' . self::TABLA. '  ORDER BY fecha_creacion DESC');
+        $consulta = $conexion->prepare('SELECT idAgencia, nombre_comercial FROM ' . self::TABLA. ' WHERE markup_operadora > 0 AND comision_agencia > 0 ORDER BY fecha_creacion DESC');
+        $consulta->execute();
+        $registros = $consulta->fetchAll();
+        $conexion = null;
+        return $registros;
+    }
+
+    public static function recuperarIdAgenciasSC() {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT idAgencia, nombre_comercial FROM ' . self::TABLA. ' WHERE markup_operadora <= 0 OR comision_agencia <= 0 ORDER BY fecha_creacion DESC');
         $consulta->execute();
         $registros = $consulta->fetchAll();
         $conexion = null;
