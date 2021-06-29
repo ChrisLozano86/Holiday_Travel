@@ -789,7 +789,7 @@ include_once('lib/registrar_agencia.php');
                         <div class="ft-about">
                             <div class="logo">
                                 <a href="#">
-                                    <img src="img/logo.png" alt="" height="61px">
+                                    <img src="img/logo_footer.png" alt="" height="61px">
                                 </a>
                             </div>
                             <p>Visitanos en nuestras redes sociales</p>
