@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2021 a las 03:01:23
+-- Tiempo de generación: 30-06-2021 a las 03:02:25
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -151,16 +151,6 @@ CREATE TABLE `roles` (
   `descripcion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `roles`
---
-
-INSERT INTO `roles` (`idRol`, `rol`, `descripcion`) VALUES
-(1, 'Super Administrador', 'Control y acceso total a todos los módulos de la plataforma'),
-(2, 'Administrador', 'Administrador de todos los módulos del sitio web'),
-(3, 'Colaborador administrativo', 'Permisos limitados a módulos definidos por el administrador'),
-(4, 'Colaborador de diseño', 'Permisos limitados a módulos para diseño del sitio web');
-
 -- --------------------------------------------------------
 
 --
@@ -272,37 +262,37 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `agencias`
 --
 ALTER TABLE `agencias`
-  MODIFY `idAgencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idAgencia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pago_reservaciones`
 --
 ALTER TABLE `pago_reservaciones`
-  MODIFY `idPagoReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `idPagoReserva` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `promociones`
 --
 ALTER TABLE `promociones`
-  MODIFY `idPromocion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idPromocion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `reservaciones`
 --
 ALTER TABLE `reservaciones`
-  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
