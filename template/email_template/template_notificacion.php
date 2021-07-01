@@ -22,11 +22,26 @@
 			
 
 			<p>Se ha detectado que la siguiente reservación con fecha limite de pago para el <strong>{FECHA_LIMITE}</strong>, no ha cubierto la totalidad del pago.</p>
-			<p> Información de la reservación </p>
-			<p> Agencia: <strong>{AGENCIA}</strong> </p>
-			<p> Broker: <strong>{BROKER}</strong> </p>
-			<p> Clave: <strong>{CLAVE}</strong> </p>
-			<p> Titular: <strong>{TITULAR}</strong> </p>
+			<p > Información de la reservación </p>
+
+			<table border="1" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td style="width: 180px;"><strong>Agencia</strong></td>
+                    <td>{AGENCIA}</td>
+                </tr>
+                <tr>
+                    <td style="width: 180px;"><strong>Cliente</strong></td>
+                    <td>{BROKER}</td>
+                </tr>
+                <tr>
+                    <td style="width: 180px;"><strong>Broker</strong></td>
+                    <td>{CLAVE}</td>
+                </tr>
+                <tr>
+                    <td style="width: 180px;"><strong>Clave</strong></td>
+                    <td>{TITULAR}</td>
+                </tr>
+            </table>
 
 			<p>Para ver los detalles de esta reservación por favor ingrese al <a href="https://htop.com.mx/cpanel">CPANEL</a> </p>
 
