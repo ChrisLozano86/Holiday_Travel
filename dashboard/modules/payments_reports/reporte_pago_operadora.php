@@ -100,7 +100,7 @@ th, td {
 
               <tr>
                 <td style="width:50%; text-align: left; padding-left:30px;">
-                <strong> Precio: </strong> $<?php echo $reserva->getPrecio().$reserva->getMoneda(); ?>
+                <strong> Precio Neto: </strong> $<?php echo $reserva->getPrecioNeto().$reserva->getMoneda(); ?>
                 </td>
                 <td></td>
               </tr>
