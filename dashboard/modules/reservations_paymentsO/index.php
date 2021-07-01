@@ -159,7 +159,9 @@ foreach($monto as $pago){
           <?php
             if(count($pagos_reservas)>0){
           ?>
-          <table>
+
+          <a href="../payments_reports/reporte_pago_operadora.php?idReserva=<?php echo $idReserva;?>"><img src="../../assets/img/icon-pdf.png" width="60" height="60" alt="Descargar papeleta"> <small>Descargar papeleta </small></a>
+          <br><br>
 
           <table class="table table-bordered table-responsive" id="table-data" style="font-size: 14px;" >
               <thead class="thead-dark">
@@ -172,7 +174,6 @@ foreach($monto as $pago){
               <th scope="col">Tipo de cambio</th>
               <th scope="col">Comentario</th>
               <th scope="col">Registrado por</th>
-              <th scope="col">Papeleta</th>
              </tr>
             </thead>
             <tbody>
@@ -194,7 +195,7 @@ foreach($monto as $pago){
                 <td><?php echo $item['tipo_cambio'].' MXN' ?></td>
                 <td><small><?php echo $item['descripcion']; ?></small></td>
                 <td><?php echo $item['creado_por']; ?></td>
-                <td><a href="../payments_reports/crearPdf.php?idReserva=<?php echo $item['idReserva']; ?>&idPagoReserva=<?php echo $item['idPagoReserva']; ?>"><img src="../../assets/img/icon-pdf.png" width="70" height="70" alt="Descargar papeleta"></a></a></td>
+              
                
                
           
@@ -205,6 +206,7 @@ foreach($monto as $pago){
           ?>
             </tbody>
           </table>
+            
           <br>
           <hr>
           
