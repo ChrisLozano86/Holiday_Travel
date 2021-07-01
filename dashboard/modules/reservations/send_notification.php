@@ -12,15 +12,20 @@ $email_subject = "Notificación de fecha de pago de reservación";
 
 foreach($reservaciones as $item){
 
+$agencia = $item['agencia'];
 $titular = $item['titular'];
 $clave = $item['clave'];
 $date = date_create($item['fecha_limite']); 
 $fecha_limite = date_format($date,"d-m-Y");
+$broker = $item['broker'];
 
 $swap_var = array(
     "{SITE_ADDR}" => "https://www.htop.com.mx",
     "{CLAVE}" => $clave,
     "{FECHA_LIMITE}" => $fecha_limite,
+    "{AGENCIA}" => $agencia,
+    "{TITULAR}" => $titular,
+    "{BROKER}" => $broker,
    
 );
 

@@ -16,9 +16,7 @@ require_once '../../class/Agencia.php';
         $agencia->setComisionAgencia($_POST['comision_agencia']);
        
 
-        echo $agencia->getIdAgencia();
-        echo $agencia->getComisionAgencia();
-        echo $agencia->getMarkupOperadora();
+     
 
        //$agencia->establecerComision();
        
@@ -54,7 +52,7 @@ include_once '../../assets/template/header.php';
 
             <div class="form-group">
             <label for="nombre_comercial">Nombre Comercial <span class="text text-danger">*</span></label>
-            <input class="form-control" type="text" name="nombre_comercial" id="nombre_comercial" value="<?php echo $agencia->getNombreComercial(); ?>" required>
+            <input class="form-control" type="text" name="nombre_comercial" id="nombre_comercial" value="<?php echo $agencia->getNombreComercial(); ?>" readonly>
             </div>
 
             <div class="form-group form-inline">

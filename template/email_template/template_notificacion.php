@@ -21,8 +21,14 @@
 
 			
 
-			<p>Se ha detectado que la reservación con clave <strong>{CLAVE}</strong> y con fecha limite de pago para el <strong>{FECHA_LIMITE}</strong>, no ha cubierto la totalidad del pago, para ver los detalles de esta reservación por favor ingrese al <a href="https://htop.com.mx/cpanel">CPANEL</a> </p>
+			<p>Se ha detectado que la siguiente reservación con fecha limite de pago para el <strong>{FECHA_LIMITE}</strong>, no ha cubierto la totalidad del pago.</p>
+			<p> Información de la reservación </p>
+			<p> Agencia: <strong>{AGENCIA}</strong> </p>
+			<p> Broker: <strong>{BROKER}</strong> </p>
+			<p> Clave: <strong>{CLAVE}</strong> </p>
+			<p> Titular: <strong>{TITULAR}</strong> </p>
 
+			<p>Para ver los detalles de esta reservación por favor ingrese al <a href="https://htop.com.mx/cpanel">CPANEL</a> </p>
 
 			
 
