@@ -29,15 +29,15 @@
                 </tr>
                 <tr>
                     <td style="width: 150px;"><strong>Cliente</strong></td>
-                    <td>{BROKER}</td>
+                    <td>{TITULAR}</td>
                 </tr>
                 <tr>
                     <td style="width: 150px;"><strong>Broker</strong></td>
-                    <td>{CLAVE}</td>
+                    <td>{BROKER}</td>
                 </tr>
                 <tr>
                     <td style="width: 150px;"><strong>Clave</strong></td>
-                    <td>{TITULAR}</td>
+                    <td>{CLAVE}</td>
                 </tr>
             </table>
 
