@@ -63,28 +63,46 @@ th, td {
 
 		
 
-		<h3 style="background-color: #3e9f8f; text-align: center; width: 100%; color: white;">Recibo de pago </h3>
+		<h3 style="background-color: #3e9f8f; text-align: center; width: 100%; color: white;">Reporte Pago Operadora </h3>
 		<table style="width: 100%;">
               <tr>
-                <td style="width:50%;">
+                <td style="width:50%; text-align: left; padding-left:30px;">
                 <strong> Agencia: </strong> <?php echo $nombre_agencia['nombre_comercial']; ?>
                 </td>
-                <td style="width:50%;">
+                <td style="width:50%; text-align: left; padding-left:30px;">
 				<strong>Folio: </strong> <?php echo $prefijo_folio.$reserva->getIdreserva();?>
                 </td>
               </tr>
               <tr>
-                <td>
+                <td style="width:50%; text-align: left; padding-left:30px;">
                 <strong> Titular: </strong> <?php echo $reserva->getTitular(); ?>
                 </td>
-                <td>  <strong>Fecha: </strong><?php echo date("d-m-Y"); ?> </td>
+                <td style="width:50%; text-align: left; padding-left:30px;">  <strong>Fecha de impresión: </strong><?php echo date("d-m-Y - H:i:s"); ?> </td>
               </tr>
 
               <tr>
-                <td>
-                <strong> Precio Neto: </strong> $<?php echo $reserva->getPrecioNeto().$reserva->getMoneda(); ?>
+                <td style="width:50%; text-align: left; padding-left:30px;">
+                <strong> Broker: </strong> <?php echo $reserva->getBroker(); ?>
                 </td>
-                <td><strong>Hora:</strong> <?php echo date("H:i:s"); ?></td>
+                <td style="width:50%; text-align: left; padding-left:30px;"> 
+                <strong> Clave: </strong> <?php echo $reserva->getClave(); ?>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="width:50%; text-align: left; padding-left:30px;">
+                <strong> Hotel: </strong> <?php echo $reserva->getDescripcion(); ?>
+                </td>
+                <td style="width:50%; text-align: left; padding-left:30px;"> 
+                <strong> Destino: </strong> <?php echo $reserva->getDestino(); ?>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="width:50%; text-align: left; padding-left:30px;">
+                <strong> Precio: </strong> $<?php echo $reserva->getPrecio().$reserva->getMoneda(); ?>
+                </td>
+                <td></td>
               </tr>
 
               

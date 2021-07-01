@@ -63,7 +63,7 @@ th, td {
 
 		
 
-		<h3 style="background-color: #3e9f8f; text-align: center; width: 100%; color: white;">Recibo de pago  </h3>
+		<h3 style="background-color: #3e9f8f; text-align: center; width: 100%; color: white;">Reporte de Pago  </h3>
 		<table style="width: 100%;">
               <tr>
                 <td style="width:50%; text-align: left; padding-left:30px;">
