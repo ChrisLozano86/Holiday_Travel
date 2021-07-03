@@ -8,6 +8,7 @@ $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
 $pagos_reservas = Pago::recuperarPagosAgencia($idReserva); 
 $pagos_reservasO = Pago::recuperarPagosOperadora($idReserva); 
 $agencias = Agencia::recuperarIdAgencias(); 
+$total_agencias = Agencia::recuperarTodos();
 $agenciasSC = Agencia::recuperarIdAgenciasSC(); 
 
 
@@ -24,8 +25,6 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
 
           $idReserva = (isset($_POST['idReserva'])) ? $_POST['idReserva'] : null;
           $idAgencia = (isset($_POST['idAgencia'])) ? $_POST['idAgencia'] : null;
-          $comision_agencia = (isset($_REQUEST['comision_agencia'])) ? $_REQUEST['comision_agencia'] : null;
-          $markup_operadora = (isset($_REQUEST['markup_operadora'])) ? $_REQUEST['markup_operadora'] : null;
           $precio_neto = (isset($_REQUEST['precio_neto'])) ? $_REQUEST['precio_neto'] : null;
           $titular = (isset($_REQUEST['titular'])) ? $_REQUEST['titular'] : null;
           $fecha_reservacion = (isset($_POST['fecha_reservacion'])) ? $_POST['fecha_reservacion'] : null;
@@ -72,8 +71,6 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
           $estatus_reserva = (isset($_REQUEST['estatus_reserva'])) ? $_REQUEST['estatus_reserva'] : null;
           
           $reserva->setIdAgencia($idAgencia);
-          $reserva->setMarkupOperadora($markup_operadora);
-          $reserva->setComisionAgencia($comision_agencia);
           $reserva->setPrecioNeto($precio_neto);
           $reserva->setTitular($titular);
           $reserva->setFechaReservacion($fecha_reservacion);
@@ -124,6 +121,12 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
           <div  style="width:80%; margin-left:10%; background-color: white; padding:20px; border-radius:10px;">
 
           <h4 class="text-center"><?php echo $title ?></h4> <br>
+
+          <?php 
+         
+            if(count($total_agencias)>0):
+
+          ?>
       
 
             <form action="save.php" method="post" id="promo_form">
@@ -236,13 +239,126 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
 
             <div class="form-group">
             <label for="descripcion">Hotel  <span class="text text-danger">*</span> </label>
-            <input class="form-control" type="text" name="descripcion" id="descripcion" value="<?php echo $reserva->getDescripcion(); ?>" required>
+            <input class="form-control" type="text" name="hotel" id="hotel" value="" required>
             </div>
 
             <div class="form-group">
             <label for="descripcion">Destino  <span class="text text-danger">*</span> </label>
             <input class="form-control" type="text" name="destino" id="destino" value="<?php echo $reserva->getDestino(); ?>" required>
             </div>
+            
+            
+
+              
+              <!--   Habitacion 1 -->
+
+            <div id="habitacion1">
+            
+            <div class="form-group">
+
+           
+
+            <label for="tipo_habitacion">Habitación 1</label> 
+            <br>
+          
+              <label for="tipo_habitacion">Tipo de habitación  <span class="text text-danger">*</span></label>
+            <select name="tipo_habitacion" id="tipo_habitacion" class="form-control" style="width: 50%;">
+            <option value="">Selecciona un tipo de habitación</option>
+            <?php foreach($agencias as $agencia): ?>
+              <option value="<?php echo $agencia[0]; ?>"  <?php if($reserva->getIdAgencia()== $agencia[0]  ){ echo 'selected';}?>> <?php echo $agencia['nombre_comercial'];?> </option>
+             <?php endforeach; ?>
+             
+            </select> 
+            </div>
+
+            <div class="form-group">
+              <label for="suplemento">Suplemento  <span class="text text-danger">*</span></label>
+            <select name="suplemento" id="suplemento" class="form-control" style="width: 50%;">
+            <option value="">Selecciona el suplemento para habitación</option>
+            <?php foreach($agencias as $agencia): ?>
+              <option value="<?php echo $agencia[0]; ?>"  <?php if($reserva->getIdAgencia()== $agencia[0]  ){ echo 'selected';}?>> <?php echo $agencia['nombre_comercial'];?> </option>
+             <?php endforeach; ?>
+             
+            </select> 
+            </div>
+
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#habitacion2" aria-expanded="false" aria-controls="collapseExample" id="botonOn" onclick="hab2()">
+          Registrar nueva habitación
+          </button>
+
+            
+
+            </div>
+
+            <!--   Habitacion 2 -->
+
+
+            <div class="collapse" id="habitacion2">
+            
+            <div class="form-group">
+
+            <label for="tipo_habitacion">Habitación 2</label> 
+            <br>
+          
+              <label for="tipo_habitacion">Tipo de habitación  <span class="text text-danger">*</span></label>
+            <select name="tipo_habitacion" id="tipo_habitacion" class="form-control" style="width: 50%;">
+            <option value="">Selecciona un tipo de habitación</option>
+            <?php foreach($agencias as $agencia): ?>
+              <option value="<?php echo $agencia[0]; ?>"  <?php if($reserva->getIdAgencia()== $agencia[0]  ){ echo 'selected';}?>> <?php echo $agencia['nombre_comercial'];?> </option>
+             <?php endforeach; ?>
+             
+            </select> 
+            </div>
+
+            <div class="form-group">
+              <label for="suplemento">Suplemento  <span class="text text-danger">*</span></label>
+            <select name="suplemento" id="suplemento" class="form-control" style="width: 50%;">
+            <option value="">Selecciona el suplemento para habitación</option>
+            <?php foreach($agencias as $agencia): ?>
+              <option value="<?php echo $agencia[0]; ?>"  <?php if($reserva->getIdAgencia()== $agencia[0]  ){ echo 'selected';}?>> <?php echo $agencia['nombre_comercial'];?> </option>
+             <?php endforeach; ?>
+             
+            </select> 
+            </div>
+
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#habitacion2" aria-expanded="false" aria-controls="collapseExample" id="botonOn" onclick="hab2_cancelar()">
+          Cancelar habitación 2
+          </button>
+
+            <a class="btn btn-primary" data-toggle="collapse" href="#habitacion3" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Nueva habitación
+  </a>
+
+            </div>
+
+         
+
+            <script>
+
+function hab2() {
+  document.getElementById('botonOn').style.display = 'none';
+} 
+
+function hab2_cancelar() {
+  document.getElementById('botonOn').style.display = 'block';
+} 
+
+function hab3() {
+  document.getElementById('botonOn').style.display = 'none';
+} 
+
+
+</script>
+
+</script>
+
+
+
+
+            <div class="form-group">
+            <label for="contenido">Observaciones</label>
+           <textarea class="form-control" name="descripcion" id="descripcion" rows="3" ><?php echo $reserva->getDescripcion(); ?></textarea>
+            </div>  
 
             <div class="form-group">
             <label for="fecha_inicio">Fecha de inicio  <span class="text text-danger">*</span> </label>
@@ -295,20 +411,6 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
             <?php if(count($pagos_reservas)>0 OR count($pagos_reservasO)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos registrados en su historial, para editar el precio primero debe reestablecer el historial pagos.</p>';} ?>
             </div>
 
-            <div class="form-group">
-              <label for="estatus_servicio">Estatus Servicio  <span class="text text-danger">*</span></label>
-            <select name="estatus_servicio" id="estatus_servicio" class="form-control" style="width: 50%;">
-              <option value="OK" <?php if($reserva->getPagoOperadora()=='OK'){ echo 'selected';}?>>OK</option>
-              <option value="XL" <?php if($reserva->getPagoOperadora()=='XL'){ echo 'selected';}?>>XL</option>
-              <option value="RQ" <?php if($reserva->getPagoOperadora()=='RQ'){ echo 'selected';}?>>RQ</option>
-              <option value="NC" <?php if($reserva->getPagoOperadora()=='NC'){ echo 'selected';}?>>NC</option>
-              <option value="RJ" <?php if($reserva->getPagoOperadora()=='RJ'){ echo 'selected';}?>>RJ</option>
-              <option value="PP" <?php if($reserva->getPagoOperadora()=='PP'){ echo 'selected';}?>>PP</option>
-              <option value="PR" <?php if($reserva->getPagoOperadora()=='PR'){ echo 'selected';}?>>PR</option>
-              <option value="XL" <?php if($reserva->getPagoOperadora()=='XL'){ echo 'selected';}?>>XL con cargo</option>
-              <option value="Error" <?php if($reserva->getPagoOperadora()=='Error'){ echo 'selected';}?>>Error al cancelar</option>
-            </select> 
-            </div>
 
 
             <div class="form-group">
@@ -343,24 +445,10 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
                     
                 }
 
-
-                            /* function cargarValores(valor){
-                $.ajax({     
-                  url : 'cargar_comisiones.php',     
-                  data : { valor : valor },
-                  type : 'POST',
-                  dataType : 'json',
-                  success : function(json) {
-                    $("#rendimiento").val(json.rendimiento);
-                  
-                  },
-                    error : function(xhr, status) {
-                    alert('Disculpe, existió un problema');
-                  }
-              });
-              } */
           </script>
-           
+           <?php else: ?>
+          <p class="alert alert-info"> No se encontraron agencias registradas  </p>
+          <?php endif; ?>
           
           </div>
           </div>

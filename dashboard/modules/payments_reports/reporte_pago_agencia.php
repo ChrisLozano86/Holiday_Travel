@@ -6,7 +6,7 @@ require_once '../../class/Reserva.php';
 
 $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
 $pagos_reservas = Pago::recuperarPagosAgencia($idReserva);
-$monto = Pago::recuperarTotalAbonado($idReserva,2);       
+$monto = Pago::recuperarTotalAbonado($idReserva,1);       
 $reserva = Reserva::buscarPorId($idReserva);  
 $nombre_agencia = Reserva::buscarNombreAgencia($idReserva);
 
@@ -14,6 +14,8 @@ $total_abonado = 0;
 foreach($monto as $pago){
   $total_abonado = ($total_abonado + $pago['monto']);
 }
+
+
 
 $total = number_format($total_abonado, 2);
 
