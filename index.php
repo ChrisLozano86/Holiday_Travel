@@ -811,7 +811,14 @@ include_once('lib/registrar_agencia.php');
                             <li><i class="fa fa-phone icolor"></i>&nbsp; (52) 417-688-3468 </li>
                             <li><i class="fa fa-envelope icolor"></i>&nbsp; agencias@holidaytravel.com.mx</li>
                             <li><i class="fa fa-address-book-o icolor"></i>&nbsp; Calle Brasilia # 135, Col. Lomas de las Américas. <br> C.P. 58254. Morelia, Mich.</li>
-                        
+                            <li>
+                                    <div class="logos mt-1">
+                                       
+                                        <a href="#"><img src="img/one.png" alt=""></a>
+                                       
+                                        <a href="#"><img src="img/sectur.png" alt=""></a>
+                                    </div>
+                                </li>
                      
                             </ul>
                         </div>
