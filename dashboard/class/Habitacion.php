@@ -76,15 +76,24 @@ class Habitacion {
             $consulta->bindParam(':tipo_habitacion', $this->tipo_habitacion);  
             $consulta->bindParam(':suplemento', $this->suplemento);  
             $consulta->bindParam(':plan_alimento', $this->plan_alimento);  
-            $consulta->execute();
+            if ($consulta->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+
         } else /* Inserta */ {
             $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (idReserva, tipo_habitacion, suplemento, plan_alimento) VALUES (:idReserva, :tipo_habitacion, :suplemento, :plan_alimento)');
             $consulta->bindParam(':idReserva', $this->idReserva);
             $consulta->bindParam(':tipo_habitacion', $this->tipo_habitacion);  
             $consulta->bindParam(':suplemento', $this->suplemento);  
             $consulta->bindParam(':plan_alimento', $this->plan_alimento);   
-            $consulta->execute();
-            $this->idHabitacion = $conexion->lastInsertId();
+            if ($consulta->execute()) {
+                $this->idHabitacion= $conexion->lastInsertId();
+                return true;
+            } else {
+                return false;
+            }
           
             
         }
@@ -103,7 +112,7 @@ class Habitacion {
     public static function buscarPorId($idHabitacion) {
    
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT  idReserva, tipo_habitacion, suplemento, plan_alimento FROM ' . self::TABLA . ' WHERE idHabitacion = :idHabitacion');
+        $consulta = $conexion->prepare('SELECT  idHabitacion, idReserva, tipo_habitacion, suplemento, plan_alimento FROM ' . self::TABLA . ' WHERE idHabitacion = :idHabitacion');
         $consulta->bindParam(':idHabitacion', $idHabitacion);
         $consulta->execute();
         $registro = $consulta->fetch();

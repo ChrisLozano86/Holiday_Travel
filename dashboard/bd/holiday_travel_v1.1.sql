@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-07-2021 a las 04:03:59
+-- Tiempo de generación: 09-07-2021 a las 18:04:38
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -164,6 +164,16 @@ CREATE TABLE `roles` (
   `descripcion` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`idRol`, `rol`, `descripcion`) VALUES
+(1, 'Super Administrador', 'Control y acceso total a todos los módulos de la plataforma'),
+(2, 'Administrador', 'Administrador de todos los módulos del sitio web'),
+(3, 'Colaborador administrativo', 'Permisos limitados a módulos definidos por el administrador'),
+(4, 'Colaborador de diseño', 'Permisos limitados a módulos para diseño del sitio web');
+
 -- --------------------------------------------------------
 
 --
@@ -312,7 +322,7 @@ ALTER TABLE `reserva_habitaciones`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `slider`

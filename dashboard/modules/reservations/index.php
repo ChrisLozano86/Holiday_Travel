@@ -438,7 +438,7 @@ if ($item['pago_operadora'] =='No Pagado'){
 
 <!-- Modal habitaciones-->
 <div class="modal fade" id="modalHabitacion<?php echo $item[0]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Detalles habitaciones</h5>
@@ -449,13 +449,28 @@ if ($item['pago_operadora'] =='No Pagado'){
       <div class="modal-body">
 
       <?php 
-$num_habitacion = 0;
 if(count($habitaciones)>0){
-foreach($habitaciones as $habitacion){
-$num_habitacion ++;
-  echo $num_habitacion." ".$habitacion['tipo_habitacion']." ".$habitacion['suplemento']." ".$habitacion['plan_alimento']."<br>";
-}
+ ?>
 
+<div class="row text-center" style="background-color: black; color:white;">
+  <div class="col">Habitación</div>
+  <div class="col">Tipo habitacion</div>
+  <div class="col">Suplemento</div>
+  <div class="col">Plan de alimentos</div>
+</div>
+<?php
+$num_habitacion = 0;
+foreach($habitaciones as $habitacion){
+  $num_habitacion ++;
+?>
+<div class="row text-center" style=" border-bottom:1px solid black;">
+ <div class="col"><?php echo $num_habitacion ?></div>
+  <div class="col"><?php echo $habitacion['tipo_habitacion'] ?></div>
+  <div class="col"> <?php echo $habitacion['suplemento'] ?>o</div>
+  <div class="col"><?php echo $habitacion['plan_alimento'] ?></div>
+</div>
+<?php
+}
 }else{
   echo ' <p class="alert alert-warning"> No hay habitaciones registradas para esta reservación </p>';
 }
@@ -471,7 +486,7 @@ $num_habitacion ++;
   </div>
 </div>
 
-<!-- Modal habitaciones-->
+<!-- Modal Observaciones-->
 <div class="modal fade" id="modalObservacion<?php echo $item[0]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
