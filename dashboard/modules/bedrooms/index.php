@@ -18,31 +18,19 @@ $nombre_agencia = Reserva::buscarNombreAgencia($_GET['idReserva']);
         <div class="row">
           <div class="col">
 
-          <a href="../reservations/index.php" class="btn btn-primary"><i class="fas fa-chevron-circle-left mr-2"></i>Regresar a reservaciones</a><br><br>
+          <a href="../reservations/index.php" class="btn btn-primary"><i class="fas fa-chevron-circle-left mr-2"></i>Ver Reservaciones</a><br><br>
           
-            <h3>Gestionar habitaciones para la reservacion (<?php echo $reserva->getBroker() .' - '. $reserva->getClave(); ?>) </h3>
-            <table class="table table-borderless">
-              <tr>
-                <td class="w-50">
-                <strong> Agencia: </strong> <?php echo $nombre_agencia[1]; ?>
-                </td>
-                <td class="w-50">
-                <strong> Titular: </strong> <?php echo $reserva->getTitular(); ?>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                <strong>Fecha de la reservación: </strong><?php echo $reserva->getFechaReservacion()?>
-                </td>
-                <td>  </td>
-              </tr>
 
-              <tr>
-                <td>
-                
-              </tr>
-
-            </table>
+          <div class="jumbotron jumbotron-fluid" style="padding: 20px; width:90%; margin-left:5%;">
+  <div class="container">
+    <h3 class="display-5">Gestionar habitaciones para la reservacion (<?php echo $reserva->getBroker() .' - '. $reserva->getClave(); ?>)</h3>
+    <p class="lead"> <strong> Agencia: </strong> <?php echo $nombre_agencia[1]; ?></p>
+    <p class="lead">  <strong> Titular: </strong> <?php echo $reserva->getTitular(); ?></p>
+    <p class="lead">  <strong>Fecha de la reservación: </strong><?php echo $reserva->getFechaReservacion()?></p>
+  </div>
+</div>
+            
+            
             <a href="save.php?idReserva=<?php echo $_GET['idReserva'] ?>" class="btn btn-primary"><i class="fas fa-plus-circle fa-2x"></i></a><br><br>
             <?php  if (count($habitaciones) > 0): ?>
             <table class="table table-bordered">

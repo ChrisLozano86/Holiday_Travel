@@ -3,12 +3,14 @@
 ob_start();
 require_once '../../class/Pago.php';
 require_once '../../class/Reserva.php';
+require_once '../../class/Habitacion.php';
 
 $idReserva = (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
 $pagos_reservas = Pago::recuperarPagosAgencia($idReserva);
 $monto = Pago::recuperarTotalAbonado($idReserva,1);       
 $reserva = Reserva::buscarPorId($idReserva);  
 $nombre_agencia = Reserva::buscarNombreAgencia($idReserva);
+$habitaciones = Habitacion::recuperarTodos($idReserva);
 
 $total_abonado = 0;
 foreach($monto as $pago){
@@ -79,21 +81,14 @@ th, td {
                 <td style="width:50%; text-align: left; padding-left:30px;">
                 <strong> Titular: </strong> <?php echo $reserva->getTitular(); ?>
                 </td>
-                <td style="width:50%; text-align: left; padding-left:30px;">  <strong>Fecha de impresión: </strong><?php echo date("d-m-Y - H:i:s"); ?> </td>
-              </tr>
-
-              <tr>
-                <td style="width:50%; text-align: left; padding-left:30px;">
-                <strong> Fecha de reservación: </strong> <?php echo $reserva->getFechaReservacion(); ?>
-                </td>
                 <td style="width:50%; text-align: left; padding-left:30px;"> 
-                <strong> Clave: </strong> <?php echo $reserva->getClave(); ?>
-                </td>
+                 <strong> Clave: </strong> <?php echo $reserva->getClave(); ?> </td>
               </tr>
 
               <tr>
-                <td style="width:50%; text-align: left; padding-left:30px;">
+              <td style="width:50%; text-align: left; padding-left:30px;">
                 <strong> Hotel: </strong> <?php echo $reserva->getHotel(); ?>
+                </td>
                 </td>
                 <td style="width:50%; text-align: left; padding-left:30px;"> 
                 <strong> Destino: </strong> <?php echo $reserva->getDestino(); ?>
@@ -104,17 +99,42 @@ th, td {
                 <td style="width:50%; text-align: left; padding-left:30px;">
                 <strong> Precio: </strong> $<?php echo $reserva->getPrecio().$reserva->getMoneda(); ?>
                 </td>
-                <td><strong> Observaciones: </strong> <?php echo $reserva->getDescripcion(); ?></td>
+                <td style="width:50%; text-align: left; padding-left:30px;"> <strong> Fecha de reservación: </strong> <?php echo $reserva->getFechaReservacion(); ?></td>
               </tr>
 
               <tr>
-                <td><strong>Detalle habitaciones:</strong><br>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate, tempore exercitationem iusto delectus dicta voluptas quaerat tenetur commodi laborum voluptatibus laboriosam in repellat sed harum vitae fugiat sint voluptatum! Laudantium?</p>
+                <td style="text-align: left; padding-left:10px; padding-right:10px;" colspan="2"><strong>Detalle habitaciones:</strong><br> <br>
+             
+                <table>
+                    <tr style="background-color: black; color:white;">
+                      <td>Habitacion</td>
+                      <td>Tipo Habitación</td>
+                      <td>Suplemento</td>
+                      <td>Plan de alimento</td>
+                    </tr>
+                    <?php 
+                      foreach($habitaciones as $habitacion){
+                        $num_habitacion ++;
+                    ?>
+                    <tr>
+                      <td><?php echo $num_habitacion;?></td>
+                      <td><?php echo $habitacion['tipo_habitacion'] ?></td>
+                      <td><?php echo $habitacion['suplemento'] ?></td>
+                      <td><?php echo $habitacion['plan_alimento'] ?></td>
+                    </tr>
+                      <?php
+                         }
+                      ?>
+                </table>
+                <br>
               </td>
+              </tr>
+
+              <tr>
+                <td style="text-align: left; padding-left:30px;" colspan="2"><strong> Observaciones: </strong> <br> <p><?php echo $reserva->getDescripcion(); ?> </p> </td>
               </tr>
               
             </table>
-			<br>
 			
 
 			<h3 style="background-color: #3e9f8f; text-align: center; width: 100%; color: white;">Historial de pagos </h3>
