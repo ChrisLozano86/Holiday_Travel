@@ -84,7 +84,7 @@ th, td {
 
               <tr>
                 <td style="width:50%; text-align: left; padding-left:30px;">
-                <strong> Broker: </strong> <?php echo $reserva->getBroker(); ?>
+                <strong> Fecha de reservación: </strong> <?php echo $reserva->getFechaReservacion(); ?>
                 </td>
                 <td style="width:50%; text-align: left; padding-left:30px;"> 
                 <strong> Clave: </strong> <?php echo $reserva->getClave(); ?>
@@ -93,7 +93,7 @@ th, td {
 
               <tr>
                 <td style="width:50%; text-align: left; padding-left:30px;">
-                <strong> Hotel: </strong> <?php echo $reserva->getDescripcion(); ?>
+                <strong> Hotel: </strong> <?php echo $reserva->getHotel(); ?>
                 </td>
                 <td style="width:50%; text-align: left; padding-left:30px;"> 
                 <strong> Destino: </strong> <?php echo $reserva->getDestino(); ?>
@@ -104,9 +104,14 @@ th, td {
                 <td style="width:50%; text-align: left; padding-left:30px;">
                 <strong> Precio: </strong> $<?php echo $reserva->getPrecio().$reserva->getMoneda(); ?>
                 </td>
-                <td></td>
+                <td><strong> Observaciones: </strong> <?php echo $reserva->getDescripcion(); ?></td>
               </tr>
 
+              <tr>
+                <td><strong>Detalle habitaciones:</strong><br>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate, tempore exercitationem iusto delectus dicta voluptas quaerat tenetur commodi laborum voluptatibus laboriosam in repellat sed harum vitae fugiat sint voluptatum! Laudantium?</p>
+              </td>
+              </tr>
               
             </table>
 			<br>

@@ -4,6 +4,7 @@ if($_SESSION['idRol']== null){
   header('Location: ../../login.php');
 } 
 require_once '../../class/Reserva.php';
+require_once '../../class/Habitacion.php';
 $notifications = Reserva::recuperarPendientesPago();
 $num_notifications = count($notifications);
 $reservaciones = Reserva::recuperarTodos();
@@ -259,6 +260,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <th scope="col">Clave</th>
 <th scope="col">Hotel</th>
 <th scope="col">Destino</th>
+<th scope="col">Habitaciones</th>
+<th scope="col">Observaciones</th>
 <th scope="col"> <span style="color:#292b2c;" class="d-block">Reservación</span>Fecha Inicio</th>
 <th scope="col">Precio</th>
 <th scope="col">Estatus servicio</th>
@@ -276,7 +279,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <?php 
 
 foreach ($reservaciones as $item):
-  
+  $habitaciones = Habitacion::recuperarTodos($item['idReserva']);
  $fecha_notificacion= date_create($item['fecha_notificacion']);
  $fecha_actual=date_create(date('d-m-Y'));  
 /*  $interval = date_diff($fecha_notificacion, $fecha_actual);
@@ -315,8 +318,13 @@ foreach ($reservaciones as $item):
 <td><?php $date= date_create($item['fecha_reservacion']); echo date_format($date,"d-m-Y"); ?></td>
 <td><?php echo $item['broker']?></td>
 <td><?php echo $item['clave']; ?></td>
-<td><?php echo $item['descripcion']; ?></td>
+<td><?php echo $item['hotel']; ?></td>
 <td><?php echo $item['destino']; ?></td>
+<td class="text-center">
+<a href="../bedrooms/index.php?idReserva=<?php echo $item[0];?>" class="btn btn-custom"> <i class="fas fa-pencil-alt"></i></i> </a>
+<a href="#" data-toggle="modal" data-target="#modalHabitacion<?php echo $item[0];?>" class="btn btn-custom" ><i class="fas fa-eye"></i> </a>
+</td>
+<td  class="text-center"><a href="#" data-toggle="modal" data-target="#modalObservacion<?php echo $item[0];?>" class="btn btn-custom" ><i class="fas fa-comment"></i> </a></td>
 <td><?php $date= date_create($item['fecha_inicio']); echo date_format($date,"d-m-Y"); ?></td>
 <td>$<?php echo $item['precio'].$item['moneda']; ?></td>
 <td class="text-center"><?php echo $item['estatus_servicio']; ?></td>
@@ -425,6 +433,71 @@ if ($item['pago_operadora'] =='No Pagado'){
     </div>
   </div>
 </div>
+
+
+
+<!-- Modal habitaciones-->
+<div class="modal fade" id="modalHabitacion<?php echo $item[0]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Detalles habitaciones</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      <?php 
+$num_habitacion = 0;
+if(count($habitaciones)>0){
+foreach($habitaciones as $habitacion){
+$num_habitacion ++;
+  echo $num_habitacion." ".$habitacion['tipo_habitacion']." ".$habitacion['suplemento']." ".$habitacion['plan_alimento']."<br>";
+}
+
+}else{
+  echo ' <p class="alert alert-warning"> No hay habitaciones registradas para esta reservación </p>';
+}
+?>
+     
+              
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal habitaciones-->
+<div class="modal fade" id="modalObservacion<?php echo $item[0]; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Observaciones</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      <?php 
+        echo '<p>'.$item['descripcion'].'</p>';
+      ?>
+     
+              
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <?php endforeach; ?>
 </tbody>

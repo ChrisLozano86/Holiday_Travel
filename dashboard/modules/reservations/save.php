@@ -30,13 +30,11 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
           $fecha_reservacion = (isset($_POST['fecha_reservacion'])) ? $_POST['fecha_reservacion'] : null;
           $broker = (isset($_REQUEST['broker'])) ? $_REQUEST['broker'] : null;
           $clave = (isset($_REQUEST['clave'])) ? $_REQUEST['clave'] : null;
-          $descripcion = (isset($_REQUEST['descripcion'])) ? $_REQUEST['descripcion'] : null;  
+          $hotel = (isset($_REQUEST['hotel'])) ? $_REQUEST['hotel'] : null;
           $destino = (isset($_REQUEST['destino'])) ? $_REQUEST['destino'] : null;  
+          $descripcion = (isset($_REQUEST['descripcion'])) ? $_REQUEST['descripcion'] : null;  
           $fecha_inicio = (isset($_REQUEST['fecha_inicio'])) ? $_REQUEST['fecha_inicio'] : null;
           $precio = (isset($_REQUEST['precio'])) ? $_REQUEST['precio'] : null;
-         
-
-          
           $estatus_servicio = (isset($_REQUEST['estatus_servicio'])) ? $_REQUEST['estatus_servicio'] : null;
           $fecha_limite = (isset($_REQUEST['fecha_limite'])) ? $_REQUEST['fecha_limite'] : null;
           
@@ -77,6 +75,7 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
           $reserva->setBroker($broker);
           $reserva->setClave($clave);
           $reserva->setDescripcion($descripcion);
+          $reserva->setHotel($hotel);
           $reserva->setDestino($destino);
           $reserva->setFechaInicio($fecha_inicio);
           $reserva->setPrecio($precio);
@@ -239,118 +238,22 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
 
             <div class="form-group">
             <label for="descripcion">Hotel  <span class="text text-danger">*</span> </label>
-            <input class="form-control" type="text" name="hotel" id="hotel" value="" required>
+            <input class="form-control" type="text" name="hotel" id="hotel" value="<?php echo $reserva->getHotel(); ?>" required>
             </div>
 
             <div class="form-group">
             <label for="descripcion">Destino  <span class="text text-danger">*</span> </label>
             <input class="form-control" type="text" name="destino" id="destino" value="<?php echo $reserva->getDestino(); ?>" required>
             </div>
+            <br>
+            <!--Habitaciones -->
             
-            
-
               
-              <!--   Habitacion 1 -->
+             <?php 
 
-            <div id="habitacion1">
-            
-            <div class="form-group">
+                 //include_once 'partials/frm_reservations.php'; 
 
-           
-
-            <label for="tipo_habitacion">Habitación 1</label> 
-            <br>
-          
-              <label for="tipo_habitacion">Tipo de habitación  <span class="text text-danger">*</span></label>
-            <select name="tipo_habitacion" id="tipo_habitacion" class="form-control" style="width: 50%;">
-            <option value="">Selecciona un tipo de habitación</option>
-            <?php foreach($agencias as $agencia): ?>
-              <option value="<?php echo $agencia[0]; ?>"  <?php if($reserva->getIdAgencia()== $agencia[0]  ){ echo 'selected';}?>> <?php echo $agencia['nombre_comercial'];?> </option>
-             <?php endforeach; ?>
-             
-            </select> 
-            </div>
-
-            <div class="form-group">
-              <label for="suplemento">Suplemento  <span class="text text-danger">*</span></label>
-            <select name="suplemento" id="suplemento" class="form-control" style="width: 50%;">
-            <option value="">Selecciona el suplemento para habitación</option>
-            <?php foreach($agencias as $agencia): ?>
-              <option value="<?php echo $agencia[0]; ?>"  <?php if($reserva->getIdAgencia()== $agencia[0]  ){ echo 'selected';}?>> <?php echo $agencia['nombre_comercial'];?> </option>
-             <?php endforeach; ?>
-             
-            </select> 
-            </div>
-
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#habitacion2" aria-expanded="false" aria-controls="collapseExample" id="botonOn" onclick="hab2()">
-          Registrar nueva habitación
-          </button>
-
-            
-
-            </div>
-
-            <!--   Habitacion 2 -->
-
-
-            <div class="collapse" id="habitacion2">
-            
-            <div class="form-group">
-
-            <label for="tipo_habitacion">Habitación 2</label> 
-            <br>
-          
-              <label for="tipo_habitacion">Tipo de habitación  <span class="text text-danger">*</span></label>
-            <select name="tipo_habitacion" id="tipo_habitacion" class="form-control" style="width: 50%;">
-            <option value="">Selecciona un tipo de habitación</option>
-            <?php foreach($agencias as $agencia): ?>
-              <option value="<?php echo $agencia[0]; ?>"  <?php if($reserva->getIdAgencia()== $agencia[0]  ){ echo 'selected';}?>> <?php echo $agencia['nombre_comercial'];?> </option>
-             <?php endforeach; ?>
-             
-            </select> 
-            </div>
-
-            <div class="form-group">
-              <label for="suplemento">Suplemento  <span class="text text-danger">*</span></label>
-            <select name="suplemento" id="suplemento" class="form-control" style="width: 50%;">
-            <option value="">Selecciona el suplemento para habitación</option>
-            <?php foreach($agencias as $agencia): ?>
-              <option value="<?php echo $agencia[0]; ?>"  <?php if($reserva->getIdAgencia()== $agencia[0]  ){ echo 'selected';}?>> <?php echo $agencia['nombre_comercial'];?> </option>
-             <?php endforeach; ?>
-             
-            </select> 
-            </div>
-
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#habitacion2" aria-expanded="false" aria-controls="collapseExample" id="botonOn" onclick="hab2_cancelar()">
-          Cancelar habitación 2
-          </button>
-
-            <a class="btn btn-primary" data-toggle="collapse" href="#habitacion3" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Nueva habitación
-  </a>
-
-            </div>
-
-         
-
-            <script>
-
-function hab2() {
-  document.getElementById('botonOn').style.display = 'none';
-} 
-
-function hab2_cancelar() {
-  document.getElementById('botonOn').style.display = 'block';
-} 
-
-function hab3() {
-  document.getElementById('botonOn').style.display = 'none';
-} 
-
-
-</script>
-
-</script>
+             ?>
 
 
 
@@ -410,7 +313,21 @@ function hab3() {
             <br>
             <?php if(count($pagos_reservas)>0 OR count($pagos_reservasO)>0){echo '<p class="badge badge-info mt-2">Esta reserva ya tiene pagos registrados en su historial, para editar el precio primero debe reestablecer el historial pagos.</p>';} ?>
             </div>
-
+            
+            <div class="form-group">
+              <label for="estatus_servicio">Estatus Servicio  <span class="text text-danger">*</span></label>
+            <select name="estatus_servicio" id="estatus_servicio" class="form-control" style="width: 50%;">
+              <option value="OK" >OK</option>
+              <option value="XL" >XL</option>
+              <option value="RQ" >RQ</option>
+              <option value="NC" >NC</option>
+              <option value="RJ" >RJ</option>
+              <option value="PP" >PP</option>
+              <option value="PR" >PR</option>
+              <option value="XL" >XL con cargo</option>
+              <option value="Error" >Error al cancelar</option>
+            </select> 
+            </div>
 
 
             <div class="form-group">

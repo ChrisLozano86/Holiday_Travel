@@ -13,6 +13,7 @@ class Reserva
     private $broker;
     private $clave;
     private $descripcion;
+    private $hotel;
     private $destino;
     private $fecha_inicio;
     private $precio;
@@ -31,7 +32,7 @@ class Reserva
     const TABLA = 'reservaciones';
 
     public function __construct($idAgencia = null, $precio_neto = null, $titular = null, $fecha_reservacion = null, $broker = null,
-     $clave = null, $descripcion = null, $destino=null, $fecha_inicio = null, $precio = null, $moneda = null, $estatus_servicio = null,
+     $clave = null, $descripcion = null, $hotel=null, $destino=null, $fecha_inicio = null, $precio = null, $moneda = null, $estatus_servicio = null,
      $pago_operadora = null, $pago_agencia = null, $fecha_limite = null, $fecha_notificacion = null, $estatus_notificacion = null, $estatus_reserva=null, $saldo_restante=null, $saldo_restanteO=null, $idReserva = null)
     {
         
@@ -42,6 +43,7 @@ class Reserva
         $this->broker = $broker;
         $this->clave = $clave;
         $this->descripcion = $descripcion;
+        $this->hotel = $hotel;
         $this->destino = $destino;
         $this->fecha_inicio = $fecha_inicio;
         $this->precio = $precio;
@@ -103,10 +105,17 @@ class Reserva
         return $this->descripcion;
     }
 
+    public function getHotel()
+    {
+        return $this->hotel;
+    }
+
     public function getDestino()
     {
         return $this->destino;
     }
+
+   
 
     public function getFechaInicio()
     {
@@ -206,10 +215,16 @@ class Reserva
         $this->descripcion = $descripcion;
     }
 
+    public function setHotel($hotel)
+    {
+        $this->hotel = $hotel;
+    }
+
     public function setDestino($destino)
     {
         $this->destino = $destino;
     }
+
 
     public function setFechaInicio($fecha_inicio)
     {
@@ -279,7 +294,7 @@ class Reserva
         $conexion = new Conexion();
         if ($this->idReserva) /* Modifica */ {
             $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET idAgencia = :idAgencia,  precio_neto = :precio_neto, titular = :titular, fecha_reservacion = :fecha_reservacion,
-             broker=:broker, clave = :clave, descripcion = :descripcion, destino=:destino, fecha_inicio = :fecha_inicio, precio = :precio, moneda = :moneda, estatus_servicio = :estatus_servicio, pago_operadora = :pago_operadora, 
+             broker=:broker, clave = :clave, descripcion = :descripcion, hotel = :hotel, destino=:destino, fecha_inicio = :fecha_inicio, precio = :precio, moneda = :moneda, estatus_servicio = :estatus_servicio, pago_operadora = :pago_operadora, 
              pago_agencia = :pago_agencia, fecha_limite = :fecha_limite, fecha_notificacion = :fecha_notificacion, estatus_notificacion = :estatus_notificacion, estatus_reserva = :estatus_reserva, saldo_restante = :saldo_restante, saldo_restanteO = :saldo_restanteO WHERE idReserva = :idReserva');
             $consulta->bindParam(':idReserva', $this->idReserva);
             $consulta->bindParam(':idAgencia', $this->idAgencia);
@@ -289,6 +304,7 @@ class Reserva
             $consulta->bindParam(':broker', $this->broker);
             $consulta->bindParam(':clave', $this->clave);
             $consulta->bindParam(':descripcion', $this->descripcion);
+            $consulta->bindParam(':hotel', $this->hotel);
             $consulta->bindParam(':destino', $this->destino);
             $consulta->bindParam(':fecha_inicio', $this->fecha_inicio);
             $consulta->bindParam(':precio', $this->precio);
@@ -305,8 +321,8 @@ class Reserva
 
             $consulta->execute();
         } else /* Inserta */ {
-            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (idAgencia, precio_neto, titular, fecha_reservacion, broker, clave, descripcion, destino, fecha_inicio, precio, moneda, estatus_servicio, pago_operadora, pago_agencia, fecha_limite, fecha_notificacion, estatus_notificacion, estatus_reserva, saldo_restante, saldo_restanteO)
-             VALUES (:idAgencia, :precio_neto, :titular, :fecha_reservacion, :broker, :clave, :descripcion, :destino, :fecha_inicio, :precio, :moneda, :estatus_servicio, :pago_operadora, :pago_agencia, :fecha_limite, :fecha_notificacion, :estatus_notificacion, :estatus_reserva, :saldo_restante, :saldo_restanteO)');
+            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (idAgencia, precio_neto, titular, fecha_reservacion, broker, clave, descripcion, hotel, destino, fecha_inicio, precio, moneda, estatus_servicio, pago_operadora, pago_agencia, fecha_limite, fecha_notificacion, estatus_notificacion, estatus_reserva, saldo_restante, saldo_restanteO)
+             VALUES (:idAgencia, :precio_neto, :titular, :fecha_reservacion, :broker, :clave, :descripcion, :hotel, :destino, :fecha_inicio, :precio, :moneda, :estatus_servicio, :pago_operadora, :pago_agencia, :fecha_limite, :fecha_notificacion, :estatus_notificacion, :estatus_reserva, :saldo_restante, :saldo_restanteO)');
             $consulta->bindParam(':idAgencia', $this->idAgencia);
             $consulta->bindParam(':precio_neto', $this->precio_neto);
             $consulta->bindParam(':titular', $this->titular);
@@ -314,6 +330,7 @@ class Reserva
             $consulta->bindParam(':broker', $this->broker);
             $consulta->bindParam(':clave', $this->clave);
             $consulta->bindParam(':descripcion', $this->descripcion);
+            $consulta->bindParam(':hotel', $this->hotel);
             $consulta->bindParam(':destino', $this->destino);
             $consulta->bindParam(':fecha_inicio', $this->fecha_inicio);
             $consulta->bindParam(':precio', $this->precio);
@@ -359,7 +376,7 @@ class Reserva
         //var_dump($registro);
         $conexion = null;
         if ($registro) {
-            return new self($registro['idAgencia'], $registro['precio_neto'], $registro['titular'], $registro['fecha_reservacion'], $registro['broker'], $registro['clave'], $registro['descripcion'], $registro['destino'], $registro['fecha_inicio'], $registro['precio'], $registro['moneda'], $registro['estatus_servicio'], $registro['pago_operadora'], $registro['pago_agencia'], $registro['fecha_limite'], $registro['fecha_notificacion'], $registro['estatus_notificacion'], $registro['estatus_reserva'], $registro['saldo_restante'], $registro['saldo_restanteO'], $idReserva);
+            return new self($registro['idAgencia'], $registro['precio_neto'], $registro['titular'], $registro['fecha_reservacion'], $registro['broker'], $registro['clave'], $registro['descripcion'], $registro['hotel'], $registro['destino'], $registro['fecha_inicio'], $registro['precio'], $registro['moneda'], $registro['estatus_servicio'], $registro['pago_operadora'], $registro['pago_agencia'], $registro['fecha_limite'], $registro['fecha_notificacion'], $registro['estatus_notificacion'], $registro['estatus_reserva'], $registro['saldo_restante'], $registro['saldo_restanteO'], $idReserva);
         } else {
             return false;
         }
@@ -368,7 +385,7 @@ class Reserva
     public static function recuperarTodos()
     {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT r.idReserva, r.titular, r.broker, r.fecha_reservacion, r.clave, r.destino, r.descripcion, r.destino, r.fecha_inicio, r.precio, r.moneda, r.estatus_servicio, r.pago_operadora, r.pago_agencia, r.fecha_limite, r.fecha_notificacion, r.estatus_reserva, r.saldo_restante, r.saldo_restanteO, a.nombre_comercial FROM reservaciones r JOIN agencias a ON r.idAgencia = a.idAgencia ORDER BY idReserva DESC');
+        $consulta = $conexion->prepare('SELECT r.idReserva, r.titular, r.broker, r.fecha_reservacion, r.clave, r.descripcion, r.hotel, r.destino, r.fecha_inicio, r.precio, r.moneda, r.estatus_servicio, r.pago_operadora, r.pago_agencia, r.fecha_limite, r.fecha_notificacion, r.estatus_reserva, r.saldo_restante, r.saldo_restanteO, a.nombre_comercial FROM reservaciones r JOIN agencias a ON r.idAgencia = a.idAgencia ORDER BY idReserva DESC');
         $consulta->execute();
         $registros = $consulta->fetchAll();
         $conexion = null;
@@ -385,6 +402,18 @@ class Reserva
         $conexion = null;
         return $registros;
     }
+
+
+  /*   public static function recuperarHabitacionesReserva($idReserva)
+    {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT r.idReserva, r.fecha_limite, r.fecha_notificacion, r.pago_operadora, r.pago_agencia, r.estatus_reserva, a.nombre_comercial FROM reservaciones r JOIN agencias a ON r.idAgencia = a.idAgencia WHERE NOW() > r.fecha_notificacion AND (r.pago_operadora = "No Pagado" OR r.pago_agencia = "No Pagado") AND r.estatus_reserva = "Activa" ORDER BY r.idReserva ASC');
+        $consulta->bindParam(':idReserva', $idReserva);
+        $consulta->execute();
+        $registros = $consulta->fetchAll();
+        $conexion = null;
+        return $registros;
+    } */
 
 
     public static function buscarNombreAgencia($idReserva)
