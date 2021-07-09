@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2021 a las 03:02:25
+-- Tiempo de generación: 09-07-2021 a las 04:03:59
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -116,14 +116,13 @@ CREATE TABLE `promociones` (
 CREATE TABLE `reservaciones` (
   `idReserva` int(11) NOT NULL,
   `idAgencia` int(11) NOT NULL,
-  `markup_operadora` int(11) DEFAULT NULL,
-  `comision_agencia` int(11) DEFAULT NULL,
   `precio_neto` decimal(10,2) DEFAULT NULL,
   `titular` varchar(200) NOT NULL,
   `fecha_reservacion` date NOT NULL,
   `broker` varchar(100) NOT NULL,
   `clave` varchar(50) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
+  `hotel` varchar(100) DEFAULT NULL,
   `destino` varchar(100) NOT NULL,
   `fecha_inicio` date NOT NULL,
   `precio` decimal(10,2) NOT NULL,
@@ -137,6 +136,20 @@ CREATE TABLE `reservaciones` (
   `estatus_reserva` enum('Activa','Cancelada') NOT NULL DEFAULT 'Activa',
   `saldo_restante` decimal(10,2) DEFAULT NULL,
   `saldo_restanteO` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reserva_habitaciones`
+--
+
+CREATE TABLE `reserva_habitaciones` (
+  `idHabitacion` int(11) NOT NULL,
+  `idReserva` int(11) NOT NULL,
+  `tipo_habitacion` varchar(100) NOT NULL,
+  `suplemento` varchar(100) NOT NULL,
+  `plan_alimento` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -235,6 +248,13 @@ ALTER TABLE `reservaciones`
   ADD KEY `id_agencia` (`idAgencia`);
 
 --
+-- Indices de la tabla `reserva_habitaciones`
+--
+ALTER TABLE `reserva_habitaciones`
+  ADD PRIMARY KEY (`idHabitacion`),
+  ADD KEY `id_reserva` (`idReserva`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -283,6 +303,12 @@ ALTER TABLE `reservaciones`
   MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `reserva_habitaciones`
+--
+ALTER TABLE `reserva_habitaciones`
+  MODIFY `idHabitacion` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -315,6 +341,12 @@ ALTER TABLE `pago_reservaciones`
 --
 ALTER TABLE `reservaciones`
   ADD CONSTRAINT `id_agencia` FOREIGN KEY (`idAgencia`) REFERENCES `agencias` (`idAgencia`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reserva_habitaciones`
+--
+ALTER TABLE `reserva_habitaciones`
+  ADD CONSTRAINT `id_reserva` FOREIGN KEY (`idReserva`) REFERENCES `reservaciones` (`idReserva`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
