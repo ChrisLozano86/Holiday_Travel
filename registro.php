@@ -297,23 +297,23 @@ include_once('lib/registrar_agencia.php');
                     </div>
 
                     <div class="form-group">
-                        <label for="rnt">¿Cuenta con RNT? <span class="text text-danger">*</span></label>
-                        <select id="rnt" name="rnt" class="form-control w-100 mb-3" onchange="showInp()" required>
-                            <option value=''>Selecciona una opción</option>
-                            <option value='Si'>Si</option>
-                            <option value='No'>No</option>
-                            <option value='En trámite'>En trámite</option>
-                            
+                                            <label for="logo">¿Cuenta con Registro Nacional de Turismo(RNT)?  <span class="text text-danger">*</span></label>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="rnt"  value="No" onclick="showInp(this)" checked >No
+                                                </label>
+                                                <label class="form-check-label" style="margin-left: 50px;">
+                                                    <input type="radio" class="form-check-input" name="rnt"  value="Si"  onclick="showInp(this)" >Si
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="registro_rnt" id="registro_rnt"  style="display: none" placeholder="Introduzca su número de registro" value="">
+                                        </div>
+                                        <br>
 
-                        </select>
-
-                    </div>
-                    <br>
-
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="registro_rnt" id="registro_rnt"  style="display: none" placeholder="Introduzca su número de registro" value="">
-                    </div>
-                    <br>
+                   
 
                     <h4 class="section-form">Configuraciones del sitio web</h4>
 
@@ -424,25 +424,23 @@ include_once('lib/registrar_agencia.php');
                     </form>
 
                     
+                    <script>
+                                        function showInp(){
+                                       
+                                        let radio = $('input[name="rnt"]:checked').val()
+                                        
+                                        if(radio=="Si"){
+                                            document.getElementById("registro_rnt").style.display = "inline-block";
+                                        }
 
-                        <script>
-                        function showInp(){
-                        getSelectValue = document.getElementById("rnt").value;
-                        if(getSelectValue=="Si"){
-                            document.getElementById("registro_rnt").style.display = "inline-block";
-                        }
+                                        if(radio=="No"){
+                                            document.getElementById("registro_rnt").style.display = "none";
+                                        }
 
-                        if(getSelectValue=="No"){
-                            document.getElementById("registro_rnt").style.display = "none";
-                        }
-
-                        if(getSelectValue=="En trámite"){
-                            document.getElementById("registro_rnt").style.display = "none";
-                        }
-
-                        }
-
-                        </script>
+                                    
+                                    }
+                                    
+                                    </script>
 
                          </div>
                     </div>

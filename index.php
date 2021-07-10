@@ -621,7 +621,7 @@ include_once('lib/registrar_agencia.php');
                                             <input class="form-control w-50 mt-3" type="text" name="tel3" id="tel3" value="" placeholder="Número Telefónico 3">
                                         </div>
 
-                                        <div class="form-group">
+                                      <!--   <div class="form-group">
                                             <label for="rnt">¿Cuenta con RNT? <span class="text text-danger">*</span></label>
                                             <select id="rnt" name="rnt" class="form-control w-100 mb-3" onchange="showInp()" required>
                                                 <option value=''>Selecciona una opción</option>
@@ -632,9 +632,20 @@ include_once('lib/registrar_agencia.php');
  
                                             </select>
 
-                                        </div>
-                                        <br>
+                                        </div> -->
 
+                                        <div class="form-group">
+                                            <label for="logo">¿Cuenta con Registro Nacional de Turismo(RNT)?  <span class="text text-danger">*</span></label>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="rnt" value="No" onclick="showInp(this)" checked >No
+                                                </label>
+                                                <label class="form-check-label" style="margin-left: 50px;">
+                                                    <input type="radio" class="form-check-input" name="rnt" value="Si" onclick="showInp(this)" >Si
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="form-group">
                                             <input class="form-control" type="text" name="registro_rnt" id="registro_rnt"  style="display: none" placeholder="Introduzca su número de registro" value="">
                                         </div>
@@ -750,18 +761,20 @@ include_once('lib/registrar_agencia.php');
 
                                     <script>
                                         function showInp(){
-                                        getSelectValue = document.getElementById("rnt").value;
-                                        if(getSelectValue=="Si"){
+                                        //getSelectValue = document.getElementsByClassName("rnt").value;
+                                        let radio = $('input[name="rnt"]:checked').val()
+                                        
+                                        if(radio=="Si"){
                                             document.getElementById("registro_rnt").style.display = "inline-block";
                                         }
 
-                                        if(getSelectValue=="No"){
+                                        if(radio=="No"){
                                             document.getElementById("registro_rnt").style.display = "none";
                                         }
 
-                                        if(getSelectValue=="En trámite"){
+                                       /*  if(getSelectValue=="En trámite"){
                                             document.getElementById("registro_rnt").style.display = "none";
-                                        }
+                                        } */
 
                                     }
                                     
