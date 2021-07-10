@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-07-2021 a las 18:04:38
+-- Tiempo de generación: 11-07-2021 a las 01:18:49
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -213,9 +213,11 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `email`, `password`, `estatus`, `token`, `idRol`) VALUES
 (1, 'Soporte', 'Holiday Travel', 'soporte@htop.com.mx', '9b412514e83ca55cabf81b68fd0b2a83', 'Activo', '9b412514e83ca55cabf81b68fd0b2a83', 1),
 (2, 'Sinuhe', 'Chacón', 'sinuhe.chacon@htop.com.mx', '824ff5c24e2077f10b1f95893a576150', 'Activo', '824ff5c24e2077f10b1f95893a576150', 2),
-(4, 'Edmundo', 'Sanchez', 'edmundo.sanchez@htop.com.mx', 'fda1d9125ffc6512c974638cf9a5bc6b', 'Activo', 'fda1d9125ffc6512c974638cf9a5bc6b', 2),
+(4, 'Edmundo', 'Sanchez', 'edmundo.sanchez@htop.com.mx', 'fda1d9125ffc6512c974638cf9a5bc6b', 'Activo', 'fda1d9125ffc6512c974638cf9a5bc6b', 3),
 (5, 'Luis Fernando', 'Hernández', 'luis.hernandez@htop.com.mx', '16adcd1b84c8cff504a243ffa6c94282', 'Activo', '16adcd1b84c8cff504a243ffa6c94282', 3),
-(6, 'Dummy', 'Daa', 'a@a.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Activo', 'd10ca8d11301c2f4993ac2279ce4b930', 3);
+(7, 'Idalmi', 'Valdez González', 'agencias@holidaytravel.com.mx', '9b412514e83ca55cabf81b68fd0b2a83', 'Activo', '9b412514e83ca55cabf81b68fd0b2a83', 3),
+(8, 'Deyanira Gabriela', 'Chacón Hernández', 'contabilidad@holidaytravel.com.mx', '45e54a546f33f234c7d62360bea68707\r\n', 'Activo', '45e54a546f33f234c7d62360bea68707\r\n', 3),
+(9, 'Roberto', 'Vazquez', 'roberto.vazquez@htop.com.mx', '9b412514e83ca55cabf81b68fd0b2a83', 'Activo', '9b412514e83ca55cabf81b68fd0b2a83', 3);
 
 --
 -- Disparadores `usuarios`
@@ -334,7 +336,7 @@ ALTER TABLE `slider`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
