@@ -456,7 +456,7 @@ include_once('lib/registrar_agencia.php');
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h3 class="modal-title" id="exampleModalLabel" class="text-center" style="font-size: calc(1.0em + 1vw);">Registrar Nueva Agencia</h3>
+                                    <h3 class="modal-title" id="exampleModalLabel" class="text-center" style="font-size: calc(1.0em + 1vw);">Registre su agencia</h3>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
