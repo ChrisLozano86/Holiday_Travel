@@ -186,6 +186,38 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                   <p>Reservaciones</p>
                 </a>
               </li>
+              <li class="nav-item">
+                  <a href="#" class="nav-link">
+                  <i class="fas fa-suitcase"></i>
+
+                    <p>Habitaciones y Alimentos
+                    <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+
+                  <li class="nav-item">
+                <a href="../bedrooms_categories/index.php" class="nav-link">
+                <i class="fas fa-bed ml-4"></i>
+                  <p>Tipos de Habitación</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="../supplements/index.php" class="nav-link">
+                <i class="fas fa-umbrella-beach ml-4"></i>
+                  <p>Suplementos</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="../food_plans/index.php" class="nav-link">
+                <i class="fas fa-utensils ml-4"></i>
+                  <p>Plan de Alimentos</p>
+                </a>
+              </li>
+                  </ul>
+                </li>
               <?php if($_SESSION['idRol']==1 OR $_SESSION['idRol']==2 OR $_SESSION['idRol']==4){ ?>
               <li class="nav-item">
                 <a href="../slider/index.php" class="nav-link">
@@ -322,7 +354,18 @@ foreach ($reservaciones as $item):
 <td><?php echo $item['destino']; ?></td>
 <td class="text-center">
 <a href="../bedrooms/index.php?idReserva=<?php echo $item[0];?>" class="btn btn-custom"> <i class="fas fa-pencil-alt"></i></i> </a>
+<?php 
+if(count($habitaciones)>0){
+?>
 <a href="#" data-toggle="modal" data-target="#modalHabitacion<?php echo $item[0];?>" class="btn btn-custom" ><i class="fas fa-eye"></i> </a>
+<?php
+ }else{
+?>
+<a href="#" data-toggle="modal" data-target="#modalHabitacion<?php echo $item[0];?>" class="btn btn-secondary" ><i class="fas fa-eye"></i> </a>
+<?php
+ }
+?>
+
 </td>
 <td  class="text-center"><a href="#" data-toggle="modal" data-target="#modalObservacion<?php echo $item[0];?>" class="btn btn-custom" ><i class="fas fa-comment"></i> </a></td>
 <td><?php $date= date_create($item['fecha_inicio']); echo date_format($date,"d-m-Y"); ?></td>
@@ -465,9 +508,9 @@ foreach($habitaciones as $habitacion){
 ?>
 <div class="row text-center" style=" border-bottom:1px solid black;">
  <div class="col"><?php echo $num_habitacion ?></div>
-  <div class="col"><?php echo $habitacion['tipo_habitacion'] ?></div>
+  <div class="col"><?php echo $habitacion['tipo'] ?></div>
   <div class="col"> <?php echo $habitacion['suplemento'] ?>o</div>
-  <div class="col"><?php echo $habitacion['plan_alimento'] ?></div>
+  <div class="col"><?php echo $habitacion['plan'] ?></div>
 </div>
 <?php
 }

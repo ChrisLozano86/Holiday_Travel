@@ -1,7 +1,16 @@
 <?php
 include_once '../../class/Habitacion.php';
+include_once '../../class/TipoHabitacion.php';
+include_once '../../class/Suplemento.php';
+include_once '../../class/PlanAlimento.php';
+
 $idHabitacion = (isset($_REQUEST['idHabitacion'])) ? $_REQUEST['idHabitacion'] : null;
 $idReserva= (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
+
+
+$tipo_habitaciones = TipoHabitacion::recuperarTodos();
+$suplementos = Suplemento::recuperarTodos();
+$planes_alimento = PlanAlimento::recuperarTodos();
     
     if($idHabitacion){        
         $habitacion = Habitacion::buscarPorId($idHabitacion);        
@@ -13,9 +22,9 @@ $idReserva= (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $habitacion->setIdReserva($_POST['idReserva']);
-        $habitacion->setTipoHabitacion($_POST['tipo_habitacion']);
-        $habitacion->setSuplemento($_POST['suplemento']);
-        $habitacion->setPlanAlimento($_POST['plan_alimento']);  
+        $habitacion->setIdTipoHabitacion($_POST['tipo_habitacion']);
+        $habitacion->setIdSuplemento($_POST['suplemento']);
+        $habitacion->setIdPlanAlimento($_POST['plan_alimento']);  
         if($habitacion->guardar()){
             header("Location: index.php?idReserva=$idReserva");   
         }
@@ -49,7 +58,7 @@ $idReserva= (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             <form action="save.php" method="post">
 
             <div class="form-group">
-            <input class="form-control" type="hidden" name="idHabitacion" id="idReserva" value="<?php echo $idHabitacion; ?>">
+            <input class="form-control" type="hidden" name="idHabitacion" id="idHabitacion" value="<?php echo $idHabitacion; ?>">
             </div>
 
             <div class="form-group">
@@ -60,11 +69,14 @@ $idReserva= (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             <label for="nombre">Tipo de habitación</label>
             <select name="tipo_habitacion" id="tipo_habitacion" class="form-control" style="width: 50%;">
       <option value="">Selecciona un tipo de habitación</option>
-      <option <?php if($habitacion->getTipoHabitacion()=='Sencilla') { echo 'selected';} ?> value="Sencilla">Sencilla</option>
-      <option <?php if($habitacion->getTipoHabitacion()=='Doble') { echo 'selected';} ?> value="Doble">Doble</option>
-      <option <?php if($habitacion->getTipoHabitacion()=='Triple') { echo 'selected';} ?> value="Triple">Triple</option>
-      <option <?php if($habitacion->getTipoHabitacion()=='Cuatruple') { echo 'selected';} ?> value="Cuatruple">Cuatruple</option>
-      <option <?php if($habitacion->getTipoHabitacion()=='Familiar') { echo 'selected';} ?> value="Familiar">Familiar</option>
+     <?php
+      foreach($tipo_habitaciones as $th){
+     ?>
+        <option <?php if($habitacion->getIdTipoHabitacion()==$th[0]){ echo 'selected'; }   ?>     value="<?php echo $th[0]; ?>"> <?php echo $th[1]; ?></option>
+
+        <?php
+        }
+        ?>
     </select>
             </div>
           
@@ -73,12 +85,14 @@ $idReserva= (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             <label for="nombre">Suplemento</label>
             <select name="suplemento" id="suplemento" class="form-control" style="width: 50%;">
       <option value="">Selecciona un suplemento</option>
-      <option <?php if($habitacion->getSuplemento()=='Estándar') { echo 'selected';} ?>  value="Estándar">Estándar</option>
-      <option <?php if($habitacion->getSuplemento()=='Vista al mar') { echo 'selected';} ?> value="Vista al mar">Vista al mar</option>
-      <option <?php if($habitacion->getSuplemento()=='Vista al jardín') { echo 'selected';} ?> value="Vista al jardín">Vista al jardín</option>
-      <option <?php if($habitacion->getSuplemento()=='Vista a la piscina') { echo 'selected';} ?> value="Vista a la piscina">Vista a la piscina</option>
-      <option <?php if($habitacion->getSuplemento()=='Vista a la montaña') { echo 'selected';} ?> value="Vista a la montaña">Vista a la montaña</option>
-      <option <?php if($habitacion->getSuplemento()=='Superior') { echo 'selected';} ?> value="Superior">Superior</option>
+      <?php
+      foreach($suplementos as $s){
+     ?>
+        <option <?php if($habitacion->getIdSuplemento()==$s[0]){ echo 'selected'; }   ?>     value="<?php echo $s[0]; ?>"> <?php echo $s[1]; ?></option>
+
+        <?php
+        }
+        ?>
        
                                                   
     </select>
@@ -88,13 +102,14 @@ $idReserva= (isset($_REQUEST['idReserva'])) ? $_REQUEST['idReserva'] : null;
             <label for="nombre">Plan de alimento</label>
             <select name="plan_alimento" id="plan_alimento" class="form-control" style="width: 50%;">
             <option value="">Selecciona un plan de alimento</option>
-            <option  <?php if($habitacion->getPlanAlimento()=='Sin Alimentos') { echo 'selected';} ?> value="Sin Alimentos">Sin Alimentos(Europeo)</option>
-            <option  <?php if($habitacion->getPlanAlimento()=='Desayuno Americano') { echo 'selected';} ?> value="Desayuno Americano">Desayuno Americano</option>
-            <option  <?php if($habitacion->getPlanAlimento()=='Desayuno Continental') { echo 'selected';} ?> value="Desayuno Continental">Desayuno Continental</option>
-            <option  <?php if($habitacion->getPlanAlimento()=='Desayuno Buffete') { echo 'selected';} ?> value="Desayuno Buffete">Desayuno Buffete</option>
-            <option  <?php if($habitacion->getPlanAlimento()=='Bebidas Incluidas') { echo 'selected';} ?> value="Bebidas incluidas">Bebidas incluidas</option>
-            <option  <?php if($habitacion->getPlanAlimento()=='Desayuno, comida, cena') { echo 'selected';} ?> value="Desayuno, comida, cena">Desayuno, comida, cena</option>
-            <option  <?php if($habitacion->getPlanAlimento()=='Todo incluido') { echo 'selected';} ?> value="Todo incluido">Todo incluido</option>
+            <?php
+      foreach($planes_alimento as $pa){
+     ?>
+        <option <?php if($habitacion->getIdPlanAlimento()==$pa[0]){ echo 'selected'; }   ?>     value="<?php echo $pa[0]; ?>"> <?php echo $pa[1]; ?></option>
+
+        <?php
+        }
+        ?>
        
                                                   
     </select>

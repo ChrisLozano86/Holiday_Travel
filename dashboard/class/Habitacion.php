@@ -6,20 +6,20 @@ class Habitacion {
 
     private $idHabitacion;
     private $idReserva;
-    private $tipo_habitacion;
-    private $suplemento;
-    private $plan_alimento;
+    private $idTipoHabitacion;
+    private $idSuplemento;
+    private $idPlanAlimento;
 
     
 
     const TABLA = 'reserva_habitaciones';
     
-    public function __construct($idReserva=null, $tipo_habitacion=null, $suplemento=null, $plan_alimento=null, $idHabitacion=null) {
+    public function __construct($idReserva=null, $idTipoHabitacion=null, $idSuplemento=null, $idPlanAlimento=null, $idHabitacion=null) {
         
         $this->idReserva = $idReserva;
-        $this->tipo_habitacion = $tipo_habitacion;
-        $this->suplemento = $suplemento;
-        $this->plan_alimento = $plan_alimento;
+        $this->idTipoHabitacion = $idTipoHabitacion;
+        $this->idSuplemento = $idSuplemento;
+        $this->idPlanAlimento = $idPlanAlimento;
         $this->idHabitacion = $idHabitacion;
       
        
@@ -33,16 +33,16 @@ class Habitacion {
         return $this->idReserva;
     }
 
-    public function getTipoHabitacion() {
-        return $this->tipo_habitacion;
+    public function getIdTipoHabitacion() {
+        return $this->idTipoHabitacion;
     }
 
-    public function getSuplemento() {
-        return $this->suplemento;
+    public function getIdSuplemento() {
+        return $this->idSuplemento;
     }
 
-    public function getPlanAlimento() {
-        return $this->plan_alimento;
+    public function getIdPlanAlimento() {
+        return $this->idPlanAlimento;
     }
 
 
@@ -53,16 +53,16 @@ class Habitacion {
         $this->idReserva = $idReserva;
     }
 
-    public function setTipoHabitacion($tipo_habitacion) {
-        $this->tipo_habitacion = $tipo_habitacion;
+    public function setIdTipoHabitacion($idTipoHabitacion) {
+        $this->idTipoHabitacion = $idTipoHabitacion;
     }
 
-    public function setSuplemento($suplemento) {
-        $this->suplemento = $suplemento;
+    public function setIdSuplemento($idSuplemento) {
+        $this->idSuplemento = $idSuplemento;
     }
 
-    public function setPlanAlimento($plan_alimento) {
-        $this->plan_alimento = $plan_alimento;
+    public function setIdPlanAlimento($idPlanAlimento) {
+        $this->idPlanAlimento = $idPlanAlimento;
     }
 
     
@@ -70,12 +70,12 @@ class Habitacion {
     public function guardar() {
         $conexion = new Conexion();
         if ($this->idHabitacion) /* Modifica */ {
-            $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET idReserva = :idReserva, tipo_habitacion = :tipo_habitacion, suplemento = :suplemento, plan_alimento = :plan_alimento WHERE idHabitacion = :idHabitacion');
+            $consulta = $conexion->prepare('UPDATE ' . self::TABLA . ' SET idReserva = :idReserva, idTipoHabitacion = :idTipoHabitacion, idSuplemento = :idSuplemento, idPlanAlimento = :idPlanAlimento WHERE idHabitacion = :idHabitacion');
             $consulta->bindParam(':idHabitacion', $this->idHabitacion);
             $consulta->bindParam(':idReserva', $this->idReserva);
-            $consulta->bindParam(':tipo_habitacion', $this->tipo_habitacion);  
-            $consulta->bindParam(':suplemento', $this->suplemento);  
-            $consulta->bindParam(':plan_alimento', $this->plan_alimento);  
+            $consulta->bindParam(':idTipoHabitacion', $this->idTipoHabitacion);  
+            $consulta->bindParam(':idSuplemento', $this->idSuplemento);  
+            $consulta->bindParam(':idPlanAlimento', $this->idPlanAlimento);  
             if ($consulta->execute()) {
                 return true;
             } else {
@@ -83,11 +83,11 @@ class Habitacion {
             }
 
         } else /* Inserta */ {
-            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (idReserva, tipo_habitacion, suplemento, plan_alimento) VALUES (:idReserva, :tipo_habitacion, :suplemento, :plan_alimento)');
+            $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA . ' (idReserva, idTipoHabitacion, idSuplemento, idPlanAlimento) VALUES (:idReserva, :idTipoHabitacion, :idSuplemento, :idPlanAlimento)');
             $consulta->bindParam(':idReserva', $this->idReserva);
-            $consulta->bindParam(':tipo_habitacion', $this->tipo_habitacion);  
-            $consulta->bindParam(':suplemento', $this->suplemento);  
-            $consulta->bindParam(':plan_alimento', $this->plan_alimento);   
+            $consulta->bindParam(':idTipoHabitacion', $this->idTipoHabitacion);  
+            $consulta->bindParam(':idSuplemento', $this->idSuplemento);  
+            $consulta->bindParam(':idPlanAlimento', $this->idPlanAlimento);   
             if ($consulta->execute()) {
                 $this->idHabitacion= $conexion->lastInsertId();
                 return true;
@@ -112,14 +112,14 @@ class Habitacion {
     public static function buscarPorId($idHabitacion) {
    
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT  idHabitacion, idReserva, tipo_habitacion, suplemento, plan_alimento FROM ' . self::TABLA . ' WHERE idHabitacion = :idHabitacion');
+        $consulta = $conexion->prepare('SELECT  idHabitacion, idReserva, idTipoHabitacion, idSuplemento, idPlanAlimento FROM ' . self::TABLA . ' WHERE idHabitacion = :idHabitacion');
         $consulta->bindParam(':idHabitacion', $idHabitacion);
         $consulta->execute();
         $registro = $consulta->fetch();
         //var_dump($registro);
         $conexion = null;
         if ($registro) {
-            return new self($registro['idReserva'], $registro['tipo_habitacion'], $registro['suplemento'], $registro['plan_alimento'], $idHabitacion);
+            return new self($registro['idReserva'], $registro['idTipoHabitacion'], $registro['idSuplemento'], $registro['idPlanAlimento'], $idHabitacion);
             
         } else {
             return false;
@@ -129,7 +129,11 @@ class Habitacion {
 
     public static function recuperarTodos($idReserva) {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM '.self::TABLA.' WHERE idReserva = :idReserva');
+        $consulta = $conexion->prepare('SELECT h.idHabitacion, h.idReserva, th.tipo, sh.suplemento, pa.plan FROM reserva_habitaciones h
+                                        JOIN tipo_habitaciones th ON h.idTipoHabitacion = th.idTipoHabitacion 
+                                        JOIN suplemento_habitaciones sh ON h.idSuplemento = sh.idSuplementoHabitacion
+                                        JOIN plan_alimentos pa ON h.idPlanAlimento = pa.idPlanAlimento
+                                        WHERE h.idReserva = :idReserva');
         $consulta->bindParam(':idReserva', $idReserva);
         $consulta->execute();
         $registros = $consulta->fetchAll();

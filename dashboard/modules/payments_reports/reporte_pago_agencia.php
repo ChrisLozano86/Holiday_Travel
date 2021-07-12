@@ -118,9 +118,9 @@ th, td {
                     ?>
                     <tr>
                       <td><?php echo $num_habitacion;?></td>
-                      <td><?php echo $habitacion['tipo_habitacion'] ?></td>
+                      <td><?php echo $habitacion['tipo'] ?></td>
                       <td><?php echo $habitacion['suplemento'] ?></td>
-                      <td><?php echo $habitacion['plan_alimento'] ?></td>
+                      <td><?php echo $habitacion['plan'] ?></td>
                     </tr>
                       <?php
                          }
