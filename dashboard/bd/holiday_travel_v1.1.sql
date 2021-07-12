@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-07-2021 a las 01:18:49
+-- Tiempo de generación: 12-07-2021 a las 21:15:11
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -92,6 +92,18 @@ CREATE TABLE `pago_reservaciones` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `plan_alimentos`
+--
+
+CREATE TABLE `plan_alimentos` (
+  `idPlanAlimento` int(11) NOT NULL,
+  `plan` varchar(50) NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `promociones`
 --
 
@@ -147,9 +159,9 @@ CREATE TABLE `reservaciones` (
 CREATE TABLE `reserva_habitaciones` (
   `idHabitacion` int(11) NOT NULL,
   `idReserva` int(11) NOT NULL,
-  `tipo_habitacion` varchar(100) NOT NULL,
-  `suplemento` varchar(100) NOT NULL,
-  `plan_alimento` varchar(100) NOT NULL
+  `idTipoHabitacion` int(11) NOT NULL,
+  `idSuplemento` int(11) NOT NULL,
+  `idPlanAlimento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -188,6 +200,54 @@ CREATE TABLE `slider` (
   `fecha_publicacion` date NOT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `suplemento_habitaciones`
+--
+
+CREATE TABLE `suplemento_habitaciones` (
+  `idSuplementoHabitacion` int(11) NOT NULL,
+  `suplemento` varchar(50) NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `suplemento_habitaciones`
+--
+
+INSERT INTO `suplemento_habitaciones` (`idSuplementoHabitacion`, `suplemento`, `descripcion`) VALUES
+(1, 'Sin Alimentos(Europeo)', ''),
+(2, 'Desayuno Americano', NULL),
+(3, 'Desayuno Continental', NULL),
+(4, 'Desayuno Buffet', NULL),
+(5, 'Bebidas incluidas', NULL),
+(6, 'Desayuno, Comida y Cena', NULL),
+(8, 'Todo Incluido', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_habitaciones`
+--
+
+CREATE TABLE `tipo_habitaciones` (
+  `idTipoHabitacion` int(11) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `descripcion` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipo_habitaciones`
+--
+
+INSERT INTO `tipo_habitaciones` (`idTipoHabitacion`, `tipo`, `descripcion`) VALUES
+(1, 'Sencilla', ''),
+(2, 'Doble', NULL),
+(3, 'Triple', NULL),
+(4, 'Cuatruple', NULL),
+(6, 'Familiar', '');
 
 -- --------------------------------------------------------
 
@@ -247,6 +307,12 @@ ALTER TABLE `pago_reservaciones`
   ADD KEY `idPagoReserva` (`idReserva`);
 
 --
+-- Indices de la tabla `plan_alimentos`
+--
+ALTER TABLE `plan_alimentos`
+  ADD PRIMARY KEY (`idPlanAlimento`);
+
+--
 -- Indices de la tabla `promociones`
 --
 ALTER TABLE `promociones`
@@ -264,7 +330,10 @@ ALTER TABLE `reservaciones`
 --
 ALTER TABLE `reserva_habitaciones`
   ADD PRIMARY KEY (`idHabitacion`),
-  ADD KEY `id_reserva` (`idReserva`);
+  ADD KEY `id_reserva` (`idReserva`),
+  ADD KEY `id_tipo_habitacion` (`idTipoHabitacion`),
+  ADD KEY `id_suplemento` (`idSuplemento`),
+  ADD KEY `id_plan_alimento` (`idPlanAlimento`);
 
 --
 -- Indices de la tabla `roles`
@@ -277,6 +346,18 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `slider`
   ADD PRIMARY KEY (`idSlider`);
+
+--
+-- Indices de la tabla `suplemento_habitaciones`
+--
+ALTER TABLE `suplemento_habitaciones`
+  ADD PRIMARY KEY (`idSuplementoHabitacion`);
+
+--
+-- Indices de la tabla `tipo_habitaciones`
+--
+ALTER TABLE `tipo_habitaciones`
+  ADD PRIMARY KEY (`idTipoHabitacion`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -301,6 +382,12 @@ ALTER TABLE `agencias`
 --
 ALTER TABLE `pago_reservaciones`
   MODIFY `idPagoReserva` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `plan_alimentos`
+--
+ALTER TABLE `plan_alimentos`
+  MODIFY `idPlanAlimento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `promociones`
@@ -333,6 +420,18 @@ ALTER TABLE `slider`
   MODIFY `idSlider` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `suplemento_habitaciones`
+--
+ALTER TABLE `suplemento_habitaciones`
+  MODIFY `idSuplementoHabitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_habitaciones`
+--
+ALTER TABLE `tipo_habitaciones`
+  MODIFY `idTipoHabitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -358,7 +457,10 @@ ALTER TABLE `reservaciones`
 -- Filtros para la tabla `reserva_habitaciones`
 --
 ALTER TABLE `reserva_habitaciones`
-  ADD CONSTRAINT `id_reserva` FOREIGN KEY (`idReserva`) REFERENCES `reservaciones` (`idReserva`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `id_plan_alimento` FOREIGN KEY (`idPlanAlimento`) REFERENCES `plan_alimentos` (`idPlanAlimento`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_reserva` FOREIGN KEY (`idReserva`) REFERENCES `reservaciones` (`idReserva`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_suplemento` FOREIGN KEY (`idSuplemento`) REFERENCES `suplemento_habitaciones` (`idSuplementoHabitacion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_tipo_habitacion` FOREIGN KEY (`idTipoHabitacion`) REFERENCES `tipo_habitaciones` (`idTipoHabitacion`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
