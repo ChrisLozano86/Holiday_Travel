@@ -262,7 +262,9 @@ include_once '../../assets/template/header.php';
             </div>
 
             <div class="form-group">
-              <label for="registro_rnt">RNT</label>
+              <label for="registro_rnt">Registro Nacional de Turismo (RNT)</label>
+              <br>
+              <small class="text text-danger"> * Si la agencia no cuenta con RNT puede dejar este campo en blanco</small>
                 <input class="form-control" type="text" name="registro_rnt" id="registro_rnt"   placeholder="Introduzca su número de registro" value="<?php echo $agencia->getRNT(); ?>">
               </div>
 
@@ -286,7 +288,7 @@ include_once '../../assets/template/header.php';
 
             <div class="form-group">
             <label for="url_img1">Logo </label>
-            <br><small class="text text-danger"> Si cuenta con el logo de la empresa, puede subir la imagen con dimensiones de 180 x 180 píxeles en formato JPG o PNG</small>
+            <br><small class="text text-danger"> *Si cuenta con el logo de la empresa, puede subir la imagen con dimensiones de 180 x 180 píxeles en formato JPG o PNG</small>
             <?php    
             if(isset($_REQUEST['idAgencia'])){
               if($agencia->getLogo()!=""){

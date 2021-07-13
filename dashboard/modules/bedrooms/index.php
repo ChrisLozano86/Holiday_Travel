@@ -40,6 +40,7 @@ $nombre_agencia = Reserva::buscarNombreAgencia($_GET['idReserva']);
       <th scope="col">Tipo de habitación</th>
       <th scope="col">Suplemento</th>
       <th scope="col">Plan de alimentos</th>
+      <th scope="col">Precio</th>
       <th scope="col">Editar</th>
       <th scope="col">Eliminar</th>
 
@@ -57,6 +58,7 @@ $nombre_agencia = Reserva::buscarNombreAgencia($_GET['idReserva']);
      <td><?php echo $item['tipo'];?></td>
      <td><?php echo $item['suplemento'];?></td>
      <td><?php echo $item['plan'];?></td>
+     <td>$<?php echo $item['costo'];?></td>
      <td class="text-center"><a href="save.php?idHabitacion=<?php echo $item[0];?>&idReserva=<?php echo $item['idReserva'];?>" class="btn btn-warning far fa-edit"></a></td>
      <td class="text-center"><a href="delete.php?idHabitacion=<?php echo $item[0];?>&idReserva=<?php echo $item['idReserva'];?>" onclick="return confirm('¿Está seguro que desea eliminar esta habitación?')" class="btn btn-danger fas fa-trash-alt"></a></td> 
       

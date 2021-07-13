@@ -111,6 +111,7 @@ th, td {
                       <td>Tipo Habitación</td>
                       <td>Suplemento</td>
                       <td>Plan de alimento</td>
+                      <td>Precio</td>
                     </tr>
                     <?php 
                       foreach($habitaciones as $habitacion){
@@ -121,6 +122,7 @@ th, td {
                       <td><?php echo $habitacion['tipo'] ?></td>
                       <td><?php echo $habitacion['suplemento'] ?></td>
                       <td><?php echo $habitacion['plan'] ?></td>
+                      <td>$<?php echo $habitacion['costo'] ?></td>
                     </tr>
                       <?php
                          }

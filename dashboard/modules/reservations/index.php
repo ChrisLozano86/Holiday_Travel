@@ -500,17 +500,19 @@ if(count($habitaciones)>0){
   <div class="col">Tipo habitacion</div>
   <div class="col">Suplemento</div>
   <div class="col">Plan de alimentos</div>
+  <div class="col">Precio</div>
 </div>
 <?php
 $num_habitacion = 0;
 foreach($habitaciones as $habitacion){
   $num_habitacion ++;
 ?>
-<div class="row text-center" style=" border-bottom:1px solid black;">
+<div class="row" style=" border-bottom:1px solid black;">
  <div class="col"><?php echo $num_habitacion ?></div>
   <div class="col"><?php echo $habitacion['tipo'] ?></div>
   <div class="col"> <?php echo $habitacion['suplemento'] ?>o</div>
   <div class="col"><?php echo $habitacion['plan'] ?></div>
+  <div class="col">$<?php echo $habitacion['costo'] ?></div>
 </div>
 <?php
 }
@@ -542,7 +544,14 @@ foreach($habitaciones as $habitacion){
       <div class="modal-body">
 
       <?php 
+      if($item['descripcion']!= ''){
+
         echo '<p>'.$item['descripcion'].'</p>';
+
+      }else{
+        echo '<p class="text text-secondary"> No se tienen registradas observaciones de esta reservación</p>';
+      }
+        
       ?>
      
               

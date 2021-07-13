@@ -24,7 +24,8 @@ $planes_alimento = PlanAlimento::recuperarTodos();
         $habitacion->setIdReserva($_POST['idReserva']);
         $habitacion->setIdTipoHabitacion($_POST['tipo_habitacion']);
         $habitacion->setIdSuplemento($_POST['suplemento']);
-        $habitacion->setIdPlanAlimento($_POST['plan_alimento']);  
+        $habitacion->setIdPlanAlimento($_POST['plan_alimento']); 
+        $habitacion->setCosto($_POST['costo']);  
         if($habitacion->guardar()){
             header("Location: index.php?idReserva=$idReserva");   
         }
@@ -67,7 +68,7 @@ $planes_alimento = PlanAlimento::recuperarTodos();
 
             <div class="form-group">
             <label for="nombre">Tipo de habitación</label>
-            <select name="tipo_habitacion" id="tipo_habitacion" class="form-control" style="width: 50%;">
+            <select name="tipo_habitacion" id="tipo_habitacion" class="form-control" style="width: 50%;" required>
       <option value="">Selecciona un tipo de habitación</option>
      <?php
       foreach($tipo_habitaciones as $th){
@@ -83,7 +84,7 @@ $planes_alimento = PlanAlimento::recuperarTodos();
 
             <div class="form-group">
             <label for="nombre">Suplemento</label>
-            <select name="suplemento" id="suplemento" class="form-control" style="width: 50%;">
+            <select name="suplemento" id="suplemento" class="form-control" style="width: 50%;" required>
       <option value="">Selecciona un suplemento</option>
       <?php
       foreach($suplementos as $s){
@@ -100,7 +101,7 @@ $planes_alimento = PlanAlimento::recuperarTodos();
 
             <div class="form-group">
             <label for="nombre">Plan de alimento</label>
-            <select name="plan_alimento" id="plan_alimento" class="form-control" style="width: 50%;">
+            <select name="plan_alimento" id="plan_alimento" class="form-control" style="width: 50%;" required>
             <option value="">Selecciona un plan de alimento</option>
             <?php
       foreach($planes_alimento as $pa){
@@ -113,6 +114,11 @@ $planes_alimento = PlanAlimento::recuperarTodos();
        
                                                   
     </select>
+            </div>
+
+            <div class="form-group form-inline">
+              <span>$</span>
+            <input class="form-control" type="number"  min="0" name="costo" id="costo" style="width: 50%;" value="<?php echo $habitacion->getCosto(); ?>">
             </div>
 
             <div class="form-group">
