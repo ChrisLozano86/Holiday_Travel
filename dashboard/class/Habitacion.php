@@ -123,7 +123,7 @@ class Habitacion {
     public static function buscarPorId($idHabitacion) {
    
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT  idHabitacion, idReserva, idTipoHabitacion, idSuplemento, idPlanAlimento FROM ' . self::TABLA . ' WHERE idHabitacion = :idHabitacion');
+        $consulta = $conexion->prepare('SELECT  idHabitacion, idReserva, idTipoHabitacion, idSuplemento, idPlanAlimento, costo FROM ' . self::TABLA . ' WHERE idHabitacion = :idHabitacion');
         $consulta->bindParam(':idHabitacion', $idHabitacion);
         $consulta->execute();
         $registro = $consulta->fetch();

@@ -118,7 +118,7 @@ $planes_alimento = PlanAlimento::recuperarTodos();
 
             <div class="form-group form-inline">
               <span>$</span>
-            <input class="form-control" type="number"  min="0" name="costo" id="costo" style="width: 50%;" value="<?php echo $habitacion->getCosto(); ?>">
+            <input class="form-control" type="number"  min="0" name="costo" id="costo" style="width: 50%;" value="<?php echo $habitacion->getCosto(); ?>" required>
             </div>
 
             <div class="form-group">
