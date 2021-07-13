@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-07-2021 a las 21:15:11
+-- Tiempo de generación: 13-07-2021 a las 17:11:25
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -101,6 +101,18 @@ CREATE TABLE `plan_alimentos` (
   `descripcion` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `plan_alimentos`
+--
+
+INSERT INTO `plan_alimentos` (`idPlanAlimento`, `plan`, `descripcion`) VALUES
+(1, 'Estandar', NULL),
+(2, 'Vista al mar', NULL),
+(3, 'Vista al jardín', NULL),
+(4, 'Vista a la piscina', NULL),
+(5, 'Vista a la montaña', NULL),
+(7, 'Superior', '');
+
 -- --------------------------------------------------------
 
 --
@@ -161,7 +173,8 @@ CREATE TABLE `reserva_habitaciones` (
   `idReserva` int(11) NOT NULL,
   `idTipoHabitacion` int(11) NOT NULL,
   `idSuplemento` int(11) NOT NULL,
-  `idPlanAlimento` int(11) NOT NULL
+  `idPlanAlimento` int(11) NOT NULL,
+  `costo` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -387,7 +400,7 @@ ALTER TABLE `pago_reservaciones`
 -- AUTO_INCREMENT de la tabla `plan_alimentos`
 --
 ALTER TABLE `plan_alimentos`
-  MODIFY `idPlanAlimento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPlanAlimento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `promociones`
