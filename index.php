@@ -828,7 +828,7 @@ include_once('lib/registrar_agencia.php');
                                     <div class="logos mt-1">
                                        
                                         <a href="#"><img src="img/one.png" alt=""></a>
-                                       
+                                        <a href="#"><img src="img/safe.png" alt="" height="70px"></a>
                                         <a href="#"><img src="img/sectur.png" alt=""></a>
                                     </div>
                                 </li>
