@@ -807,11 +807,11 @@ include_once('lib/registrar_agencia.php');
                             </div>
                             <p>Visitanos en nuestras redes sociales</p>
                             <div class="fa-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                <a href="https://www.facebook.com/HOLIDAYTRAVELOPERADORA"><i class="fa fa-facebook"></i></a>
+                                <a href="https://twitter.com/HOLIDAYTRAVELOP"><i class="fa fa-twitter"></i></a>
+                                <!-- <a href="#"><i class="fa fa-tripadvisor"></i></a> -->
+                                <a href="https://www.instagram.com/holidaytraveloperadora"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.youtube.com/channel/UCoWymMXp-HY84Lm5Sr6cweA"><i class="fa fa-youtube-play"></i></a>
                             </div>
                         </div>
                     </div>
@@ -828,6 +828,7 @@ include_once('lib/registrar_agencia.php');
                                     <div class="logos mt-1">
                                        
                                         <a href="#"><img src="img/one.png" alt=""></a>
+                                        <a href="#"><img src="img/conaco.png" alt=""></a>
                                         <a href="#"><img src="img/safe.png" alt="" height="70px"></a>
                                         <a href="#"><img src="img/sectur.png" alt=""></a>
                                     </div>
