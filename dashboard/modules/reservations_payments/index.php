@@ -117,6 +117,7 @@ foreach($monto as $pago){
               <option value="Efectivo">Efectivo</option>
               <option value="Transferencia">Transferencia</option>
               <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+              <option value="Tarjeta de débito">Tarjeta de débito</option>
               <option value="Depósito Bancario">Depósito Bancario</option>
               <option value="Paypal">Paypal</option>
             </select> 

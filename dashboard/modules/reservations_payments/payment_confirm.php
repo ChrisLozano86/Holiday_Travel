@@ -36,7 +36,7 @@ if(isset($_GET['status_code'])){
     }
 
     if($_GET['status_code']==2){
-        $message="El pago de este reservación se cubierto en su totalidad.";
+        $message="El pago de este reservación fue cubierto en su totalidad.";
     }
 
     if($_GET['status_code']==3){
