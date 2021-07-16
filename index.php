@@ -815,7 +815,7 @@ include_once('lib/registrar_agencia.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 offset-lg-1">
+                    <div class="col-lg-5 offset-lg-1">
                         <div class="ft-contact">
                             <h6>Contáctanos</h6>
                             <ul>
@@ -827,10 +827,10 @@ include_once('lib/registrar_agencia.php');
                             <li>
                                     <div class="logos mt-1">
                                        
-                                        <a href="#"><img src="img/one.png" alt="" style="width: 50px; height: auto;"></a>
-                                        <a href="#"><img src="img/cocanaco.png" alt="" style="width: 50px; height: auto;"></a>
-                                        <a href="#"><img src="img/safe.png" alt="" style="width: 50px; height: auto;"></a>
-                                        <a href="#"><img src="img/sectur.png" alt="" style="width: 50px; height: auto;"></a>
+                                        <a href="#"><img src="img/one.png" alt="" ></a>
+                                        <a href="#"><img src="img/cocanaco.png" alt="" ></a>
+                                        <a href="#"><img src="img/safe.png" alt="" ></a>
+                                        <a href="#"><img src="img/sectur.png" alt=""></a>
                                     </div>
                                 </li>
                      
