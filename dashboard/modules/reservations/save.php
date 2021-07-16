@@ -226,7 +226,11 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
               <option value="Jumbo Tours" <?php if($reserva->getBroker()=='Jumbo Tours'){ echo 'selected';}?>>Jumbo Tours</option>
               <option value="Go Global" <?php if($reserva->getBroker()=='Go Global'){ echo 'selected';}?>>Go Global</option>
               <option value="Nuitee" <?php if($reserva->getBroker()=='Nuitee'){ echo 'selected';}?>>Nuitee</option>
-              <option value="Nuitee" <?php if($reserva->getBroker()=='Hotel'){ echo 'selected';}?>>Hotel</option>
+              <option value="Hotel" <?php if($reserva->getBroker()=='Hotel'){ echo 'selected';}?>>Hotel</option>
+              <option value="Kaluah" <?php if($reserva->getBroker()=='Kaluah'){ echo 'selected';}?>>Kaluah</option>
+              <option value="Taylor Beds" <?php if($reserva->getBroker()=='Taylor Beds'){ echo 'selected';}?>>Taylor Beds</option>
+              <option value="Posada Ixtapa" <?php if($reserva->getBroker()=='Posada Ixtapa'){ echo 'selected';}?>>Posada Ixtapa</option>
+              <option value="Friendly Vallarta" <?php if($reserva->getBroker()=='Friendly Vallarta'){ echo 'selected';}?>>Friendly Vallarta</option>
             </select> 
             </div>
 
