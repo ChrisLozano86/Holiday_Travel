@@ -229,7 +229,8 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
               <option value="Hotel" <?php if($reserva->getBroker()=='Hotel'){ echo 'selected';}?>>Hotel</option>
               <option value="Kaluah" <?php if($reserva->getBroker()=='Kaluah'){ echo 'selected';}?>>Kaluah</option>
               <option value="Taylor Beds" <?php if($reserva->getBroker()=='Taylor Beds'){ echo 'selected';}?>>Taylor Beds</option>
-              <option value="Posada Ixtapa" <?php if($reserva->getBroker()=='Posada Ixtapa'){ echo 'selected';}?>>Posada Ixtapa</option>
+              <option value="Fontan Ixtapa" <?php if($reserva->getBroker()=='Fontan Ixtapa'){ echo 'selected';}?>>Fontan Ixtapa</option>
+              <option value="Posada Real" <?php if($reserva->getBroker()=='Posada Real'){ echo 'selected';}?>>Posada Real</option>
               <option value="Friendly Vallarta" <?php if($reserva->getBroker()=='Friendly Vallarta'){ echo 'selected';}?>>Friendly Vallarta</option>
             </select> 
             </div>
