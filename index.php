@@ -807,11 +807,11 @@ include_once('lib/registrar_agencia.php');
                             </div>
                             <p>Visitanos en nuestras redes sociales</p>
                             <div class="fa-social">
-                                <a href="https://www.facebook.com/HOLIDAYTRAVELOPERADORA"><i class="fa fa-facebook"></i></a>
-                                <a href="https://twitter.com/HOLIDAYTRAVELOP"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/HOLIDAYTRAVELOPERADORA" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="https://twitter.com/HOLIDAYTRAVELOP" target="_blank"><i class="fa fa-twitter"></i></a>
                                 <!-- <a href="#"><i class="fa fa-tripadvisor"></i></a> -->
-                                <a href="https://www.instagram.com/holidaytraveloperadora"><i class="fa fa-instagram"></i></a>
-                                <a href="https://www.youtube.com/channel/UCoWymMXp-HY84Lm5Sr6cweA"><i class="fa fa-youtube-play"></i></a>
+                                <a href="https://www.instagram.com/holidaytraveloperadora" target="_blank"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.youtube.com/channel/UCoWymMXp-HY84Lm5Sr6cweA" target="_blank"><i class="fa fa-youtube-play"></i></a>
                             </div>
                         </div>
                     </div>
