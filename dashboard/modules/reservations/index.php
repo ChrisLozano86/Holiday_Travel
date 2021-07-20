@@ -94,7 +94,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           <?php  foreach($notifications as $item ): ?>
           <div class="dropdown-divider"></div>
           <a href="../reservations/save.php?idReserva=<?php echo $item[0] ?>" class="dropdown-item">
-         <small> <i class="fas fa-exclamation-triangle mr-2"></i> <?php echo $item['agencia'] ?></small>
+         <small> <i class="fas fa-exclamation-triangle mr-2"></i> <?php echo $item['nombre_comercial'] ?></small>
          <br>
           <small class=" text-muted"><?php $fecha = date_create($item['fecha_limite']); echo 'Fecha limite de pago: '. date_format($fecha, 'd-m-Y') ?></small>
           </a>
@@ -290,7 +290,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <th scope="col">Fecha Reservación</th>
 <th scope="col">Broker</th>
 <th scope="col">Clave</th>
-<th scope="col">Hotel</th>
+<th scope="col">Servicio</th>
+<th scope="col">Detalle del Servicio</th>
 <th scope="col">Destino</th>
 <th scope="col">Habitaciones</th>
 <th scope="col">Observaciones</th>
@@ -350,7 +351,8 @@ foreach ($reservaciones as $item):
 <td><?php $date= date_create($item['fecha_reservacion']); echo date_format($date,"d-m-Y"); ?></td>
 <td><?php echo $item['broker']?></td>
 <td><?php echo $item['clave']; ?></td>
-<td><?php echo $item['hotel']; ?></td>
+<td><?php echo $item['tipo_servicio']; ?></td>
+<td><?php echo $item['detalle_servicio']; ?></td>
 <td><?php echo $item['destino']; ?></td>
 <td class="text-center">
 <a href="../bedrooms/index.php?idReserva=<?php echo $item[0];?>" class="btn btn-custom"> <i class="fas fa-pencil-alt"></i></i> </a>

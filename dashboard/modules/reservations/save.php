@@ -30,7 +30,8 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
           $fecha_reservacion = (isset($_POST['fecha_reservacion'])) ? $_POST['fecha_reservacion'] : null;
           $broker = (isset($_REQUEST['broker'])) ? $_REQUEST['broker'] : null;
           $clave = (isset($_REQUEST['clave'])) ? $_REQUEST['clave'] : null;
-          $hotel = (isset($_REQUEST['hotel'])) ? $_REQUEST['hotel'] : null;
+          $tipo_servicio = (isset($_REQUEST['tipo_servicio'])) ? $_REQUEST['tipo_servicio'] : null;
+          $detalle_servicio = (isset($_REQUEST['detalle_servicio'])) ? $_REQUEST['detalle_servicio'] : null;
           $destino = (isset($_REQUEST['destino'])) ? $_REQUEST['destino'] : null;  
           $descripcion = (isset($_REQUEST['descripcion'])) ? $_REQUEST['descripcion'] : null;  
           $fecha_inicio = (isset($_REQUEST['fecha_inicio'])) ? $_REQUEST['fecha_inicio'] : null;
@@ -75,7 +76,8 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
           $reserva->setBroker($broker);
           $reserva->setClave($clave);
           $reserva->setDescripcion($descripcion);
-          $reserva->setHotel($hotel);
+          $reserva->setTipoServicio($tipo_servicio);
+          $reserva->setDetalleServicio($detalle_servicio);
           $reserva->setDestino($destino);
           $reserva->setFechaInicio($fecha_inicio);
           $reserva->setPrecio($precio);
@@ -242,9 +244,25 @@ $agenciasSC = Agencia::recuperarIdAgenciasSC();
             </div>
 
             <div class="form-group">
-            <label for="descripcion">Hotel  <span class="text text-danger">*</span> </label>
-            <input class="form-control" type="text" name="hotel" id="hotel" value="<?php echo $reserva->getHotel(); ?>" required>
+              <label for="tipo_servicio">Servicio <span class="text text-danger">*</span> </label>
+            <select name="tipo_servicio" id="tipo_servicio" class="form-control" style="width: 50%;" required>
+              <option value="">Selecciona un servicio </option>
+              <option value="Hotel"  <?php if($reserva->getTipoServicio()=='Hotel'){ echo 'selected';}?>>Hotel</option>
+              <option value="Vuelo" <?php if($reserva->getTipoServicio()=='Vuelo'){ echo 'selected';}?>>Vuelo</option>
+              <option value="Crucero" <?php if($reserva->getTipoServicio()=='Crucero'){ echo 'selected';}?>>Crucero</option>
+              <option value="Tour" <?php if($reserva->getTipoServicio()=='Tour'){ echo 'selected';}?>>Tour</option>
+              <option value="Circuito" <?php if($reserva->getTipoServicio()=='Circuito'){ echo 'selected';}?>>Circuito</option>
+              <option value="Renta de auto" <?php if($reserva->getTipoServicio()=='Renta de auto'){ echo 'selected';}?>>Renta de auto</option>
+              <option value="Traslado" <?php if($reserva->getTipoServicio()=='Traslado'){ echo 'selected';}?>>Traslado</option>
+              <option value="Paquete" <?php if($reserva->getTipoServicio()=='Paquete'){ echo 'selected';}?>>Paquete</option>
+              <option value="Seguro" <?php if($reserva->getTipoServicio()=='Seguro'){ echo 'selected';}?>>Seguro</option>
+            </select> 
             </div>
+
+            <div class="form-group">
+            <label for="contenido">Detalle del servicio</label>
+           <textarea class="form-control" name="detalle_servicio" id="detalle_servicio" rows="2" ><?php echo $reserva->getDetalleServicio(); ?></textarea>
+            </div>  
 
             <div class="form-group">
             <label for="descripcion">Destino  <span class="text text-danger">*</span> </label>

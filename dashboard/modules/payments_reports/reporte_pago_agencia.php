@@ -74,7 +74,7 @@ th, td {
                 <strong> Agencia: </strong> <?php echo $nombre_agencia['nombre_comercial']; ?>
                 </td>
                 <td style="width:50%; text-align: left; padding-left:30px;">
-				<strong>Folio: </strong> <?php echo $prefijo_folio.$reserva->getIdreserva();?>
+			        	<strong>Folio: </strong> <?php echo $prefijo_folio.$reserva->getIdreserva();?>
                 </td>
               </tr>
               <tr>
@@ -87,7 +87,10 @@ th, td {
 
               <tr>
               <td style="width:50%; text-align: left; padding-left:30px;">
-                <strong> Hotel: </strong> <?php echo $reserva->getHotel(); ?>
+                <strong> Servicio: </strong> <br> 
+                <?php echo $reserva->getTipoServicio(); ?>
+                <br>
+                <?php echo $reserva->getDetalleServicio(); ?>
                 </td>
                 </td>
                 <td style="width:50%; text-align: left; padding-left:30px;"> 
