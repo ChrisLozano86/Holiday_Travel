@@ -76,7 +76,7 @@ include_once('lib/registrar_agencia.php');
                 <li><a href="#d" data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
                 <li><a href="#d">Internacional</a>
                     <ul class="dropdown">
-                        <li><a href="#d">Circuitos</a></li>
+                        <li><a href="./circuitos.php">Circuitos</a></li>
                     </ul>
                 </li>
                 
@@ -151,7 +151,7 @@ include_once('lib/registrar_agencia.php');
                                     <li><a href="#exampleModal" data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
                                     <li><a href="#s">Internacional</a>
                                         <ul class="dropdown">
-                                            <li><a href="#s">Circuitos</a></li>
+                                            <li><a href="./circuitos.php">Circuitos</a></li>
                                         </ul>
                                     </li>
                                     
