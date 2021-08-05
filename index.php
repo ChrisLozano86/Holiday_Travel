@@ -30,7 +30,7 @@ include_once('lib/registrar_agencia.php');
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 
-    <link rel="stylesheet" href="./dashboard/assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../dashboard/assets/css/style.css" type="text/css">
     <!-- <link rel="stylesheet" href="./dashboard/assets/css/adminlte.css" type="text/css"> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
@@ -76,7 +76,7 @@ include_once('lib/registrar_agencia.php');
                 <li><a href="#d" data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
                 <li><a href="#d">Internacional</a>
                     <ul class="dropdown">
-                        <li><a href="./circuitos.php">Circuitos</a></li>
+                        <li><a href="./circuitos/index.php">Circuitos</a></li>
                     </ul>
                 </li>
                 
@@ -151,7 +151,7 @@ include_once('lib/registrar_agencia.php');
                                     <li><a href="#exampleModal" data-toggle="modal" data-target="#exampleModal">Registrate</a></li>
                                     <li><a href="#s">Internacional</a>
                                         <ul class="dropdown">
-                                            <li><a href="./circuitos.php">Circuitos</a></li>
+                                            <li><a href="./circuitos/index.php">Circuitos</a></li>
                                         </ul>
                                     </li>
                                     
@@ -396,11 +396,14 @@ include_once('lib/registrar_agencia.php');
                         <img src="./dashboard/modules/promos/<?php echo $item['url_imagen1']; ?>" class="img-fluid" height="300px" width="100%" alt="images">
                         <div class="overlay">
                             <!-- <h2>Awesome Temples</h2> -->
-                            <a class="info" href="#" data-toggle="modal" data-target="#myModal1">Más Información...</a>
+                            <a class="info" href="#" data-toggle="modal" data-target="#myModal1<?php echo $item[0]; ?>">Más Información...</a>
                         </div>
                     </div>
+                </div>
+                <?php endforeach; ?>
 
-                    <div class="modal fade" id="myModal1" role="dialog">
+                <?php foreach ($promo as $item) : ?>
+                <div class="modal fade" id="myModal1<?php echo $item[0]; ?>" role="dialog">
                         <div class="modal-dialog ">
                             <!-- Modal content-->
                             <div class="modal-content">
@@ -426,9 +429,7 @@ include_once('lib/registrar_agencia.php');
 
                         </div>
                     </div>
-
-                </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
     <?php else : ?>
         <div class="">
         <p class="alert alert-info justify-content-center"> No hay promociones para mostrar </p>
