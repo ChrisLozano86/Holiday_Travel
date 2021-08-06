@@ -393,7 +393,7 @@ include_once('lib/registrar_agencia.php');
              <?php foreach ($promo as $item) : ?>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="hovereffects">
-                        <img src="./dashboard/modules/promos/<?php echo $item['url_imagen1']; ?>" class="img-fluid mb-4 caruima" height="300px" width="100%" alt="images">
+                        <img src="./dashboard/modules/promos/<?php echo $item['url_imagen1']; ?>" class="img-fluid mb-4" height="300px" width="100%" alt="images">
                         <div class="overlay">
                             <!-- <h2>Awesome Temples</h2> -->
                             <a class="info" href="#" data-toggle="modal" data-target="#myModal1<?php echo $item[0]; ?>">Más Información...</a>
