@@ -7,7 +7,7 @@ $reservaciones = Reserva::enviarNotificaciones();
         
 $template_file = "../template/email_template/template_notificacion.php";
 $email_from = "Servicio de notificaciones <soporte@htop.com.mx>";
-$email_to = 'agencias@holidaytravel.com.mx, direcciongeneral@holidaytravel.com.mx, contabilidad@holidaytravel.com.mx';
+$email_to = 'agencias@holidaytravel.com.mx, direcciongeneral@holidaytravel.com.mx, contabilidad@holidaytravel.com.mx, edmundo.sanchez@htop.com.mx';
 $email_subject = "Notificación de fecha de pago de reservación"; 
 
 foreach($reservaciones as $item){
