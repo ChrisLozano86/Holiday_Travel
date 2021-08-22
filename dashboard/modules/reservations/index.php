@@ -281,7 +281,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <hr>
 
-<table class="table table-bordered table-responsive" id="table-data" style="font-size: 14px;" >
+<table class="table table-bordered table-responsive" id="table-data-reservations" style="font-size: 14px;" >
 <thead class="thead-dark">
 <tr class="text-center">
 <th scope="col">Clave Interna</th>

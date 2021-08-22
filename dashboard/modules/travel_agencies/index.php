@@ -60,9 +60,10 @@ $agencia = Agencia::recuperarTodos();
             <a href="export_report.php" class="btn btn-default btn-custom" > <i class="fas fa-file-excel"></i> Exportar a Excel</a><br><br>
 
 
-            <table class="table table-bordered"  id="table-data">
+            <table class="table table-bordered"  id="table-data-travel-agencies">
   <thead class="thead-dark">
     <tr>
+     <th scope="col" style="display:none;">ID</th>
       <th scope="col">Logo</th>
       <th scope="col">Nombre Comercial</th>
       <th scope="col">Fecha de registro</th>
@@ -101,6 +102,9 @@ $agencia = Agencia::recuperarTodos();
 </div>
 
     <tr>
+
+    <td class="text-center" style="display:none;"><?php echo $item[0] ?></td>
+    
     <?php
       if($item['logo']!=""){
     ?>

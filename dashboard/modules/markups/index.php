@@ -48,9 +48,10 @@ $agencia = Agencia::recuperarTodos();
 
 
 
-            <table class="table table-bordered"  id="table-data">
+            <table class="table table-bordered"  id="table-data-travel-agencies">
   <thead class="thead-dark">
     <tr>
+      <th scope="col" style="display: none;">ID</th>
       <th scope="col" class="text-center">Logo</th>
       <th scope="col" class="text-center">Nombre Comercial</th>
       <th scope="col" class="text-center">Markup Operadora</th>
@@ -90,6 +91,7 @@ $agencia = Agencia::recuperarTodos();
 </div>
 
     <tr>
+    <td style="display: none;"><?php echo $item[0] ?></td>
     <?php
       if($item['logo']!=""){
     ?>
@@ -102,6 +104,7 @@ $agencia = Agencia::recuperarTodos();
       <?php
     }
     ?>
+      
       <td><?php echo $item['nombre_comercial'] ?></td>
       <td class="text-center"> <?php if($item['markup_operadora'] != NULL){echo $item['markup_operadora'].'%';}else{ echo '<span class="badge badge-warning">No definido</span>';} ?></td>
       <td class="text-center"> <?php if($item['comision_agencia'] != NULL){echo $item['comision_agencia'].'%';}else{ echo '<span class="badge badge-warning">No definido</span>';} ?></td>
