@@ -184,7 +184,7 @@ include_once('lib/registrar_agencia.php');
                         <!-- <a href="#" class="primary-btn">Más Información</a> -->
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1 d-none d-md-block">
                     <div class="booking-form">
                         <div class="text-center">
                             <img src="img/imgOne.png" alt="" height="34px">
@@ -227,6 +227,9 @@ include_once('lib/registrar_agencia.php');
                         </form>
                     </div>
                 </div>
+                <?php 
+                    include_once ('template/fix-margin-login-form.php');
+                ?>
             </div>
         </div>
         <div class="hero-slider owl-carousel">
