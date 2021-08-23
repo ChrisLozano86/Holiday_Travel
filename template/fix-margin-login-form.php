@@ -1,4 +1,4 @@
-<div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1 d-md-none" style="margin-top: -70%;" >
+<div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1 d-lg-none" style="margin-top: -70%;" >
                     <div class="booking-form">
                         <div class="text-center">
                             <img src="img/imgOne.png" alt="" height="34px">
