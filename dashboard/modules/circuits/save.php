@@ -213,27 +213,27 @@ include_once '../../assets/template/header.php';
 
             <div class="form-group">
               <label for="incluye">El viaje incluye:</label>
-              <textarea class="form-control ckeditor" name="incluye" id="incluye" value="<?php echo $slider->getIncluye(); ?>" rows="8"></textarea>
+              <textarea class="form-control ckeditor" name="incluye" id="incluye"  rows="8"><?php echo $slider->getIncluye(); ?></textarea>
             </div>
 
             <div class="form-group">
               <label for="no_incluye">El viaje NO incluye:</label>
-              <textarea class="form-control ckeditor" name="no_incluye" id="no_incluye" value="<?php echo $slider->getNoIncluye(); ?>" rows="8"></textarea>
+              <textarea class="form-control ckeditor" name="no_incluye" id="no_incluye"  rows="8"><?php echo $slider->getNoIncluye(); ?></textarea>
             </div>
 
             <div class="form-group">
               <label for="itinerario">Itinerario:</label>
-              <textarea class="form-control ckeditor" name="itinerario" id="itinerario" value="<?php echo $slider->getItinerario() ?>" rows="20"></textarea>
+              <textarea class="form-control ckeditor" name="itinerario" id="itinerario"  rows="20"><?php echo $slider->getItinerario() ?></textarea>
             </div>
 
             <div class="form-group">
               <label for="tarifas">Tarifas:</label>
-              <textarea class="form-control ckeditor" name="tarifas" id="tarifas" value="<?php echo $slider->getTarifas(); ?>" rows="5"></textarea>
+              <textarea class="form-control ckeditor" name="tarifas" id="tarifas"  rows="5"><?php echo $slider->getTarifas(); ?></textarea>
             </div>
 
             <div class="form-group">
               <label for="hoteles">Hoteles:</label>
-              <textarea class="form-control ckeditor" name="hoteles" id="hoteles" value="<?php echo $slider->getHoteles(); ?>" rows="5"></textarea>
+              <textarea class="form-control ckeditor" name="hoteles" id="hoteles"  rows="5"><?php echo $slider->getHoteles(); ?></textarea>
             </div>
 
             <div class="form-group">
@@ -243,12 +243,12 @@ include_once '../../assets/template/header.php';
 
             <div class="form-group">
               <label for="tours_opcionales">Tours opcionales:</label>
-              <textarea class="form-control ckeditor" name="tours" id="tours" value="<?php echo $slider->getTours(); ?>" rows="5"></textarea>
+              <textarea class="form-control ckeditor" name="tours" id="tours"  rows="5"><?php echo $slider->getTours(); ?></textarea>
             </div>
 
             <div class="form-group">
               <label for="visas">Visas:</label>
-              <textarea class="form-control ckeditor" name="visas" id="visas" value="<?php echo $slider->getVisas(); ?>" rows="5"></textarea>
+              <textarea class="form-control ckeditor" name="visas" id="visas"  rows="5"><?php echo $slider->getVisas(); ?></textarea>
             </div>
 
 
