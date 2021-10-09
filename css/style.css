@@ -245,8 +245,10 @@ ol {
     max-width: 100% !important;
     height: auto;
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
+    background-size: contain;
+    background-position: top center !important;
+    width: 100% !important;
+    min-height: 1200px !important;
 }
 
 .spad {
@@ -2507,6 +2509,15 @@ ol {
     .hp-room-items .hp-room-item:hover .hr-text {
         bottom: 80px;
     }
+    .set-bg {
+        max-width: 100% !important;
+        height: inherit;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: top center !important;
+        width: 100% !important;
+        min-height: auto !important;
+    }
 }
 
 @media only screen and (max-width: 991px) {
@@ -2789,6 +2800,15 @@ ol {
     .ocultar-text {
         display: none;
     }
+    .set-bg {
+        max-width: 100% !important;
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top center !important;
+        width: 100% !important;
+        min-height: auto !important;
+    }
 }
 
 
@@ -2831,6 +2851,15 @@ ol {
     }
     .ocultar-text {
         display: none;
+    }
+    .set-bg {
+        max-width: 100% !important;
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top center !important;
+        width: 100% !important;
+        min-height: 1200px !important;
     }
 }
 
@@ -2882,5 +2911,14 @@ ol {
     }
     .ocultar-text {
         display: none;
+    }
+    .set-bg {
+        max-width: 100% !important;
+        height: auto;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top center !important;
+        width: 100% !important;
+        min-height: 1200px !important;
     }
 }
