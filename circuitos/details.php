@@ -6,7 +6,7 @@ if (!isset($_GET['idCircuito'])) {
 
 
 require_once '../dashboard/class/Circuito.php';
-require_once '../dashboard/class/DestinosUno.php';
+
 
 
     $idSlider = (isset($_REQUEST['idCircuito'])) ? $_REQUEST['idCircuito'] : null;
@@ -14,10 +14,7 @@ require_once '../dashboard/class/DestinosUno.php';
 
     if($idSlider){        
         $circuito = Circuito::buscarPorId($idSlider); 
-		
-		if(empty($circuito)){
-			$circuito = DestinosUno::buscarPorId($idSlider); 
-		}
+	
     }
 
     // //Request
@@ -132,23 +129,23 @@ require_once '../dashboard/class/DestinosUno.php';
 					</ol>
 					<?php
             
-            		$slider = Circuito::recuperarPublicados();
+            		//$slider = Circuito::recuperarPublicados();
 		
 
-            if (count($slider) > 0) : 
+            //if (count($slider) > 0) : 
             ?>
-			<?php foreach ($slider as $item) : ?>
+			<?php //foreach ($slider as $item) : ?>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img class="d-block w-100 " src="../dashboard/modules/circuits/<?php echo $item['imguno']; ?>" alt="First slide">
+							<img class="d-block w-100 " src="../dashboard/modules/circuits/<?php echo $circuito->getImgUno(); ?>" alt="First slide">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block w-100 " src="../dashboard/modules/circuits/<?php echo $item['imgdos']; ?>">
+							<img class="d-block w-100 " src="../dashboard/modules/circuits/<?php echo $circuito->getImgDos(); ?>">
 						</div>
-						<?php endforeach; ?>
-						<?php else : ?>
+						<?php //endforeach; ?>
+						<?php //else : ?>
         
-    <?php endif; ?>
+    <?php //endif; ?>
 						<div class="carousel-item">
 						<iframe src="<?php echo $circuito->getVideo() ?>" title="YouTube video player" width="100%" height="534" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 						</div>
