@@ -144,6 +144,12 @@ include_once '../../assets/template/header.php';
             <div class="form-group">
               <input class="form-control" type="hidden" name="url_imagen1" id="url_imagen1" value="<?php echo $slider->getUrlImagen1(); ?>">
             </div>
+            <div class="form-group">
+              <input class="form-control" type="hidden" name="imguno" id="imguno" value="<?php echo $slider->getImgUno(); ?>">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="hidden" name="imgdos" id="imgdos" value="<?php echo $slider->getImgDos(); ?>">
+            </div>
 
 
             <div class="form-group">
