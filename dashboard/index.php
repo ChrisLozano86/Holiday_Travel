@@ -232,6 +232,50 @@ $num_notifications = count($notifications);
                   <p>Promociones</p>
                 </a>
               </li>
+              <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="fas fa-plane"></i>
+
+                      <p>Circuitos
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                      <li class="nav-item">
+                        <a href="modules/circuits_carrusel/index.php" class="nav-link">
+                          <i class="fas fa-spinner ml-4"></i>
+                          <p>Carrusel</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a href="modules/category_one/index.php" class="nav-link">
+                          <i class="fas fa-suitcase-rolling ml-4"></i>
+                          <p>Categoría 1</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a href="modules/category_two/index.php" class="nav-link">
+                          <i class="fas fa-suitcase ml-4"></i>
+                          <p>Categoría 2</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="modules/category_three/index.php" class="nav-link">
+                          <i class="fas fa-award ml-4"></i>
+                          <p>Categoría 3</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="modules/circuits/index.php" class="nav-link">
+                          <i class="fas fa-edit ml-4"></i>
+                          <p>Gestionar circuitos</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
               <?php 
     
                }
